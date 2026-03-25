@@ -993,37 +993,72 @@
             text-align: center;
         }
 
-        .footer-brand {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: rgba(255,255,255,0.85);
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.5);
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: rgba(255,255,255,0.85);
-        }
-
         .footer-copy {
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.3);
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        .testimonial {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text);
+            position: relative;
+        }
+
+        .testimonial-author {
+            font-size: 0.9rem;
+            color: var(--green);
+            font-weight: 500;
+            text-transform: uppercase;
             letter-spacing: 0.05em;
+        }
+
+        /* Sticky Banner */
+        .sticky-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--green);
+            color: var(--white); /* Changed from var(--bg) to var(--white) for consistency */
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sticky-banner.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-banner span {
+            display: inline-block;
         }
         /* ============================================
            PREMIUM VISUAL ENHANCEMENTS
@@ -1690,6 +1725,11 @@
 </head>
 
 <body>
+    <!-- Sticky Banner -->
+    <div class="sticky-banner" id="stickyBanner">
+        <span class="lang-pt">Early Bird até 10 de Maio — Últimas Vagas Disponíveis</span>
+        <span class="lang-en">Early Bird until May 10th — Limited Spots Available</span>
+    </div>
 
     <!-- ============================================
          NAVIGATION
@@ -1916,57 +1956,31 @@
     <!-- ============================================
          TESTEMUNHOS
          ============================================ -->
-    <section class="section section-alt" id="testemunhos">
+    <section class="section" id="testemunhos" style="background: var(--white);">
         <div class="container">
-            <div class="section-heading fade-in">
-                <p class="section-label">
-                    <span class="lang-pt">Testemunhos</span>
-                    <span class="lang-en">Testimonials</span>
-                </p>
-                <div class="section-divider"></div>
-                <h2>
-                    <span class="lang-pt">O que dizem os alunos</span>
-                    <span class="lang-en">What students say</span>
-                </h2>
-            </div>
-
-            <div class="testemunhos-grid">
-
-                <!-- Alexandra — Psicoterapeuta, 30 anos de prática -->
-                <div class="testemunho fade-in">
-                    <blockquote>
-                        <span class="lang-pt">"Depois de cerca de 30 anos de prática de yoga, conheci muitos professores em todo o mundo. Talvez apenas alguns deles tenham sido realmente excecionais — e o Pedro é um desses. Tenho frequentado as suas aulas há mais de 4 anos, muitas vezes 3 vezes por semana, e para mim essas horas são o meu remédio em movimento, a minha meditação em movimento. Elas ajudam-me a recentrar, a enraizar, e são essenciais para o meu trabalho com clientes como psicoterapeuta. É um verdadeiro presente participar nas suas aulas — as suas correções e ajustes suaves são feitos com uma amabilidade amorosa, como um bálsamo para o corpo e para a alma. Um professor autêntico, direto e de coração aberto — uma verdadeira joia para a comunidade. Com profunda gratidão."</span>
-                        <span class="lang-en">"After some 30 years of yoga practice, I've met many teachers all over the world. Perhaps a handful of them were exceptional and Pedro is one of those. I have been coming to his classes for over 4 years, often 3 times a week, and to me these hours are my movement medicine, my meditation in movement. They center and ground me and are essential for my work with clients as a psychotherapist. It is a gift to come to his classes and his gentle corrections or adjustments are made filled with loving kindness, like a balm for body and soul. This is a no nonsense, authentic and heart-centered teacher — a true gem for the community. In deep gratitude."</span>
-                    </blockquote>
-                    <p class="testemunho-author">Alexandra</p>
-                    <p class="testemunho-role">
-                        <span class="lang-pt">Psicoterapeuta — 30 anos de prática</span>
-                        <span class="lang-en">Psychotherapist — 30 years of practice</span>
-                    </p>
+            <h2 class="fade-in" style="font-size: 1.5rem; text-align: center; margin-bottom: 3rem; color: var(--green); opacity: 0.6;">
+                <span class="lang-pt">O que dizem os alunos...</span>
+                <span class="lang-en">What students say...</span>
+            </h2>
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial fade-in">
+                    <p class="testimonial-quote lang-pt">"Depois de cerca de 30 anos de prática de yoga... Para mim estas horas são o meu remédio em movimento. O seu estilo único é inspirado pelo tempo que passou na Índia e pelas diferentes escolas de yoga que estudou."</p>
+                    <p class="testimonial-quote lang-en">"After some 30 years of yoga practice... To me these hours are my movement medicine. Pedro's unique style is informed by his time in India and the different schools of yoga he studied."</p>
+                    <p class="testimonial-author">— Alexandra</p>
                 </div>
-
-                <!-- Lotte — Quase 20 anos de prática -->
-                <div class="testemunho fade-in">
-                    <blockquote>
-                        <span class="lang-pt">"Não é exagero dizer que as aulas do Pedro mudaram a minha vida e se tornaram uma parte essencial da minha saúde mental e física. Tendo praticado yoga durante quase 20 anos, sei como é raro encontrar um professor capaz de criar aulas que fluem com tanta naturalidade, ao mesmo tempo que dá atenção individual sempre que necessário. O Pedro consegue tudo isso e ainda mais. As suas aulas são um belo equilíbrio entre movimento e quietude, que fluem e se transformam a cada semana em sintonia com as estações do ano."</span>
-                        <span class="lang-en">"It is no exaggeration to say that Pedro's classes changed my life and they have become a vital part of my mental and physical health. Having practised yoga for nearly 20 years I know how rare it is to find a teacher able to create classes which flow so effortlessly, while still giving individual attention where necessary. Pedro manages all this and more. His classes are a beautiful balance of movement and stillness, which flow and change weekly in line with the seasons."</span>
-                    </blockquote>
-                    <p class="testemunho-author">Lotte</p>
-                    <p class="testemunho-role">
-                        <span class="lang-pt">Praticante com quase 20 anos de experiência</span>
-                        <span class="lang-en">Practitioner with nearly 20 years of experience</span>
-                    </p>
+                <!-- Testimonial 2 -->
+                <div class="testimonial fade-in fade-in-delay-1">
+                    <p class="testimonial-quote lang-pt">"O que mais adoro é a forma como ele guia toda a aula através da respiração. As suas aulas dinâmicas têm um sentido de ritmo incrível, quase como surfar uma onda: começam de forma suave, vão ganhando profundidade e força, e conduzem à quietude."</p>
+                    <p class="testimonial-quote lang-en">"What I love most is how he guides you through the entire class with breathwork. His dynamic classes have an incredible sense of rhythm, almost like riding a wave: starting gently, building in depth, and then slowing down into stillness."</p>
+                    <p class="testimonial-author">— Marije</p>
                 </div>
-
-                <!-- Kalyani -->
-                <div class="testemunho fade-in">
-                    <blockquote>
-                        <span class="lang-pt">"A capacidade do Pedro de 'sustentar o espaço' é enraizada e expansiva. Ele oferece consistentemente exatamente aquilo que nos pede no tapete — mover-nos com inteligência, com elegância e com presença, lembrando-nos sempre de que é a respiração que guia o caminho. A minha prática aprofundou-se significativamente desde que comecei as aulas com o Pedro. Estou imensamente grata pela sua dedicação e pela sua paixão em viver o yoga."</span>
-                        <span class="lang-en">"Pedro's ability to hold space is grounded and expansive. He consistently provides exactly what he asks of us on the mat — to move with intelligence, with elegance and with presence. Always reminding us that the breath leads the way. My practice has deepened significantly since starting classes with Pedro. I'm immensely grateful for his dedication and passion for living yoga."</span>
-                    </blockquote>
-                    <p class="testemunho-author">Kalyani</p>
+                <!-- Testimonial 3 -->
+                <div class="testimonial fade-in fade-in-delay-2">
+                    <p class="testimonial-quote lang-pt">"A capacidade do Pedro de 'sustentar o espaço' é enraizada e expansiva. Ele oferece consistentemente exatamente aquilo que nos pede no tapete — mover-nos com inteligência, com elegância e com presença."</p>
+                    <p class="testimonial-quote lang-en">"Pedro's ability to hold space is grounded and expansive. He consistently provides exactly what he asks of us on the mat - to move with intelligence, with elegance and with presence."</p>
+                    <p class="testimonial-author">— Kalyani</p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -2218,6 +2232,62 @@
     </section>
 
     <!-- ============================================
+         PERGUNTAS FREQUENTES (FAQ)
+         ============================================ -->
+    <section class="section section-alt" id="faq">
+        <style>
+            .faq-item { margin-bottom: 2.5rem; }
+            .faq-item h3 { font-size: 1.15rem; color: var(--green); margin-bottom: 0.8rem; }
+            .faq-item p { color: var(--text-light); line-height: 1.6; }
+        </style>
+        <div class="container container-sm">
+            <div class="section-heading fade-in">
+                <p class="section-label">
+                    <span class="lang-pt">FAQ</span>
+                    <span class="lang-en">FAQ</span>
+                </p>
+                <div class="section-divider"></div>
+                <h2>
+                    <span class="lang-pt">Perguntas Frequentes</span>
+                    <span class="lang-en">Frequently Asked Questions</span>
+                </h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <h3>
+                        <span class="lang-pt">Para quem é este retiro?</span>
+                        <span class="lang-en">Who is this retreat for?</span>
+                    </h3>
+                    <p>
+                        <span class="lang-pt">O Living Prayer é para praticantes que desejam aprofundar a prática muito além do aspeto físico, mergulhando no silêncio, na meditação e na autodescoberta.</span>
+                        <span class="lang-en">Living Prayer is for practitioners who wish to deepen their practice far beyond the physical aspect, diving into silence, meditation, and self-discovery.</span>
+                    </p>
+                </div>
+                <div class="faq-item fade-in fade-in-delay-1">
+                    <h3>
+                        <span class="lang-pt">Posso participar como iniciante?</span>
+                        <span class="lang-en">Can I join as a beginner?</span>
+                    </h3>
+                    <p>
+                        <span class="lang-pt">Sim, as sessões de asana e meditação baseadas no Vinyasa Krama, Iyengar e Ashtanga serão guiadas e adaptadas por Pedro a cada nível. Dedicação conta mais do que habilidade física prévia.</span>
+                        <span class="lang-en">Yes, the asana and meditation sessions based on Vinyasa Krama, Iyengar, and Ashtanga will be guided and adapted by Pedro to every level. Dedication matters more than previous physical ability.</span>
+                    </p>
+                </div>
+                <div class="faq-item fade-in fade-in-delay-2">
+                    <h3>
+                        <span class="lang-pt">Qual é o idioma do retiro?</span>
+                        <span class="lang-en">What language is the retreat in?</span>
+                    </h3>
+                    <p>
+                        <span class="lang-pt">Bilingue (Português/Inglês). A instrução fluirá entre os dois idiomas conforme o perfil e necessidades do grupo, mantendo o ambiente orgânico.</span>
+                        <span class="lang-en">Bilingual (Portuguese/English). The instruction will flow between both languages depending on the group's profile and needs.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
          CANDIDATURA
          ============================================ -->
     <section class="section" id="candidatura">
@@ -2427,6 +2497,9 @@
         /* -------------------------------------------
            Scroll fade-in animations
            ------------------------------------------- */
+        /* -------------------------------------------
+           Scroll fade-in animations
+           ------------------------------------------- */
         var fadeElements = document.querySelectorAll('.fade-in');
 
         if ('IntersectionObserver' in window) {
@@ -2468,32 +2541,62 @@
         });
 
         /* -------------------------------------------
-           Form submission handler
+           Form submission handler (HubSpot AJAX API)
            ------------------------------------------- */
         function handleFormSubmit(e) {
             e.preventDefault();
             var form = document.getElementById('applicationForm');
             var success = document.getElementById('formSuccess');
+            var btn = form.querySelector('button[type="submit"]');
 
-            // Collect form data
             var data = new FormData(form);
-            var entries = {};
-            data.forEach(function(value, key) { entries[key] = value; });
+            var fields = [
+                { name: "firstname", value: data.get("name") },
+                { name: "email", value: data.get("email") },
+                { name: "mobilephone", value: data.get("phone") },
+                { name: "message", value: data.get("motivation") },
+                { name: "tier_retiro", value: data.get("tier") }
+            ];
 
-            // PLACEHOLDER: Replace with actual form submission
-            // Option A: Tally.so embed (replace entire form with iframe)
-            // Option B: Send to email via Formspree:
-            //   Change form action to "https://formspree.io/f/YOUR_ID" method="POST"
-            // Option C: Send to HubSpot via API
-            // Option D: Send to Google Sheets via Apps Script
+            var originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<span class="lang-pt">A enviar...</span><span class="lang-en">Sending...</span>';
+            btn.disabled = true;
 
-            // For now, log data and show success
-            console.log('Living Prayer — Application submitted:', entries);
+            var portalId = "YOUR_PORTAL_ID"; // Substituir pelo ID do HubSpot
+            var formGuid = "YOUR_FORM_GUID"; // Substituir pelo GUID do formulário HubSpot
 
-            // Show success message
-            form.style.display = 'none';
-            success.style.display = 'block';
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if(portalId === "YOUR_PORTAL_ID") {
+                 setTimeout(function() {
+                     console.log('Living Prayer — Formulário simulado (HubSpot não configurado):', fields);
+                     form.style.display = 'none';
+                     success.style.display = 'block';
+                     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                 }, 800);
+                 return;
+            }
+
+            var hutk = document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+            fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + portalId + '/' + formGuid, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fields: fields,
+                    context: { hutk: hutk, pageUri: window.location.href, pageName: document.title }
+                })
+            })
+            .then(res => res.json())
+            .then(response => {
+                form.style.display = 'none';
+                success.style.display = 'block';
+                success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            })
+            .catch(err => {
+                console.error('Error submitting form', err);
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+                alert('Ocorreu um erro ao enviar. Por favor tenta novamente. / An error occurred. Please try again.');
+            });
         }
 
         /* -------------------------------------------
