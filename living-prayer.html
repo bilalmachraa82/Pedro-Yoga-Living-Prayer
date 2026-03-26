@@ -2962,7 +2962,7 @@
         }
 
         /* -------------------------------------------
-           Form submission handler (HubSpot AJAX API / Systeme.io Webhook)
+           Form submission handler (Systeme.io Integration via Vercel Function)
            ------------------------------------------- */
         function handleFormSubmit(e) {
             e.preventDefault();
@@ -2971,48 +2971,34 @@
             var btn = form.querySelector('button[type="submit"]');
 
             var data = new FormData(form);
-            var fields = [
-                { name: "firstname", value: data.get("fullName") },
-                { name: "email", value: data.get("email") },
-                { name: "mobilephone", value: data.get("phone") },
-                { name: "message", value: data.get("motivation") },
-                { name: "tier_retiro", value: data.get("tier") }
-            ];
+            var payload = {
+                fullName: data.get("fullName"),
+                email: data.get("email"),
+                phone: data.get("phone"),
+                motivation: data.get("motivation"),
+                tier: data.get("tier"),
+                q4: data.get("q4")
+            };
 
             var originalBtnText = btn.innerHTML;
             btn.innerHTML = '<span class="lang-pt">A enviar...</span><span class="lang-en">Sending...</span>';
             btn.disabled = true;
 
-            var portalId = "YOUR_PORTAL_ID"; // Substituir pelo ID do HubSpot
-            var formGuid = "YOUR_FORM_GUID"; // Substituir pelo GUID do formulário HubSpot
-
-            if(portalId === "YOUR_PORTAL_ID") {
-                 setTimeout(function() {
-                     console.log('Living Prayer — Formulário simulado (HubSpot não configurado):', fields);
-                     form.style.display = 'none';
-                     success.style.display = 'block';
-                     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                 }, 800);
-                 return;
-            }
-
-            var hutk = document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
-            fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + portalId + '/' + formGuid, {
+            fetch('/api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    fields: fields,
-                    context: { hutk: hutk, pageUri: window.location.href, pageName: document.title }
-                })
+                body: JSON.stringify(payload)
             })
-            .then(res => res.json())
-            .then(response => {
+            .then(function(res) {
+                if (!res.ok) throw new Error('Network response was not ok');
+                return res.json();
+            })
+            .then(function(response) {
                 form.style.display = 'none';
                 success.style.display = 'block';
                 success.scrollIntoView({ behavior: 'smooth', block: 'center' });
             })
-            .catch(err => {
+            .catch(function(err) {
                 console.error('Error submitting form', err);
                 btn.innerHTML = originalBtnText;
                 btn.disabled = false;
