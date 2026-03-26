@@ -1628,7 +1628,7 @@
 
         .practice-gallery {
             display: grid;
-            grid-template-columns: 1.25fr 1fr 1fr;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
             gap: 1rem;
             max-width: var(--max-width);
             margin-left: auto;
@@ -1637,6 +1637,7 @@
 
         .practice-photo {
             position: relative;
+            grid-column: span 3;
             min-height: 280px;
             border-radius: 18px;
             overflow: hidden;
@@ -1673,12 +1674,25 @@
         }
 
         .practice-photo-featured {
+            grid-column: span 5;
             grid-row: span 2;
             min-height: 580px;
         }
 
         .practice-photo-tall {
-            min-height: 300px;
+            grid-column: span 4;
+            grid-row: span 2;
+            min-height: 580px;
+        }
+
+        .practice-photo-wide {
+            grid-column: span 7;
+            min-height: 320px;
+        }
+
+        .practice-photo-medium {
+            grid-column: span 5;
+            min-height: 320px;
         }
 
         .practice-photo-caption {
@@ -1713,7 +1727,16 @@
 
             .practice-photo-featured {
                 grid-column: 1 / -1;
+                grid-row: span 1;
                 min-height: 440px;
+            }
+
+            .practice-photo-tall,
+            .practice-photo-wide,
+            .practice-photo-medium {
+                grid-column: auto;
+                grid-row: span 1;
+                min-height: 320px;
             }
         }
 
@@ -1724,7 +1747,11 @@
 
             .practice-photo,
             .practice-photo-featured,
-            .practice-photo-tall {
+            .practice-photo-tall,
+            .practice-photo-wide,
+            .practice-photo-medium {
+                grid-column: auto;
+                grid-row: auto;
                 min-height: 280px;
             }
         }
@@ -2357,6 +2384,20 @@
                         <span class="lang-en">strength and spaciousness</span>
                     </figcaption>
                 </figure>
+                <figure class="practice-photo practice-photo-wide fade-in fade-in-delay-2" style="background-image: url('img/gallery-baddha-konasana.jpg')">
+                    <figcaption class="practice-photo-caption">
+                        <strong>Baddha Konasana</strong>
+                        <span class="lang-pt">abertura e quietude</span>
+                        <span class="lang-en">openness and stillness</span>
+                    </figcaption>
+                </figure>
+                <figure class="practice-photo practice-photo-medium fade-in fade-in-delay-3" style="background-image: url('img/gallery-adho-mukha-virasana.jpg')">
+                    <figcaption class="practice-photo-caption">
+                        <strong>Adho Mukha Virasana</strong>
+                        <span class="lang-pt">recolhimento e repouso</span>
+                        <span class="lang-en">receptivity and rest</span>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
@@ -2381,10 +2422,10 @@
             </div>
 
             <div class="espaco-intro fade-in">
-                <p class="lang-pt">O retiro acontecerá na <a href="https://www.quintadasbroas.pt/" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a>, em Sintra — um lugar simples e acolhedor, rodeado de natureza.</p>
+                <p class="lang-pt">O retiro acontecerá na <a href="https://www.sercuranicole.com/quinta-das-broas" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a>, em Sintra — um lugar simples e acolhedor, rodeado de natureza.</p>
                 <p class="lang-pt">Durante estes três dias teremos um ambiente propício para desacelerar e simplesmente estar, com espaços de prática e também tempo livre para integrar.</p>
 
-                <p class="lang-en">The retreat will take place at <a href="https://www.quintadasbroas.pt/" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a>, in Sintra — a simple and welcoming place surrounded by nature.</p>
+                <p class="lang-en">The retreat will take place at <a href="https://www.sercuranicole.com/quinta-das-broas" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a>, in Sintra — a simple and welcoming place surrounded by nature.</p>
                 <p class="lang-en">Over these three days, the environment is designed to help you slow down and simply be, with dedicated practice time and enough free space to integrate.</p>
             </div>
 
