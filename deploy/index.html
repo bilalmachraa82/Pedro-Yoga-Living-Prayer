@@ -6,7 +6,7 @@
     <title>Living Prayer — Retiro de Yoga com Pedro Morais | Quinta das Broas, Sintra</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Living Prayer — Um retiro de yoga como prática sagrada com Pedro Morais na Quinta das Broas, Sintra. A partir de 310€ com alojamento e refeições incluídas.">
+    <meta name="description" content="Living Prayer — Um retiro de yoga como prática sagrada com Pedro Morais na Quinta das Broas, Sintra. Três dias para parar, escutar e voltar ao essencial.">
     <meta name="keywords" content="spiritual yoga retreat Portugal, yoga retreat Sintra, Living Prayer retreat, retiro yoga espiritual Portugal, yoga profundo Sintra, retiro meditação Portugal, Pedro Morais yoga">
     <meta name="author" content="Pedro Morais">
     <meta name="robots" content="index, follow">
@@ -55,29 +55,15 @@
             "name": "Pedro Morais",
             "url": "https://www.instagram.com/pedromoraisyoga/"
         },
-        "offers": [
-            {
-                "@type": "Offer",
-                "name": "Quarto Partilhado",
-                "price": "650",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/LimitedAvailability"
-            },
-            {
-                "@type": "Offer",
-                "name": "Quarto Individual",
-                "price": "900",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/LimitedAvailability"
-            },
-            {
-                "@type": "Offer",
-                "name": "Premium + Shiatsu",
-                "price": "1200",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/LimitedAvailability"
-            }
-        ],
+        "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "310",
+            "highPrice": "680",
+            "priceCurrency": "EUR",
+            "offerCount": "5",
+            "availability": "https://schema.org/LimitedAvailability",
+            "url": "https://www.livingprayer.pt/#pricing"
+        },
         "maximumAttendeeCapacity": 15,
         "image": "https://www.livingprayer.pt/og-image.jpg"
     }
@@ -609,7 +595,11 @@
         }
 
         @media (min-width: 640px) {
-            .pratica-pillars { grid-template-columns: 1fr 1fr 1fr; }
+            .pratica-pillars { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (min-width: 1100px) {
+            .pratica-pillars { grid-template-columns: 1fr 1fr 1fr 1fr; }
         }
 
         .pillar {
@@ -1721,6 +1711,219 @@
             );
         }
 
+        .hero-description {
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-intro {
+            max-width: 620px;
+            margin: 0 auto 1.25rem;
+            font-family: var(--font-serif);
+            font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+            font-style: italic;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.92);
+        }
+
+        .hero-date {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2.5rem;
+            padding: 0.65rem 1.15rem;
+            border: 1px solid rgba(255,255,255,0.26);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-cta-outline {
+            background: transparent;
+            border-color: rgba(255,255,255,0.38);
+            color: var(--white);
+        }
+
+        .hero-cta-outline:hover {
+            background-color: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.95);
+            color: var(--white);
+        }
+
+        .professor-actions {
+            display: flex;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .bio-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.35rem;
+            border: 1px solid rgba(74, 93, 79, 0.18);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--green);
+            font-family: var(--font-sans);
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .bio-button:hover {
+            background-color: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .bio-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(33, 33, 33, 0.42);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .bio-modal.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .bio-modal-dialog {
+            position: relative;
+            width: min(780px, 100%);
+            max-height: min(88vh, 980px);
+            overflow-y: auto;
+            padding: clamp(1.5rem, 3vw, 2.75rem);
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(245,240,235,0.55) 0%, var(--white) 18%);
+            box-shadow: 0 32px 90px rgba(0,0,0,0.18);
+        }
+
+        .bio-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            border-radius: 999px;
+            background: rgba(74, 93, 79, 0.08);
+            color: var(--green);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .bio-modal-close:hover {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .bio-modal-eyebrow {
+            margin-bottom: 1rem;
+            color: var(--brown);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .bio-modal-title {
+            max-width: 560px;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-modal-content p {
+            color: var(--text-light);
+            font-size: clamp(0.98rem, 1.1vw, 1.05rem);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .practice-note {
+            max-width: 760px;
+            margin: 2rem auto 0;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .espaco-features {
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .espaco-features {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .espaco-features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-date {
+                width: 100%;
+                border-radius: 18px;
+                line-height: 1.5;
+                padding-left: 0.9rem;
+                padding-right: 0.9rem;
+            }
+
+            .bio-modal {
+                padding: 1rem;
+            }
+
+            .bio-modal-dialog {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .nav-brand {
+                max-width: 130px;
+                line-height: 1.15;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-link {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -1763,22 +1966,26 @@
                 <span class="lang-pt">Asana como Prática Sagrada</span>
                 <span class="lang-en">Asana as Sacred Practice</span>
             </p>
-            <p class="hero-description fade-in fade-in-delay-2" style="margin-bottom: 0.5rem;">
+            <p class="hero-description fade-in fade-in-delay-2">
                 <span class="lang-pt">Um retiro de 3 dias com Pedro Morais na Quinta das Broas, entre Sintra e Ericeira</span>
                 <span class="lang-en">A 3-day retreat with Pedro Morais at Quinta das Broas, between Sintra and Ericeira</span>
             </p>
-            <p class="hero-price-indicator fade-in fade-in-delay-2" style="font-size: 0.95rem; color: var(--bg-warm); margin-bottom: 2.5rem; opacity: 0.9; font-weight: 500;">
-                <span class="lang-pt">A partir de 310€ (c/ alojamento e refeições)</span>
-                <span class="lang-en">From 310€ (incl. accommodation & meals)</span>
+            <p class="hero-intro fade-in fade-in-delay-2">
+                <span class="lang-pt">Três dias para parar, escutar e voltar ao essencial.</span>
+                <span class="lang-en">Three days to pause, listen, and return to what is essential.</span>
             </p>
-            <div class="hero-buttons fade-in fade-in-delay-3" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <p class="hero-date fade-in fade-in-delay-2">
+                <span class="lang-pt">12 · 13 · 14 de Junho 2026</span>
+                <span class="lang-en">12 · 13 · 14 June 2026</span>
+            </p>
+            <div class="hero-buttons fade-in fade-in-delay-3">
                 <a href="#candidatura" class="hero-cta">
                     <span class="lang-pt">Candidatar-me ao Retiro</span>
                     <span class="lang-en">Apply for the Retreat</span>
                 </a>
-                <a href="https://wa.me/351919304201" target="_blank" class="hero-cta hero-cta-outline" style="background: transparent; border: 1px solid var(--bg-warm); color: var(--bg-warm);">
-                    <span class="lang-pt">Falar no WhatsApp</span>
-                    <span class="lang-en">Ask on WhatsApp</span>
+                <a href="https://wa.me/351919304201" target="_blank" rel="noopener noreferrer" class="hero-cta hero-cta-outline whatsapp-link" data-whatsapp-base="https://wa.me/351919304201" data-message-pt="Olá Pedro, vi a página do retiro Living Prayer e gostava de receber mais informações." data-message-en="Hello Pedro, I found the Living Prayer retreat page and would love to receive more information.">
+                    <span class="lang-pt">Pedir Informações</span>
+                    <span class="lang-en">Ask for Info</span>
                 </a>
             </div>
         </div>
@@ -1809,19 +2016,28 @@
 
                 <div class="professor-text">
                     <p class="professor-highlight fade-in">
-                        <span class="lang-pt">O que praticantes com 30 anos de experiência reconhecem como excecional.</span>
-                        <span class="lang-en">What practitioners with 30 years of experience recognise as exceptional.</span>
+                        <span class="lang-pt">Professor de Yoga e terapeuta de Shiatsu, Pedro integra o Asana como uma Oração Viva, uma Meditação em Movimento e um laboratório de auto-conhecimento.</span>
+                        <span class="lang-en">A Yoga teacher and Shiatsu therapist, Pedro approaches Asana as a Living Prayer, a Meditation in Movement, and a laboratory of self-knowledge.</span>
                     </p>
 
                     <div class="fade-in fade-in-delay-1">
-                        <p class="lang-pt">Pedro Morais estudou diferentes abordagens do Hatha Yoga, com enfoque em Vinyasa Krama, Iyengar Yoga e Ashtanga Yoga — raízes do yoga moderno. Dedicou quatro anos à prática de Vipassana, em retiros de dez dias em silêncio. Estudou Vedanta no sul da Índia. A sua formação em Shiatsu trouxe ao seu ensino um toque atento e respeitoso. E durante oito anos, viveu numa comunidade espiritual dedicada ao Despertar.</p>
-                        <p class="lang-pt">Para Pedro, o Asana não é uma forma a alcançar — é um "assento" estável a partir do qual corpo, respiração e mente se organizam de forma integrada. A integração entre respiração e movimento é central na sua abordagem, permitindo que o trabalho com o corpo se torne dinâmico, meditativo e transformador.</p>
+                        <p class="lang-pt">Iniciou a prática de Yoga em 2007 e começou a ensinar em 2015. Ao longo do seu percurso estudou diferentes linhas do Hatha Yoga, incluindo Sivananda, Vinyasa Krama, Iyengar Yoga, Ashtanga Yoga e Hatha Yoga Dinâmico.</p>
+                        <p class="lang-pt">A prática de Vipassana, os estudos de Vedanta no sul da Índia e a formação em Shiatsu dão profundidade ao modo como acompanha cada aluno, com presença, precisão e respeito.</p>
+                        <p class="lang-pt">Para Pedro, o Asana não é uma forma a alcançar, mas um "assento" estável e confortável a partir do qual corpo, respiração e mente se organizam de forma integrada.</p>
 
-                        <p class="lang-en">Pedro Morais studied different approaches to Hatha Yoga, with a focus on Vinyasa Krama, Iyengar Yoga, and Ashtanga Yoga — the roots of modern yoga. He devoted four years to Vipassana practice, sitting ten-day silent retreats. He studied Vedanta in southern India. His Shiatsu training brought an attentive and respectful touch to his teaching. And for eight years, he lived in a spiritual community dedicated to Awakening.</p>
-                        <p class="lang-en">For Pedro, Asana is not a shape to achieve — it is a stable "seat" from which body, breath, and mind organise as one. The integration of breath and movement is central to his approach, allowing the work with the body to become dynamic, meditative, and transformative.</p>
+                        <p class="lang-en">He began practicing Yoga in 2007 and started teaching in 2015. Along the way he studied different Hatha Yoga lineages, including Sivananda, Vinyasa Krama, Iyengar Yoga, Ashtanga Yoga, and Dynamic Hatha Yoga.</p>
+                        <p class="lang-en">Vipassana practice, Vedanta studies in southern India, and Shiatsu training give depth to the way he supports each student, with presence, precision, and respect.</p>
+                        <p class="lang-en">For Pedro, Asana is not a shape to achieve, but a stable and comfortable "seat" from which body, breath, and mind organise as one.</p>
                     </div>
 
-                    <div class="professor-quote fade-in fade-in-delay-2">
+                    <div class="professor-actions fade-in fade-in-delay-2">
+                        <button type="button" class="bio-button" data-open-bio>
+                            <span class="lang-pt">Saber Mais</span>
+                            <span class="lang-en">Learn More</span>
+                        </button>
+                    </div>
+
+                    <div class="professor-quote fade-in fade-in-delay-3">
                         <blockquote>
                             <span class="lang-pt">"Graças a ele consegui alcançar o meu equilíbrio mental e físico. Ele é o símbolo do profissionalismo, dedicação e amor incondicional ao yoga e aos seus alunos."</span>
                             <span class="lang-en">"Thanks to him I achieved mental and physical balance. He is the symbol of professionalism, dedication, and unconditional love for yoga and his students."</span>
@@ -1834,6 +2050,41 @@
             </div>
         </div>
     </section>
+
+    <div class="bio-modal" id="bioModal" aria-hidden="true">
+        <div class="bio-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="bioModalTitle">
+            <button type="button" class="bio-modal-close" data-close-bio aria-label="Close biography modal">&times;</button>
+            <p class="bio-modal-eyebrow">Pedro Morais</p>
+            <h3 class="bio-modal-title" id="bioModalTitle">
+                <span class="lang-pt">Bio completa</span>
+                <span class="lang-en">Full biography</span>
+            </h3>
+            <div class="bio-modal-content">
+                <div class="lang-pt">
+                    <p>Pedro Morais é professor de Yoga e terapeuta de Shiatsu. A sua abordagem integra o Asana como uma Oração Viva, uma Meditação em Movimento e um laboratório de auto-conhecimento.</p>
+                    <p>Iniciou a prática de Yoga em 2007 e começou a ensinar em 2015. Ao longo do seu percurso estudou e explorou diferentes linhas e abordagens do Hatha Yoga, incluindo Sivananda, Vinyasa Krama, Iyengar Yoga, Ashtanga Yoga e Hatha Yoga Dinâmico. Destaca a influência de professores como Fernando Pinho, Nuno Cabral e Simão Monteiro no aprofundamento da sua prática e na forma como hoje compreende e partilha o Yoga.</p>
+                    <p>Entre 2009 e 2013 dedicou-se também à prática de Vipassana, participando em vários retiros de meditação de 10 dias em silêncio. Esta experiência teve uma influência profunda na sua compreensão da meditação e na forma como integra presença e observação consciente na prática.</p>
+                    <p>Em 2015 realizou o Curso de Professores de Yoga e estudos de Vedanta no sul da Índia. Posteriormente concluiu a Formação em Yoga com Joana Cadete e Rita Cachaço (2019–2020). Mantém um compromisso contínuo com o estudo e aprofundamento do Yoga através de aulas regulares, seminários e workshops.</p>
+                    <p>Para Pedro, o Asana não é uma forma a alcançar, mas um "assento" estável e confortável a partir do qual corpo, respiração e mente se organizam de forma integrada. Valoriza a relação consciente entre força e leveza, estabilidade e fluidez, promovendo alinhamento inteligente, segurança articular e liberdade de movimento.</p>
+                    <p>A integração entre respiração e movimento é central na sua abordagem, permitindo que o trabalho com o corpo se torne dinâmico, meditativo e transformador. A sua formação em Shiatsu influencia também a forma como acompanha os alunos, oferecendo ajustes físicos respeitosos e conscientes que promovem confiança, segurança e uma exploração mais refinada das posturas.</p>
+                    <p>As suas aulas constituem um espaço seguro e estruturado, onde cada praticante é convidado a desenvolver sensibilidade corporal, escuta interior e clareza mental.</p>
+                    <p>Entre 2013 e 2021 esteve envolvido numa comunidade espiritual dedicada ao Despertar Espiritual e à criação de uma Nova Cultura, participando numa experiência colectiva de prática, estudo e serviço inspirada por uma visão evolutiva da vida humana. Esta vivência influenciou profundamente a sua compreensão do Yoga enquanto caminho de transformação e expressão consciente da vida.</p>
+                    <p>Pedro é devoto de Adi Da Samraj. A devoção e o serviço ao Divino são a base da sua relação com o Yoga e com a própria vida.</p>
+                </div>
+                <div class="lang-en">
+                    <p>Pedro Morais is a Yoga teacher and Shiatsu therapist. His approach integrates Asana as a Living Prayer, a Meditation in Movement, and a laboratory of self-knowledge.</p>
+                    <p>He began practicing Yoga in 2007 and started teaching in 2015. Throughout his path he studied and explored different lineages and approaches within Hatha Yoga, including Sivananda, Vinyasa Krama, Iyengar Yoga, Ashtanga Yoga, and Dynamic Hatha Yoga. He highlights the influence of teachers such as Fernando Pinho, Nuno Cabral, and Simão Monteiro in deepening his practice and shaping the way he understands and shares Yoga today.</p>
+                    <p>Between 2009 and 2013 he also devoted himself to Vipassana practice, taking part in several ten-day silent meditation retreats. This experience deeply influenced his understanding of meditation and the way he integrates presence and conscious observation into practice.</p>
+                    <p>In 2015 he completed his Yoga Teacher Training and Vedanta studies in southern India. He later completed further Yoga training with Joana Cadete and Rita Cachaço (2019-2020). He maintains an ongoing commitment to the study and deepening of Yoga through regular classes, seminars, and workshops.</p>
+                    <p>For Pedro, Asana is not a shape to achieve, but a stable and comfortable "seat" from which body, breath, and mind organise themselves as one. He values the conscious relationship between strength and lightness, stability and fluidity, promoting intelligent alignment, joint safety, and freedom of movement.</p>
+                    <p>The integration of breath and movement is central to his approach, allowing work with the body to become dynamic, meditative, and transformative. His Shiatsu training also informs the way he supports students, offering respectful and conscious physical adjustments that foster trust, safety, and a more refined exploration of postures.</p>
+                    <p>His classes offer a safe and structured space, where each practitioner is invited to develop bodily sensitivity, inner listening, and mental clarity.</p>
+                    <p>Between 2013 and 2021 he was involved in a spiritual community dedicated to Spiritual Awakening and the creation of a New Culture, participating in a collective life of practice, study, and service inspired by an evolutionary vision of human life. This experience profoundly influenced his understanding of Yoga as a path of transformation and conscious expression of life.</p>
+                    <p>Pedro is a devotee of Adi Da Samraj. Devotion and service to the Divine are the foundation of his relationship with Yoga and with life itself.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ============================================
          A PRATICA
@@ -1849,8 +2100,8 @@
             </div>
 
             <p class="pratica-statement fade-in">
-                <span class="lang-pt">Não é um retiro de relaxamento.<br>É um laboratório de auto-conhecimento.</span>
-                <span class="lang-en">This is not a relaxation retreat.<br>It is a laboratory of self-knowledge.</span>
+                <span class="lang-pt">Não é um retiro de relaxamento.<br>É uma Oração Viva, uma Meditação em Movimento e um Laboratório de Autoconhecimento.</span>
+                <span class="lang-en">This is not a relaxation retreat.<br>It is a Living Prayer, a Meditation in Movement, and a Laboratory of Self-Knowledge.</span>
             </p>
 
             <div class="pratica-content">
@@ -1859,34 +2110,47 @@
                          Foto sugerida: fotos/adjust.jpg -->
                 </div>
                 <div class="pratica-text fade-in fade-in-delay-1">
-                    <p class="lang-pt">Living Prayer é uma imersão na prática do Asana como meditação em movimento — uma oração feita com o corpo inteiro. Durante três a quatro dias, vais explorar a integração profunda entre corpo, respiração e mente, num ritmo que permite verdadeira transformação.</p>
-                    <p class="lang-pt">Os ajustes do Pedro são informados pela sua formação em Shiatsu — toques conscientes, respeitosos, que trabalham com meridianos energéticos e não apenas com mecânica corporal. A filosofia Vedanta sustenta toda a prática, oferecendo um enquadramento para a experiência que transcende o tapete.</p>
+                    <p class="lang-pt">Durante três dias reunimo-nos em plena natureza para praticar Yoga como uma investigação viva — onde o movimento se torna meditação, o corpo se torna oração, e a experiência directa se torna um caminho de autoconhecimento.</p>
+                    <p class="lang-pt">A prática será guiada através de três pilares fundamentais: Oração Viva, Meditação em Movimento e Laboratório de Autoconhecimento. Não se trata de alcançar uma forma perfeita. Trata-se de habitar o corpo com verdade.</p>
 
-                    <p class="lang-en">Living Prayer is an immersion in the practice of Asana as moving meditation — a prayer made with the whole body. Over three to four days, you will explore the deep integration of body, breath, and mind, at a rhythm that allows true transformation.</p>
-                    <p class="lang-en">Pedro's adjustments are informed by his Shiatsu training — conscious, respectful touches that work with energy meridians, not just body mechanics. Vedanta philosophy underpins the entire practice, offering a framework for experience that transcends the mat.</p>
+                    <p class="lang-en">Over three days we gather in nature to practice Yoga as a living inquiry — where movement becomes meditation, the body becomes prayer, and direct experience becomes a path of self-knowledge.</p>
+                    <p class="lang-en">The practice will be guided through three fundamental pillars: Living Prayer, Meditation in Movement, and the Laboratory of Self-Knowledge. It is not about reaching a perfect shape. It is about inhabiting the body with truth.</p>
                 </div>
             </div>
 
             <div class="pratica-pillars fade-in">
                 <div class="pillar">
-                    <h4 class="lang-pt">Corpo</h4>
-                    <h4 class="lang-en">Body</h4>
-                    <p class="lang-pt">Asana como assento estável — alinhamento inteligente, segurança articular, liberdade de movimento</p>
-                    <p class="lang-en">Asana as stable seat — intelligent alignment, joint safety, freedom of movement</p>
+                    <h4>Asana</h4>
+                    <p class="lang-pt">Prática dinâmica de Hatha Yoga, cultivando força, abertura e sensibilidade.</p>
+                    <p class="lang-en">Dynamic Hatha Yoga practice, cultivating strength, openness, and sensitivity.</p>
                 </div>
                 <div class="pillar">
-                    <h4 class="lang-pt">Respiração</h4>
-                    <h4 class="lang-en">Breath</h4>
-                    <p class="lang-pt">Pranayama e integração respiratória — cada movimento guiado pelo ritmo da respiração</p>
-                    <p class="lang-en">Pranayama and breath integration — every movement guided by the rhythm of the breath</p>
+                    <h4>Pranayama</h4>
+                    <p class="lang-pt">A respiração como fonte de vitalidade e clareza.</p>
+                    <p class="lang-en">Breath as a source of vitality and clarity.</p>
                 </div>
                 <div class="pillar">
-                    <h4 class="lang-pt">Mente</h4>
-                    <h4 class="lang-en">Mind</h4>
-                    <p class="lang-pt">Meditação e Vedanta — escuta interior, clareza mental, presença consciente</p>
-                    <p class="lang-en">Meditation and Vedanta — inner listening, mental clarity, conscious presence</p>
+                    <h4>
+                        <span class="lang-pt">Meditação</span>
+                        <span class="lang-en">Meditation</span>
+                    </h4>
+                    <p class="lang-pt">Descanso na essência do Ser.</p>
+                    <p class="lang-en">Resting in the essence of Being.</p>
+                </div>
+                <div class="pillar">
+                    <h4>
+                        <span class="lang-pt">Silêncio</span>
+                        <span class="lang-en">Silence</span>
+                    </h4>
+                    <p class="lang-pt">Como espaço de escuta interior e integração.</p>
+                    <p class="lang-en">As a space for inner listening and integration.</p>
                 </div>
             </div>
+
+            <p class="practice-note fade-in fade-in-delay-2">
+                <span class="lang-pt">As práticas serão acessíveis a praticantes com alguma experiência de Yoga e também a quem sente um chamado genuíno para aprofundar.</span>
+                <span class="lang-en">The practices will be accessible to practitioners with some Yoga experience and also to those who feel a genuine call to go deeper.</span>
+            </p>
 
             <!-- Practice photo gallery — all dark bg studio series -->
             <div class="practice-gallery fade-in">
@@ -1920,42 +2184,52 @@
             </div>
 
             <div class="espaco-intro fade-in">
-                <p class="lang-pt"><a href="https://www.quintadasbroas.pt/" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">A Quinta das Broas</a> situa-se entre a Serra de Sintra e a Ericeira. Um espaço onde a natureza sustenta a prática — não como pano de fundo turístico, mas como contentor vivo para a transformação interior.</p>
-                <p class="lang-pt">O retiro acontece num ambiente íntimo, rodeado de jardins, silêncio e a presença constante da natureza. Tudo foi escolhido para servir a prática: a sala, a luz, o ritmo dos dias.</p>
+                <p class="lang-pt">O retiro acontecerá na <a href="https://www.quintadasbroas.pt/" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a>, em Sintra — um lugar simples e acolhedor, rodeado de natureza.</p>
+                <p class="lang-pt">Durante estes três dias teremos um ambiente propício para desacelerar e simplesmente estar, com espaços de prática e também tempo livre para integrar.</p>
 
-                <p class="lang-en"><a href="https://www.quintadasbroas.pt/" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a> sits between the Sintra hills and Ericeira. A space where nature holds the practice — not as a tourist backdrop, but as a living container for inner transformation.</p>
-                <p class="lang-en">The retreat takes place in an intimate setting, surrounded by gardens, silence, and the constant presence of nature. Everything has been chosen to serve the practice: the room, the light, the rhythm of the days.</p>
+                <p class="lang-en">The retreat will take place at <a href="https://www.quintadasbroas.pt/" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a>, in Sintra — a simple and welcoming place surrounded by nature.</p>
+                <p class="lang-en">Over these three days, the environment is designed to help you slow down and simply be, with dedicated practice time and enough free space to integrate.</p>
             </div>
 
             <div class="espaco-features fade-in">
                 <div class="espaco-feature">
                     <h4>
-                        <span class="lang-pt">Serra de Sintra</span>
-                        <span class="lang-en">Sintra Hills</span>
+                        <span class="lang-pt">Refeições Vegetarianas</span>
+                        <span class="lang-en">Vegetarian Meals</span>
                     </h4>
                     <p>
-                        <span class="lang-pt">Floresta ancestral, silêncio e uma energia que convida à presença</span>
-                        <span class="lang-en">Ancient forest, silence, and an energy that invites presence</span>
+                        <span class="lang-pt">Preparadas com cuidado para sustentar a prática com leveza e presença.</span>
+                        <span class="lang-en">Prepared with care to support the practice with lightness and presence.</span>
                     </p>
                 </div>
                 <div class="espaco-feature">
                     <h4>
-                        <span class="lang-pt">Oceano Atlântico</span>
-                        <span class="lang-en">Atlantic Ocean</span>
+                        <span class="lang-pt">Piscina de Água Salgada</span>
+                        <span class="lang-en">Saltwater Pool</span>
                     </h4>
                     <p>
-                        <span class="lang-pt">A presença constante do mar — no ar, no som, na qualidade da luz</span>
-                        <span class="lang-en">The constant presence of the sea — in the air, the sound, the quality of light</span>
+                        <span class="lang-pt">Um convite ao descanso simples entre práticas, natureza e silêncio.</span>
+                        <span class="lang-en">An invitation to simple rest between practice, nature, and silence.</span>
                     </p>
                 </div>
                 <div class="espaco-feature">
                     <h4>
-                        <span class="lang-pt">12–15 Praticantes</span>
-                        <span class="lang-en">12–15 Practitioners</span>
+                        <span class="lang-pt">Espaços Naturais Amplos</span>
+                        <span class="lang-en">Natural Open Spaces</span>
                     </h4>
                     <p>
-                        <span class="lang-pt">Ambiente íntimo para atenção individual e profundidade de prática</span>
-                        <span class="lang-en">Intimate setting for individual attention and depth of practice</span>
+                        <span class="lang-pt">Jardins, caminhos e recantos para caminhar, respirar e descansar.</span>
+                        <span class="lang-en">Gardens, paths, and quiet corners to walk, breathe, and rest.</span>
+                    </p>
+                </div>
+                <div class="espaco-feature">
+                    <h4>
+                        <span class="lang-pt">Tempo para Integrar</span>
+                        <span class="lang-en">Time to Integrate</span>
+                    </h4>
+                    <p>
+                        <span class="lang-pt">Um ritmo que alterna prática, silêncio e pausas reais ao longo do dia.</span>
+                        <span class="lang-en">A rhythm that alternates practice, silence, and real pauses throughout the day.</span>
                     </p>
                 </div>
             </div>
@@ -2081,6 +2355,31 @@
 
                 <div class="detalhe-item fade-in">
                     <h3>
+                        <span class="lang-pt">A quem se destina</span>
+                        <span class="lang-en">Who it is for</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <span class="lang-pt">Quem sente vontade de aprofundar a prática de Yoga num ambiente imersivo.</span>
+                            <span class="lang-en">Those who want to deepen their Yoga practice in an immersive environment.</span>
+                        </li>
+                        <li>
+                            <span class="lang-pt">Quem quer escutar o corpo e a experiência interior com mais presença.</span>
+                            <span class="lang-en">Those who want to listen to the body and inner experience with greater presence.</span>
+                        </li>
+                        <li>
+                            <span class="lang-pt">Quem deseja passar alguns dias em contacto com a natureza e a simplicidade.</span>
+                            <span class="lang-en">Those who wish to spend a few days in contact with nature and simplicity.</span>
+                        </li>
+                        <li>
+                            <span class="lang-pt">Não é necessário ser avançado, apenas trazer disponibilidade para praticar e explorar.</span>
+                            <span class="lang-en">There is no need to be advanced, only available to practice and explore.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="detalhe-item fade-in">
+                    <h3>
                         <span class="lang-pt">O que trazer</span>
                         <span class="lang-en">What to bring</span>
                     </h3>
@@ -2122,13 +2421,13 @@
         <div class="container">
             <div class="section-heading fade-in">
                 <p class="section-label">
-                    <span class="lang-pt">Investimento</span>
+                    <span class="lang-pt">Valores</span>
                     <span class="lang-en">Investment</span>
                 </p>
                 <div class="section-divider"></div>
                 <h2>
-                    <span class="lang-pt">Três opções de participação</span>
-                    <span class="lang-en">Three participation options</span>
+                    <span class="lang-pt">Inclui todas as práticas, alojamento e refeições durante o retiro.</span>
+                    <span class="lang-en">Includes all practices, accommodation, and meals during the retreat.</span>
                 </h2>
             </div>
 
@@ -2163,7 +2462,11 @@
                 </div>
 
                 <!-- Individual -->
-                <div class="pricing-card featured fade-in fade-in-delay-1">
+                <div class="pricing-card featured fade-in fade-in-delay-1" style="position: relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--brown-light); color: var(--bg-warm); font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">
+                        <span class="lang-pt">Recomendado</span>
+                        <span class="lang-en">Recommended</span>
+                    </div>
                     <p class="pricing-tier">
                         <span class="lang-pt">Individual</span>
                         <span class="lang-en">Private</span>
@@ -2482,7 +2785,7 @@
             <a href="https://www.instagram.com/pedromoraisyoga/" target="_blank" rel="noopener noreferrer">Instagram @pedromoraisyoga</a>
             <!-- PLACEHOLDER: Email e Tlm -->
             <a href="mailto:pedro_santos_morais@hotmail.com">pedro_santos_morais@hotmail.com</a>
-            <a href="https://wa.me/351919304201" target="_blank" rel="noopener noreferrer">WhatsApp +351 919 304 201</a>
+            <a href="https://wa.me/351919304201" target="_blank" rel="noopener noreferrer" class="whatsapp-link" data-whatsapp-base="https://wa.me/351919304201" data-message-pt="Olá Pedro, vi a página do retiro Living Prayer e gostava de receber mais informações." data-message-en="Hello Pedro, I found the Living Prayer retreat page and would love to receive more information.">WhatsApp +351 919 304 201</a>
         </div>
         <p class="footer-copy">Living Prayer &copy; 2026 — Pedro Morais</p>
     </footer>
@@ -2500,6 +2803,7 @@
             document.querySelectorAll('.lang-btn').forEach(function(btn) {
                 btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
             });
+            refreshWhatsAppLinks();
             // Persist language preference
             try { localStorage.setItem('lp-lang', lang); } catch(e) {}
         }
@@ -2511,6 +2815,19 @@
                 if (saved === 'en') setLang('en');
             } catch(e) {}
         })();
+
+        function refreshWhatsAppLinks() {
+            var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'pt';
+            document.querySelectorAll('.whatsapp-link').forEach(function(link) {
+                var base = link.getAttribute('data-whatsapp-base') || 'https://wa.me/351919304201';
+                var message = lang === 'en'
+                    ? (link.getAttribute('data-message-en') || 'Hello Pedro, I found the Living Prayer retreat page and would love to receive more information.')
+                    : (link.getAttribute('data-message-pt') || 'Olá Pedro, vi a página do retiro Living Prayer e gostava de receber mais informações.');
+                link.href = base + '?text=' + encodeURIComponent(message);
+            });
+        }
+
+        refreshWhatsAppLinks();
 
         /* -------------------------------------------
            Navigation scroll behaviour
@@ -2575,6 +2892,44 @@
             });
         });
 
+        var bioModal = document.getElementById('bioModal');
+
+        function openBioModal() {
+            if (!bioModal) return;
+            bioModal.classList.add('is-open');
+            bioModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeBioModal() {
+            if (!bioModal) return;
+            bioModal.classList.remove('is-open');
+            bioModal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+
+        document.querySelectorAll('[data-open-bio]').forEach(function(trigger) {
+            trigger.addEventListener('click', openBioModal);
+        });
+
+        document.querySelectorAll('[data-close-bio]').forEach(function(trigger) {
+            trigger.addEventListener('click', closeBioModal);
+        });
+
+        if (bioModal) {
+            bioModal.addEventListener('click', function(e) {
+                if (e.target === bioModal) {
+                    closeBioModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && bioModal && bioModal.classList.contains('is-open')) {
+                closeBioModal();
+            }
+        });
+
         /* -------------------------------------------
            Form 2-Step Logic
            ------------------------------------------- */
@@ -2617,7 +2972,7 @@
 
             var data = new FormData(form);
             var fields = [
-                { name: "firstname", value: data.get("name") },
+                { name: "firstname", value: data.get("fullName") },
                 { name: "email", value: data.get("email") },
                 { name: "mobilephone", value: data.get("phone") },
                 { name: "message", value: data.get("motivation") },
