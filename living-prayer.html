@@ -347,19 +347,17 @@
             text-align: center;
             padding: 6rem 1.5rem 4rem;
             overflow: hidden;
-            /* PLACEHOLDER: Substituir pela hero image real do Pedro em prática na Quinta das Broas.
-               Sugestão: foto com luz natural, Pedro em asana, ambiente da Quinta.
-               Fotos disponíveis: fotos/Pranayama.jpg, fotos/Warrior1.jpg, fotos/Class.jpg */
-            background-image:
+            /* Hero Background — Pedro Morais | black and white portrait */
+            background-image: 
                 linear-gradient(
                     160deg,
-                    rgba(74, 93, 79, 0.72) 0%,
-                    rgba(45, 45, 45, 0.55) 40%,
-                    rgba(139, 115, 85, 0.50) 100%
+                    rgba(48, 54, 51, 0.68) 0%,
+                    rgba(22, 24, 24, 0.52) 42%,
+                    rgba(97, 83, 70, 0.38) 100%
                 ),
                 url('img/hero-pranayama.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
         }
 
@@ -494,11 +492,10 @@
             aspect-ratio: 3/4;
             overflow: hidden;
             border-radius: 3px;
-            /* PLACEHOLDER: Substituir pela foto do Pedro — retrato com luz natural.
-               Sugestão: fotos/Sessão Ioga Pedro corrigidas -2.jpg ou fotos/boa.jpg */
+            /* Retrato do Pedro */
             background-image: url('img/prayer-hands.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center 18%;
             background-color: var(--bg-warm);
         }
 
@@ -577,11 +574,9 @@
             aspect-ratio: 4/3;
             overflow: hidden;
             border-radius: 3px;
-            /* PLACEHOLDER: Substituir por foto dos ajustes Shiatsu do Pedro.
-               Sugestão: fotos/adjust.jpg */
-            background-image: url('img/adjust-shiatsu.jpg');
+            background-image: url('img/practice-forest.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-color: var(--white);
         }
 
@@ -1620,33 +1615,178 @@
             letter-spacing: 0.03em;
         }
 
-        /* Practice photo gallery — horizontal strip */
+        .gallery-section {
+            background: linear-gradient(180deg, var(--white) 0%, rgba(245, 240, 235, 0.42) 100%);
+        }
+
+        .gallery-intro {
+            max-width: 720px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
         .practice-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.4rem;
-            margin-top: 3.5rem;
+            grid-template-columns: 1.25fr 1fr 1fr;
+            gap: 1rem;
             max-width: var(--max-width);
             margin-left: auto;
             margin-right: auto;
         }
 
         .practice-photo {
-            aspect-ratio: 4/3;
+            position: relative;
+            min-height: 280px;
+            border-radius: 18px;
+            overflow: hidden;
+            background-color: #0c0c0c;
+            box-shadow: 0 18px 48px rgba(0,0,0,0.12);
+            transition: transform 0.45s ease, box-shadow 0.45s ease;
+        }
+
+        .practice-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: inherit;
             background-size: cover;
             background-position: center;
-            border-radius: 3px;
-            transition: transform 0.4s ease;
+            transform: scale(1.01);
+            transition: transform 0.7s ease;
+        }
+
+        .practice-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.04) 10%, rgba(0,0,0,0.58) 100%);
         }
 
         .practice-photo:hover {
-            transform: scale(1.03);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 56px rgba(0,0,0,0.18);
+        }
+
+        .practice-photo:hover::before {
+            transform: scale(1.06);
+        }
+
+        .practice-photo-featured {
+            grid-row: span 2;
+            min-height: 580px;
+        }
+
+        .practice-photo-tall {
+            min-height: 300px;
+        }
+
+        .practice-photo-caption {
+            position: absolute;
+            left: 1.25rem;
+            right: 1.25rem;
+            bottom: 1.15rem;
             z-index: 2;
+            color: var(--white);
+        }
+
+        .practice-photo-caption strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .practice-photo-caption span {
+            display: block;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.82;
+        }
+
+        @media (max-width: 1024px) {
+            .practice-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .practice-photo-featured {
+                grid-column: 1 / -1;
+                min-height: 440px;
+            }
         }
 
         @media (max-width: 640px) {
             .practice-gallery {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+            }
+
+            .practice-photo,
+            .practice-photo-featured,
+            .practice-photo-tall {
+                min-height: 280px;
+            }
+        }
+
+        .espaco-photo-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr 1fr;
+            gap: 1rem;
+            max-width: var(--max-width);
+            margin: 0 auto 3rem;
+        }
+
+        .espaco-photo-card {
+            position: relative;
+            min-height: 220px;
+            overflow: hidden;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 16px 42px rgba(0,0,0,0.1);
+        }
+
+        .espaco-photo-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.06) 12%, rgba(0,0,0,0.52) 100%);
+        }
+
+        .espaco-photo-card-featured {
+            grid-row: span 2;
+            min-height: 460px;
+        }
+
+        .espaco-photo-caption {
+            position: absolute;
+            left: 1rem;
+            right: 1rem;
+            bottom: 0.95rem;
+            z-index: 1;
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .espaco-photo-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .espaco-photo-card-featured {
+                grid-column: 1 / -1;
+                grid-row: auto;
+                min-height: 320px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .espaco-photo-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1655,13 +1795,21 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
-            max-width: 800px;
+            max-width: 980px;
             margin: 2.5rem auto 0;
-            text-align: center;
+            text-align: left;
         }
 
         @media (min-width: 640px) {
-            .espaco-features { grid-template-columns: 1fr 1fr 1fr; }
+            .espaco-features { grid-template-columns: 1fr 1fr; }
+        }
+
+        .espaco-feature {
+            padding: 1.75rem;
+            border-radius: 12px;
+            background: rgba(254, 252, 249, 0.85);
+            border: 1px solid rgba(139, 115, 85, 0.08);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.04);
         }
 
         .espaco-feature h4 {
@@ -1673,9 +1821,16 @@
         }
 
         .espaco-feature p {
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             color: var(--text-light);
             margin-bottom: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .practice-photo,
+            .practice-photo::before {
+                transition: none;
+            }
         }
 
         /* Reduced whitespace — tighter sections */
@@ -2151,15 +2306,57 @@
                 <span class="lang-pt">As práticas serão acessíveis a praticantes com alguma experiência de Yoga e também a quem sente um chamado genuíno para aprofundar.</span>
                 <span class="lang-en">The practices will be accessible to practitioners with some Yoga experience and also to those who feel a genuine call to go deeper.</span>
             </p>
+        </div>
+    </section>
 
-            <!-- Practice photo gallery — all dark bg studio series -->
-            <div class="practice-gallery fade-in">
-                <div class="practice-photo" style="background-image: url('img/badhakonasana.jpg')"></div>
-                <div class="practice-photo" style="background-image: url('img/upavistha.jpg')"></div>
-                <div class="practice-photo" style="background-image: url('img/pedro-portrait.jpg'); background-position: top center"></div>
-                <div class="practice-photo" style="background-image: url('img/adho-mukha.jpg')"></div>
-                <div class="practice-photo" style="background-image: url('img/ardha-chandra.jpg')"></div>
-                <div class="practice-photo" style="background-image: url('img/bakasana.jpg')"></div>
+    <section class="section gallery-section" id="galeria">
+        <div class="container">
+            <div class="section-heading fade-in">
+                <p class="section-label">
+                    <span class="lang-pt">Galeria</span>
+                    <span class="lang-en">Gallery</span>
+                </p>
+                <div class="section-divider"></div>
+                <h2>
+                    <span class="lang-pt">A prática em imagens</span>
+                    <span class="lang-en">The practice in images</span>
+                </h2>
+            </div>
+
+            <div class="gallery-intro fade-in">
+                <p class="lang-pt">Uma galeria mais editorial e contida, com movimento subtil e foco total nas imagens, para deixar a prática respirar.</p>
+                <p class="lang-en">A more editorial and restrained gallery, with subtle motion and full focus on the images, allowing the practice to breathe.</p>
+            </div>
+
+            <div class="practice-gallery">
+                <figure class="practice-photo practice-photo-featured fade-in" style="background-image: url('img/gallery-boa.jpg')">
+                    <figcaption class="practice-photo-caption">
+                        <strong>Bharadvajasana</strong>
+                        <span class="lang-pt">presença e escuta</span>
+                        <span class="lang-en">presence and listening</span>
+                    </figcaption>
+                </figure>
+                <figure class="practice-photo practice-photo-tall fade-in fade-in-delay-1" style="background-image: url('img/gallery-upavistha.jpg')">
+                    <figcaption class="practice-photo-caption">
+                        <strong>Upavistha Konasana</strong>
+                        <span class="lang-pt">abertura e entrega</span>
+                        <span class="lang-en">openness and surrender</span>
+                    </figcaption>
+                </figure>
+                <figure class="practice-photo fade-in fade-in-delay-2" style="background-image: url('img/gallery-utthita-hasta.jpg')">
+                    <figcaption class="practice-photo-caption">
+                        <strong>Utthita Hasta Padangusthasana</strong>
+                        <span class="lang-pt">equilíbrio e clareza</span>
+                        <span class="lang-en">balance and clarity</span>
+                    </figcaption>
+                </figure>
+                <figure class="practice-photo fade-in fade-in-delay-3" style="background-image: url('img/gallery-ardha-chandra.jpg')">
+                    <figcaption class="practice-photo-caption">
+                        <strong>Ardha Chandra Chapasana</strong>
+                        <span class="lang-pt">força e espaço</span>
+                        <span class="lang-en">strength and spaciousness</span>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
@@ -2172,7 +2369,7 @@
     <!-- ============================================
          O ESPACO
          ============================================ -->
-    <section class="section espaco-section" id="espaco" style="background-image: linear-gradient(rgba(254,252,249,0.88), rgba(245,240,235,0.92)), url('img/meditation.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section class="section section-alt espaco-section" id="espaco">
         <div class="container">
             <div class="section-heading fade-in">
                 <p class="section-label">
@@ -2189,6 +2386,39 @@
 
                 <p class="lang-en">The retreat will take place at <a href="https://www.quintadasbroas.pt/" target="_blank" rel="noopener noreferrer" style="color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">Quinta das Broas</a>, in Sintra — a simple and welcoming place surrounded by nature.</p>
                 <p class="lang-en">Over these three days, the environment is designed to help you slow down and simply be, with dedicated practice time and enough free space to integrate.</p>
+            </div>
+
+            <div class="espaco-photo-grid fade-in">
+                <figure class="espaco-photo-card espaco-photo-card-featured" style="background-image: url('img/venue-quinta.jpg')">
+                    <figcaption class="espaco-photo-caption">
+                        <span class="lang-pt">Casa com piscina</span>
+                        <span class="lang-en">House with pool</span>
+                    </figcaption>
+                </figure>
+                <figure class="espaco-photo-card" style="background-image: url('img/venue-tree-wall.jpg')">
+                    <figcaption class="espaco-photo-caption">
+                        <span class="lang-pt">Árvore e muro</span>
+                        <span class="lang-en">Tree and stone wall</span>
+                    </figcaption>
+                </figure>
+                <figure class="espaco-photo-card" style="background-image: url('img/venue-paths.jpg')">
+                    <figcaption class="espaco-photo-caption">
+                        <span class="lang-pt">Caminhos</span>
+                        <span class="lang-en">Paths</span>
+                    </figcaption>
+                </figure>
+                <figure class="espaco-photo-card" style="background-image: url('img/venue-room.jpg')">
+                    <figcaption class="espaco-photo-caption">
+                        <span class="lang-pt">Quarto acolhedor</span>
+                        <span class="lang-en">Cozy room</span>
+                    </figcaption>
+                </figure>
+                <figure class="espaco-photo-card" style="background-image: url('img/venue-shala.jpg')">
+                    <figcaption class="espaco-photo-caption">
+                        <span class="lang-pt">Sala de prática</span>
+                        <span class="lang-en">Practice room</span>
+                    </figcaption>
+                </figure>
             </div>
 
             <div class="espaco-features fade-in">
@@ -2308,8 +2538,8 @@
                         <span class="lang-en">Duration</span>
                     </h3>
                     <p>
-                        <span class="lang-pt">3 dias. Chegada na tarde do primeiro dia, partida após o almoço do último.</span>
-                        <span class="lang-en">3 days. Arrival on the afternoon of the first day, departure after lunch on the last.</span>
+                        <span class="lang-pt">Retiro de três dias, com chegada a partir das 17:00 de dia 12 e finaliza às 17:00 de dia 14.</span>
+                        <span class="lang-en">Three-day retreat, arriving from 17:00 on the 12th and ending at 17:00 on the 14th.</span>
                     </p>
                 </div>
 
