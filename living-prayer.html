@@ -1772,15 +1772,28 @@
             min-height: 260px;
         }
 
+        .practice-photo-baddha-wide {
+            grid-column: 2 / 4;
+            min-height: 280px;
+        }
+
+        .practice-photo-lower-right {
+            grid-column: 2;
+        }
+
+        .practice-photo-lower-far-right {
+            grid-column: 3;
+        }
+
         .practice-photo-baddha::before {
             background-size: cover;
-            background-position: center 44%;
+            background-position: center 48%;
             background-repeat: no-repeat;
-            transform: scale(1.12);
+            transform: scale(1.06);
         }
 
         .practice-photo-baddha:hover::before {
-            transform: scale(1.16);
+            transform: scale(1.1);
         }
 
         .practice-photo-upavistha::before {
@@ -1825,7 +1838,10 @@
             }
 
             .practice-photo-tall,
-            .practice-photo-wide {
+            .practice-photo-wide,
+            .practice-photo-baddha-wide,
+            .practice-photo-lower-right,
+            .practice-photo-lower-far-right {
                 grid-column: 1 / -1;
                 grid-row: span 1;
                 min-height: 320px;
@@ -1840,7 +1856,10 @@
             .practice-photo,
             .practice-photo-featured,
             .practice-photo-tall,
-            .practice-photo-wide {
+            .practice-photo-wide,
+            .practice-photo-baddha-wide,
+            .practice-photo-lower-right,
+            .practice-photo-lower-far-right {
                 grid-column: auto;
                 grid-row: auto;
                 min-height: 280px;
@@ -2434,21 +2453,21 @@
                         <span class="lang-en">presence and listening</span>
                     </figcaption>
                 </figure>
-                <figure class="practice-photo practice-photo-tall practice-photo-baddha fade-in fade-in-delay-1" style="background-image: url('img/badhakonasana.jpg')">
+                <figure class="practice-photo practice-photo-baddha-wide practice-photo-baddha fade-in fade-in-delay-1" style="background-image: url('img/badhakonasana.jpg')">
                     <figcaption class="practice-photo-caption">
                         <strong>Baddha Konasana</strong>
                         <span class="lang-pt">abertura e quietude</span>
                         <span class="lang-en">openness and stillness</span>
                     </figcaption>
                 </figure>
-                <figure class="practice-photo fade-in fade-in-delay-2" style="background-image: url('img/gallery-utthita-hasta.jpg')">
+                <figure class="practice-photo practice-photo-lower-right fade-in fade-in-delay-2" style="background-image: url('img/gallery-utthita-hasta.jpg')">
                     <figcaption class="practice-photo-caption">
                         <strong>Utthita Hasta Padangusthasana</strong>
                         <span class="lang-pt">equilíbrio e clareza</span>
                         <span class="lang-en">balance and clarity</span>
                     </figcaption>
                 </figure>
-                <figure class="practice-photo fade-in fade-in-delay-3" style="background-image: url('img/gallery-ardha-chandra.jpg')">
+                <figure class="practice-photo practice-photo-lower-far-right fade-in fade-in-delay-3" style="background-image: url('img/gallery-ardha-chandra.jpg')">
                     <figcaption class="practice-photo-caption">
                         <strong>Ardha Chandra Chapasana</strong>
                         <span class="lang-pt">força e espaço</span>
