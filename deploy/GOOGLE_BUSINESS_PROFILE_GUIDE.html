@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Business Profile — Guia Living Prayer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --beige: #F5F0EB;
+            --green: #4A5D4F;
+            --green-light: #6B8F71;
+            --brown: #8B7355;
+            --brown-light: #A89279;
+            --cream: #FAF8F5;
+            --dark: #2C2C2C;
+            --text: #3D3D3D;
+            --border: #E0D8CF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--beige);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--green) 0%, #3A4D3F 100%);
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
+        }
+        .hero-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 15px;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 15px;
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            background: var(--border);
+            height: 4px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .progress-fill {
+            background: var(--green);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--cream);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 50px;
+            position: sticky;
+            top: 4px;
+            z-index: 99;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav::-webkit-scrollbar { display: none; }
+        .nav-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: white;
+            color: var(--text);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--green);
+            color: white;
+            border-color: var(--green);
+        }
+
+        /* Content */
+        .content { padding: 40px 50px 80px; }
+
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 70px;
+        }
+        .section-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--brown-light);
+            opacity: 0.4;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--green);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--brown);
+            margin: 25px 0 10px;
+        }
+        .section p {
+            margin-bottom: 15px;
+            font-size: 14.5px;
+        }
+
+        /* Step card */
+        .step-card {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .step-card .step-number {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--green);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 10px;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin: 15px 0;
+        }
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li.done { opacity: 0.5; text-decoration: line-through; }
+        .checklist-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            margin-top: 1px;
+        }
+        .checklist li.done .checklist-box {
+            background: var(--green);
+            border-color: var(--green);
+        }
+        .checklist li.done .checklist-box::after {
+            content: '✓';
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* Info box */
+        .info-box {
+            background: white;
+            border-left: 4px solid var(--green);
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .info-box.brown { border-left-color: var(--brown); }
+        .info-box.red { border-left-color: #C0392B; background: #FFF5F5; }
+        .info-box h4 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .info-box.green h4 { color: var(--green); }
+        .info-box.brown h4 { color: var(--brown); }
+        .info-box.red h4 { color: #C0392B; }
+        .info-box p, .info-box li { font-size: 13.5px; }
+
+        /* Code/template block */
+        .code-block {
+            background: #1E1E1E;
+            color: #D4D4D4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-block .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #999;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .code-block .copy-btn:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* Table */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13.5px;
+        }
+        .styled-table th {
+            background: var(--green);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .styled-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        .styled-table tr:nth-child(even) { background: var(--cream); }
+
+        /* Accordion */
+        .accordion { margin: 15px 0; }
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 15px 20px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .accordion-header:hover { background: var(--cream); }
+        .accordion-header .arrow {
+            transition: transform 0.3s;
+            color: var(--brown);
+        }
+        .accordion-item.open .accordion-header .arrow { transform: rotate(180deg); }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+        .accordion-item.open .accordion-body {
+            max-height: 1000px;
+            padding: 0 20px 20px;
+        }
+
+        /* Timeline */
+        .timeline { margin: 20px 0; padding-left: 30px; border-left: 2px solid var(--green); }
+        .timeline-item {
+            position: relative;
+            padding: 0 0 25px 25px;
+        }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--green);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--green);
+        }
+        .timeline-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--green);
+            margin-bottom: 3px;
+        }
+        .timeline-item p { font-size: 13px; margin-bottom: 5px; }
+
+        /* Footer */
+        .footer {
+            background: var(--green);
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+        .footer h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        .footer p {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+        .badge-green { background: #E8F5E9; color: var(--green); }
+        .badge-brown { background: #FFF3E0; color: var(--brown); }
+        .badge-red { background: #FFEBEE; color: #C0392B; }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .hero { padding: 40px 25px; }
+            .hero h1 { font-size: 30px; }
+            .content { padding: 25px 20px 60px; }
+            .nav { padding: 10px 15px; }
+            .section h2 { font-size: 22px; }
+            .step-card { padding: 20px 15px; }
+        }
+
+        @media print {
+            .nav, .progress-bar { display: none; }
+            .hero { padding: 30px; }
+            .content { padding: 20px 30px; }
+            .step-card { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <header class="hero">
+        <div class="hero-label">Guia Prático 2026</div>
+        <h1>Google Business Profile</h1>
+        <p>Tudo o que precisas para configurar e otimizar o perfil do Living Prayer no Google — passo a passo</p>
+    </header>
+
+    <nav class="nav" id="nav">
+        <button class="nav-btn active" onclick="scrollToSection('intro')">Início</button>
+        <button class="nav-btn" onclick="scrollToSection('setup')">Configuração</button>
+        <button class="nav-btn" onclick="scrollToSection('verify')">Verificação</button>
+        <button class="nav-btn" onclick="scrollToSection('photos')">Fotografias</button>
+        <button class="nav-btn" onclick="scrollToSection('posts')">Publicações</button>
+        <button class="nav-btn" onclick="scrollToSection('reviews')">Avaliações</button>
+        <button class="nav-btn" onclick="scrollToSection('seo')">SEO Local</button>
+        <button class="nav-btn" onclick="scrollToSection('ads')">Google Ads</button>
+        <button class="nav-btn" onclick="scrollToSection('mistakes')">Erros Comuns</button>
+        <button class="nav-btn" onclick="scrollToSection('checklist')">Checklist Final</button>
+    </nav>
+
+    <main class="content">
+        <!-- INTRO -->
+        <div class="section" id="intro">
+            <div class="section-number">00</div>
+            <h2>Porquê o Google Business Profile?</h2>
+            <p>O Google Business Profile (GBP) é a ferramenta mais importante para ser encontrado localmente. Quando alguém pesquisa "yoga retreat Sintra" ou "retiro espiritual Portugal", é o GBP que determina se apareces no topo do Google Maps e nos resultados locais.</p>
+
+            <div class="info-box green">
+                <h4>O que o GBP faz pelo Living Prayer</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li>Aparecer no Google Maps quando alguém pesquisa termos relacionados</li>
+                    <li>Mostrar horários, contacto, fotos e avaliações diretamente nos resultados de pesquisa</li>
+                    <li>Integrar-se com o Google Ads — o teu endereço aparece nos anúncios pagos</li>
+                    <li>Permitir mensagens via WhatsApp directamente pelo perfil</li>
+                    <li>Dar acesso a dados sobre quantas pessoas te encontram e como te encontram</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SETUP -->
+        <div class="section" id="setup">
+            <div class="section-number">01</div>
+            <h2>Configuração do Perfil</h2>
+
+            <h3>Nome do Negócio</h3>
+            <p>Usa exatamente o nome real: <strong>"Living Prayer"</strong>. Não adiciones palavras-chave ao nome (ex: não uses "Living Prayer Yoga Retreat Sintra") — o Google pode suspender perfis que violem esta regra.</p>
+
+            <h3>Categorias (o campo mais importante para ranking)</h3>
+            <div class="info-box brown">
+                <h4>Categoria Principal (escolhe uma)</h4>
+                <p><strong>"Retreat center"</strong> ou <strong>"Yoga studio"</strong> — escolhe a que melhor descreve a atividade principal.</p>
+            </div>
+            <p><strong>Categorias adicionais</strong> (podes adicionar até 9):</p>
+            <ul style="margin: 10px 0 10px 20px; font-size: 14px;">
+                <li>Wellness center</li>
+                <li>Meditation center</li>
+                <li>Health resort</li>
+                <li>Holistic medicine practitioner</li>
+            </ul>
+
+            <h3>Descrição (máx. 750 caracteres)</h3>
+            <p>Inclui: o que ofereces, o que te torna único, há quanto tempo existe. Evita: URLs, linguagem promocional agressiva.</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+Living Prayer é um retiro de yoga situado na paisagem mágica de Sintra, Portugal. Oferecemos retiros transformadores de yoga, meditação, sound healing e experiências de bem-estar holístico, rodeados pela floresta luxuriante e pela energia histórica da Serra de Sintra.
+
+O nosso espaço íntimo acolhe hóspedes de todo o mundo em busca de descanso, renovação e conexão profunda. Os retiros incluem práticas de yoga diárias, meditação guiada, caminhadas contemplativas pela natureza de Sintra e momentos de partilha comunitária.
+
+Fundado por Pedro Morais, o Living Prayer nasce da convicção de que a prática espiritual pode ser viva, acessível e enraizada no presente.
+            </div>
+
+            <h3>Morada e Área de Serviço</h3>
+            <p>Insere a morada completa da Quinta das Broas em Sintra. Se fazes transporte desde o aeroporto de Lisboa, define também uma <strong>área de serviço</strong> que inclua Lisboa.</p>
+
+            <h3>Horários</h3>
+            <p>Define horários regulares. Usa <strong>Horários Especiais</strong> para os períodos de retiro (12–14 de Junho de 2026). Se os horários variam consoante o serviço, usa <strong>Horários Adicionais</strong>.</p>
+
+            <h3>Atributos Importantes</h3>
+            <table class="styled-table">
+                <thead>
+                    <tr><th>Categoria</th><th>Atributos a selecionar</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Acessibilidade</td><td>Entrada acessível a cadeiras de rodas (se aplicável)</td></tr>
+                    <tr><td>Comodidades</td><td>Wi-Fi, Parque de estacionamento, Sanitários</td></tr>
+                    <tr><td>Serviço</td><td>Apenas por marcação (By appointment only)</td></tr>
+                    <tr><td>Pagamento</td><td>Aceita cartões de crédito</td></tr>
+                    <tr><td>Identidade</td><td>Pequeno negócio (Small business)</td></tr>
+                    <tr><td>Idiomas</td><td>Inglês, Português</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- VERIFY -->
+        <div class="section" id="verify">
+            <div class="section-number">02</div>
+            <h2>Verificação do Perfil</h2>
+            <p>Sem verificação, o perfil tem visibilidade limitada e não podes geri-lo. O Google seleciona automaticamente os métodos disponíveis.</p>
+
+            <div class="step-card">
+                <span class="step-number">Método Recomendado</span>
+                <h3>Verificação por Vídeo (mais rápido)</h3>
+                <p>Grava um vídeo pelo telemóvel, diretamente na app do GBP:</p>
+                <ol style="margin-left: 20px; font-size: 14px;">
+                    <li><strong>Localização</strong> — Mostra a entrada da propriedade com placa e marcos visíveis da zona</li>
+                    <li><strong>Prova de existência</strong> — Mostra letreiro, equipamento de yoga, espaços de prática</li>
+                    <li><strong>Prova de gestão</strong> — Mostra acesso a áreas restritas (chaves, interior)</li>
+                </ol>
+                <p style="margin-top: 10px; font-size: 13px;">O vídeo deve ter pelo menos 30 segundos, sem edições. A revisão demora até 5 dias úteis.</p>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Outros métodos de verificação</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <table class="styled-table">
+                            <thead><tr><th>Método</th><th>Detalhes</th></tr></thead>
+                            <tbody>
+                                <tr><td>Telefone/SMS</td><td>Código por chamada ou SMS para o número do negócio</td></tr>
+                                <tr><td>Email</td><td>Código enviado para o email mostrado no ecrã de verificação</td></tr>
+                                <tr><td>Videochamada</td><td>Em tempo real com suporte Google, durante horário comercial</td></tr>
+                                <tr><td>Cartão postal</td><td>Código de 5 dígitos via correio, pode demorar até 14 dias</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box red">
+                <h4>Atenção</h4>
+                <p>Se usares o cartão postal, <strong>não edites</strong> o nome, morada ou categoria enquanto esperas pelo código — isso invalida a verificação.</p>
+            </div>
+        </div>
+
+        <!-- PHOTOS -->
+        <div class="section" id="photos">
+            <div class="section-number">03</div>
+            <h2>Fotografias e Vídeos</h2>
+
+            <p>Perfis com mais fotografias recebem significativamente mais interações. O objectivo é ter pelo menos <strong>15 fotografias de alta qualidade</strong>.</p>
+
+            <h3>Fotografias obrigatórias</h3>
+            <table class="styled-table">
+                <thead><tr><th>Tipo</th><th>Descrição</th><th>Tamanho</th></tr></thead>
+                <tbody>
+                    <tr><td>Logo</td><td>Logo do Living Prayer</td><td>250×250px min</td></tr>
+                    <tr><td>Capa</td><td>Imagem principal do perfil</td><td>720×720px recomendado</td></tr>
+                    <tr><td>Exterior</td><td>Entrada da Quinta das Broas</td><td>—</td></tr>
+                    <tr><td>Interior</td><td>Yoga shala, espaços de meditação, quartos</td><td>—</td></tr>
+                    <tr><td>Equipa</td><td>Pedro e equipa</td><td>—</td></tr>
+                    <tr><td>Atividades</td><td>Sessões de yoga, retiros em ação</td><td>—</td></tr>
+                    <tr><td>Envoltória</td><td>Paisagem de Sintra, jardins, vistas</td><td>—</td></tr>
+                </tbody>
+            </table>
+
+            <div class="info-box brown">
+                <h4>Especificações técnicas</h4>
+                <ul style="margin-left: 15px; font-size: 13px;">
+                    <li>Formato: JPG ou PNG</li>
+                    <li>Tamanho: 10 KB a 5 MB</li>
+                    <li>Resolução mínima: 250×250px (recomendado: 720×720px)</li>
+                    <li>Vídeos: até 30 segundos, máx. 75 MB, mín. 720p</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- POSTS -->
+        <div class="section" id="posts">
+            <div class="section-number">04</div>
+            <h2>Publicações (Posts)</h2>
+
+            <h3>Tipos de publicação</h3>
+            <div class="step-card">
+                <span class="step-number">Evento</span>
+                <p>Para promover datas de retiro. Inclui título, data de início/fim, descrição e botão de ação para a página de reserva.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">Oferta</span>
+                <p>Para descontos early-bird ou promoções sazonais. Inclui título, datas, código de desconto opcional.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">Atualização</span>
+                <p>Notícias gerais, fotos de retiros anteriores, bastidores, testemunhos, conteúdo sazonal.</p>
+            </div>
+
+            <div class="info-box green">
+                <h4>Frequência recomendada</h4>
+                <p>Publica pelo menos <strong>1–2 vezes por semana</strong>. Publicações com mais de 6 meses são arquivadas automaticamente. Programa publicações com antecedência.</p>
+            </div>
+
+            <h3>Ideias de conteúdo para o Living Prayer</h3>
+            <ul style="margin-left: 20px; font-size: 14px;">
+                <li>Eventos para cada data de retiro (Junho 2026)</li>
+                <li>Ofertas de early-bird com desconto</li>
+                <li>Fotos de Sintra com reflexões contemplativas</li>
+                <li>Testemunhos de participantes anteriores</li>
+                <li>Bastidores da preparação do espaço</li>
+                <li>Conteúdo sazonal (primavera em Sintra, etc.)</li>
+            </ul>
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="section" id="reviews">
+            <div class="section-number">05</div>
+            <h2>Estratégia de Avaliações</h2>
+
+            <p>As avaliações são o fator mais influente do GBP para ranking local e confiança. O Google confirma: mais avaliações positivas = melhor posição.</p>
+
+            <h3>Como obter avaliações</h3>
+            <ul style="margin-left: 20px; font-size: 14px;">
+                <li>Pede diretamente a participantes após o retiro</li>
+                <li>Envia email de follow-up com link direto para avaliação</li>
+                <li>Usa a funcionalidade "Partilhar formulário de avaliação" do GBP</li>
+                <li>Coloca QR code no espaço do retiro com link para avaliação</li>
+            </ul>
+
+            <div class="info-box red">
+                <h4>O que NÃO fazer</h4>
+                <ul style="margin-left: 15px;">
+                    <li>Nunca pagues ou ofereças incentivos por avaliações (contra as políticas)</li>
+                    <li>Nunca escrevas avaliações sobre o teu próprio negócio</li>
+                    <li>Nunca peças avaliações de 5 estrelas especificamente</li>
+                </ul>
+            </div>
+
+            <h3>Como responder a avaliações</h3>
+            <div class="step-card">
+                <span class="step-number">Boas práticas</span>
+                <ul style="margin-left: 15px; font-size: 14px;">
+                    <li><strong>Responde a TODAS</strong> — positivas e negativas</li>
+                    <li>Agradece pelo nome quando possível</li>
+                    <li>Menciona detalhes específicos da avaliação</li>
+                    <li>Para avaliações negativas: sê empático, reconhece o problema, oferece resolver offline</li>
+                    <li>Responde dentro de 24–48 horas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SEO -->
+        <div class="section" id="seo">
+            <div class="section-number">06</div>
+            <h2>SEO Local</h2>
+
+            <p>O Google usa três fatores principais para ranking local:</p>
+
+            <div class="step-card">
+                <span class="step-number">1. Relevância</span>
+                <p>Informação completa e detalhada. Categoria principal correta. Descrição completa. Serviços listados. Atributos preenchidos. Publicações regulares.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">2. Distância</span>
+                <p>A morada em Sintra determina quando apareces em pesquisas "perto de mim". Define área de serviço para pesquisas mais amplas (ex: "Lisboa area").</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">3. Proeminência</span>
+                <p>Quantidade e qualidade de avaliações. Backlinks de outros sites. Autoridade do site. Menções online. Taxa de cliques. Interações com o perfil.</p>
+            </div>
+
+            <h3>Plano de ação SEO</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Verifica o site no Google Search Console</h4>
+                    <p>Pode permitir verificação instantânea do GBP</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Regista em diretórios de retiros</h4>
+                    <p>BookRetreats, Retreat Guru, Tripaneer — cria perfis com link para o site</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Adiciona Schema.org no site</h4>
+                    <p>Marcacao estruturada LocalBusiness com dados do Living Prayer</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Consistência NAP</h4>
+                    <p>Nome, Morada e Telefone idênticos em toda a web — site, GBP, redes sociais, diretórios</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Embebe o Google Map</h4>
+                    <p>Na página de contacto do site, incorpora o mapa do GBP</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADS -->
+        <div class="section" id="ads">
+            <div class="section-number">07</div>
+            <h2>Integração com Google Ads</h2>
+
+            <p>O GBP ligado ao Google Ads adiciona automaticamente o teu endereço, telefone e horários aos anúncios.</p>
+
+            <h3>O que acontece ao ligar</h3>
+            <ul style="margin-left: 20px; font-size: 14px;">
+                <li><strong>Extensões de localização:</strong> Morada e telefone aparecem nos anúncios</li>
+                <li><strong>Anúncios locais:</strong> Podes aparecer no topo do Maps com etiqueta "Patrocinado"</li>
+                <li><strong>Avaliações nos anúncios:</strong> As avaliações do GBP podem aparecer junto aos teus anúncios</li>
+            </ul>
+
+            <h3>Como ligar</h3>
+            <ol style="margin-left: 20px; font-size: 14px;">
+                <li>Abre o Google Ads → Ferramentas e definições → Extensões</li>
+                <li>Seleciona "Extensão de localização"</li>
+                <li>Liga a tua conta do GBP</li>
+                <li>A localização verificada sincroniza automaticamente</li>
+            </ol>
+
+            <div class="info-box green">
+                <h4>Nota importante</h4>
+                <p>A verificação do GBP <strong>não é obrigatória</strong> para extensões de localização nos anúncios. Mas é obrigatória para aparecer organicamente no Maps e para tracking de visitas à loja.</p>
+            </div>
+        </div>
+
+        <!-- MISTAKES -->
+        <div class="section" id="mistakes">
+            <div class="section-number">08</div>
+            <h2>Erros Comuns a Evitar</h2>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><span class="badge badge-red">Crítico</span>&nbsp; Keyword-stuffing no nome do negócio</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Não adiciones palavras ao nome para tentar rankear melhor. O Google pode suspender o perfil. Usa apenas "Living Prayer".</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><span class="badge badge-red">Crítico</span>&nbsp; Morada virtual ou apartado postal</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Não é permitido. Usa a morada física real da Quinta das Broas.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><span class="badge badge-red">Crítico</span>&nbsp; Criar múltiplos perfis para o mesmo local</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>O Google funde ou suspende duplicados. Um único perfil completo.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><span class="badge badge-brown">Importante</span>&nbsp; Ignorar avaliações negativas</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Avaliações sem resposta danificam a confiança. Responde sempre com empatia e profissionalismo.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><span class="badge badge-brown">Importante</span>&nbsp; Dados NAP inconsistentes</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Nome, Morada e Telefone devem ser idênticos em todo o lado — site, GBP, redes sociais, diretórios.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><span class="badge badge-brown">Importante</span>&nbsp; Não atualizar horários</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Mostrar "Aberto" quando estás fechado gera frustração e avaliações negativas.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><span class="badge badge-green">Dica</span>&nbsp; Fotografias de baixa qualidade</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Fotos desfocadas, escuras ou irrelevantes reduzem a interação. Investe em 15+ fotos profissionais de alta qualidade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="section" id="checklist">
+            <div class="section-number">09</div>
+            <h2>Checklist Final</h2>
+            <p>Clica em cada item à medida que vais completando. O progresso fica guardado no teu navegador.</p>
+
+            <ul class="checklist" id="checklist">
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Criar/reclamar o GBP com uma conta Google do negócio</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Nome: "Living Prayer" (exatamente assim)</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Categoria principal: "Retreat center" ou "Yoga studio"</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Adicionar 4–5 categorias adicionais</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Escrever descrição de 750 caracteres</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Inserir morada completa (Quinta das Broas, Sintra)</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Definir área de serviço (inclui Lisboa)</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Definir horários regulares + horários especiais</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Adicionar número de telefone</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Adicionar URL do site: https://livingprayer.pt</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Upload do logo</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Upload de 15+ fotografias de alta qualidade</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Selecionar todos os atributos relevantes</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Adicionar lista de serviços com descrições</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Adicionar links de redes sociais (Instagram, Facebook)</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Configurar mensagens (WhatsApp ou SMS)</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Pré-preencher 5–10 perguntas no Q&A</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Verificar o perfil (vídeo recomendado)</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Criar primeira publicação (evento do retiro)</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Verificar site no Google Search Console</span></li>
+                <li onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Ligar GBP ao Google Ads (quando criares a conta)</span></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <h3>Living Prayer</h3>
+        <p>12 · 13 · 14 de Junho de 2026 — Quinta das Broas, Sintra</p>
+        <p style="margin-top: 15px; font-size: 11px; opacity: 0.5;">Guia preparado com dados de Março 2026 — Google Business Profile Best Practices</p>
+    </footer>
+</div>
+
+<script>
+// Accordion
+function toggleAccordion(header) {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+}
+
+// Checklist with localStorage
+function toggleCheck(li) {
+    li.classList.toggle('done');
+    saveChecklist();
+}
+
+function saveChecklist() {
+    const items = document.querySelectorAll('#checklist li');
+    const states = Array.from(items).map(li => li.classList.contains('done'));
+    localStorage.setItem('gbp-checklist-livingprayer', JSON.stringify(states));
+}
+
+function loadChecklist() {
+    const saved = localStorage.getItem('gbp-checklist-livingprayer');
+    if (saved) {
+        const states = JSON.parse(saved);
+        const items = document.querySelectorAll('#checklist li');
+        states.forEach((done, i) => {
+            if (done && items[i]) items[i].classList.add('done');
+        });
+    }
+}
+
+// Copy code
+function copyCode(btn) {
+    const block = btn.parentElement;
+    const text = block.textContent.replace('Copiar', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copiado!';
+        setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+}
+
+// Navigation
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Progress bar
+window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressFill').style.width = scrolled + '%';
+
+    // Active nav button
+    const sections = document.querySelectorAll('.section');
+    const navBtns = document.querySelectorAll('.nav-btn');
+    let current = 0;
+    sections.forEach((sec, i) => {
+        if (sec.getBoundingClientRect().top < 150) current = i;
+    });
+    navBtns.forEach((btn, i) => btn.classList.remove('active'));
+    if (navBtns[current]) navBtns[current].classList.add('active');
+});
+
+loadChecklist();
+</script>
+</body>
+</html>

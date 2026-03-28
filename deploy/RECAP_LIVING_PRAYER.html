@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Prayer — Estado do Projeto · Março 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --beige: #F5F0EB;
+            --green: #4A5D4F;
+            --green-light: #6B8F71;
+            --brown: #8B7355;
+            --brown-light: #A89279;
+            --cream: #FAF8F5;
+            --dark: #2C2C2C;
+            --text: #3D3D3D;
+            --border: #E0D8CF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--beige);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--green) 0%, #3A4D3F 100%);
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
+        }
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 38px;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .hero .subtitle {
+            font-size: 14px;
+            opacity: 0.75;
+        }
+        .hero .date {
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.5;
+            letter-spacing: 1px;
+        }
+
+        /* Content */
+        .content { padding: 45px 50px 80px; }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--green);
+            margin: 45px 0 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        h2:first-of-type { margin-top: 0; }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--brown);
+            margin: 25px 0 10px;
+        }
+
+        p { margin-bottom: 14px; }
+
+        /* Status cards */
+        .status-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .status-card {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+        .status-card.done::before { background: var(--green); }
+        .status-card.pending::before { background: var(--brown); }
+        .status-card.waiting::before { background: #E67E22; }
+        .status-card .icon {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        .status-card .title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .status-card .desc {
+            font-size: 12.5px;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+        .status-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .status-badge.done { background: #E8F5E9; color: var(--green); }
+        .status-badge.pending { background: #FFF3E0; color: #8B6914; }
+        .status-badge.waiting { background: #FFF3E0; color: #E67E22; }
+
+        /* Info box */
+        .info-box {
+            background: var(--cream);
+            border-left: 4px solid var(--green);
+            padding: 18px 22px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 13.5px;
+        }
+        .info-box.brown { border-left-color: var(--brown); }
+        .info-box strong { color: var(--green); }
+
+        /* List */
+        ul.styled { margin: 12px 0 12px 0; padding-left: 0; list-style: none; }
+        ul.styled li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            font-size: 14px;
+        }
+        ul.styled li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--brown);
+        }
+
+        /* Table */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        .styled-table th {
+            background: var(--green);
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .styled-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .styled-table tr:nth-child(even) { background: var(--cream); }
+
+        /* Priority badges */
+        .priority-high {
+            display: inline-block;
+            background: #E74C3C;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+        .priority-medium {
+            display: inline-block;
+            background: #F39C12;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+        .priority-low {
+            display: inline-block;
+            background: #95A5A6;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 40px 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--cream);
+            border-top: 1px solid var(--border);
+            padding: 30px 50px;
+            text-align: center;
+        }
+        footer p {
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 40px 25px; }
+            .content { padding: 30px 25px 60px; }
+            .status-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <div class="hero">
+        <div class="hero-label">Estado do Projeto</div>
+        <h1>Living Prayer</h1>
+        <div class="subtitle">Retiro de Yoga · 12–14 de Junho de 2026<br>Quinta das Broas, Sintra, Portugal</div>
+        <div class="date">Recapitulação · 28 de Março de 2026</div>
+    </div>
+
+    <div class="content">
+
+        <h2>Resumo Executivo</h2>
+        <p>Hoje concluímos a configuração completa da infraestrutura digital do Living Prayer. O site está funcional, o formulário envia dados para o CRM, e o workflow de emails automáticos está ativo no Systeme.io. Faltam dois passos importantes para maximizar o alcance: o Google Business Profile e o Google Ads.</p>
+
+        <div class="status-grid">
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">Site livingprayer.pt</div>
+                <div class="desc">Site bilíngue (PT/EN) publicado na Vercel com SSL ativo</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">DNS e Cloudflare</div>
+                <div class="desc">Domínio aponta para Vercel via CNAME, proxy configurado</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">Formulário → Systeme.io</div>
+                <div class="desc">7 campos enviados: nome, email, telefone, alojamento, motivação, como soube, idioma</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">Campos personalizados no CRM</div>
+                <div class="desc">Campos criados: alojamento, motivação, como_soube, idioma</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">Workflow de automação</div>
+                <div class="desc">Tag → Decisão idioma → Email PT/EN → Notificação Pedro. Ativo e testado.</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">Guia Google Ads</div>
+                <div class="desc">Estratégia de 2 campanhas (85% Search EN, 15% Remarketing)</div>
+            </div>
+            <div class="status-card waiting">
+                <span class="status-badge waiting">Pendente</span>
+                <div class="title">Google Business Profile</div>
+                <div class="desc">Guia interativo criado. Falta criar e verificar o perfil.</div>
+            </div>
+            <div class="status-card pending">
+                <span class="status-badge pending">Por fazer</span>
+                <div class="title">Google Ads — Campanhas</div>
+                <div class="desc">Conta criada, campanhas configuradas, anúncios a rodar</div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <h2>O que foi feito hoje — em detalhe</h2>
+
+        <h3>1. Infraestrutura do site</h3>
+        <ul class="styled">
+            <li><strong>Domínio livingprayer.pt</strong> — DNS configurado no Cloudflare com CNAME para Vercel</li>
+            <li><strong>SSL</strong> — Certificado HTTPS ativo automaticamente</li>
+            <li><strong>Site bilíngue</strong> — Alternância PT/EN via atributo data-lang, sem páginas separadas</li>
+            <li><strong>Formulário de candidatura</strong> — Validação completa, envio assíncrono, feedback visual</li>
+            <li><strong>Design</strong> — Cormorant Garamond + Inter, paleta beige/verde/castanho, tom contemplativo</li>
+        </ul>
+
+        <h3>2. Integração com Systeme.io (CRM)</h3>
+        <ul class="styled">
+            <li><strong>API subscribe.js</strong> — Função serverless na Vercel que envia todos os campos para o Systeme.io</li>
+            <li><strong>Contactos criados</strong> — Com nome, apelido, email, telefone, alojamento, motivação, como soube, idioma</li>
+            <li><strong>Tag automática</strong> — Tag "retiro-living-prayer" adicionada a cada novo contacto</li>
+            <li><strong>Gestão de duplicados</strong> — Se o email já existe, faz PATCH (atualiza dados) em vez de criar duplicado</li>
+        </ul>
+
+        <h3>3. Workflow de automação de emails</h3>
+        <p>O workflow <strong>"Living Prayer - Candidatura Retiro"</strong> no Systeme.io executa automaticamente:</p>
+        <table class="styled-table">
+            <thead>
+                <tr><th>Passo</th><th>Ação</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1. Gatilho</td><td>Tag "retiro-living-prayer" adicionada ao contacto</td></tr>
+                <tr><td>2. Decisão</td><td>Verifica se o campo "Idioma" = "Português"</td></tr>
+                <tr><td>3a. Se Sim</td><td>Envia email PT: "Recebemos a tua candidatura ao Living Prayer"</td></tr>
+                <tr><td>3b. Se Não</td><td>Envia email EN: "We received your application to Living Prayer"</td></tr>
+                <tr><td>4. Notificação</td><td>Email para pedro_santos_morais@hotmail.com com todos os dados do candidato</td></tr>
+            </tbody>
+        </table>
+        <div class="info-box">
+            <strong>Os emails são enviados automaticamente</strong> dentro de segundos após o preenchimento do formulário. O candidato recebe confirmação na sua língua, e o Pedro recebe os dados completos na sua caixa de entrada.
+        </div>
+
+        <h3>4. Testes realizados</h3>
+        <ul class="styled">
+            <li>Submissão PT com sucesso — idioma="Português", tag atribuída</li>
+            <li>Submissão EN com sucesso — idioma="English", tag atribuída</li>
+            <li>Todos os campos personalizados preenchidos corretamente</li>
+            <li>Workflow ativado e processando contactos</li>
+        </ul>
+
+        <h3>5. Documentos entregues</h3>
+        <table class="styled-table">
+            <thead>
+                <tr><th>Documento</th><th>Formato</th><th>Conteúdo</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Guia de Configuração de Emails</td><td>HTML/PDF</td><td>Templates de emails PT/EN + instruções do Systeme.io</td></tr>
+                <tr><td>Guia Google Ads 2026</td><td>HTML/PDF</td><td>Estratégia consolidada de 2 campanhas com keywords e orçamento</td></tr>
+                <tr><td>Guia Google Business Profile</td><td>HTML interativo</td><td>Setup completo com checklist interativo, templates e best practices 2026</td></tr>
+                <tr><td>Este recap</td><td>HTML</td><td>Resumo de tudo + próximas etapas</td></tr>
+            </tbody>
+        </table>
+
+        <hr class="divider">
+
+        <h2>Potencialidades atuais do site</h2>
+
+        <h3>O que o site faz agora</h3>
+        <ul class="styled">
+            <li><strong>Captura candidatos</strong> — Formulário com 7 campos, validação, UX suave</li>
+            <li><strong>Fala duas línguas</strong> — Alternância PT/EN instantânea, sem reload</li>
+            <li><strong>Envia dados ao CRM</strong> — Systeme.io recebe tudo automaticamente</li>
+            <li><strong>Envia emails automáticos</strong> — PT ou EN conforme idioma do candidato</li>
+            <li><strong>Notifica o Pedro</strong> — Email com todos os dados de cada candidato</li>
+            <li><strong>Responsivo</strong> — Funciona em desktop, tablet e mobile</li>
+            <li><strong>Rápido</strong> — Hosting na Vercel (CDN global), SSL, <1s de carregamento</li>
+        </ul>
+
+        <h3>O que o site NÃO faz (ainda)</h3>
+        <ul class="styled">
+            <li>Não tem SEO otimizado para busca orgânica (falta meta tags, Schema.org, sitemap)</li>
+            <li>Não rastrea conversões (falta Google Analytics 4, Meta Pixel)</li>
+            <li>Não tem galeria de fotos dinâmica</li>
+            <li>Não tem página de FAQ separada</li>
+            <li>Não tem blog/conteúdo para SEO de longo prazo</li>
+            <li>Não integra com WhatsApp diretamente (apenas link)</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>Próximas etapas — Recomendações</h2>
+        <p>Por ordem de prioridade e impacto no negócio:</p>
+
+        <table class="styled-table">
+            <thead>
+                <tr><th>#</th><th>Ação</th><th>Prioridade</th><th>Impacto</th><th>Esforço</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Google Business Profile</strong> — Criar e verificar o perfil. Usar o guia interativo fornecido. É gratuito e tem impacto enorme na visibilidade local.</td>
+                    <td><span class="priority-high">ALTA</span></td>
+                    <td>Alto</td>
+                    <td>1–2h</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Google Ads</strong> — Criar conta, configurar as 2 campanhas conforme o guia. Orçamento recomendado: €300–500/mês para começar.</td>
+                    <td><span class="priority-high">ALTA</span></td>
+                    <td>Alto</td>
+                    <td>3–4h</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Google Analytics 4</strong> — Instalar no site para rastrear visitantes, conversões, e fontes de tráfego. Gratuito.</td>
+                    <td><span class="priority-high">ALTA</span></td>
+                    <td>Médio</td>
+                    <td>30min</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>SEO técnico</strong> — Adicionar meta tags, Schema.org (LocalBusiness), sitemap.xml, robots.txt. Ajuda o Google a encontrar e rankear o site.</td>
+                    <td><span class="priority-medium">MÉDIA</span></td>
+                    <td>Médio</td>
+                    <td>2–3h</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Redes sociais</strong> — Criar conteúdo para Instagram/Facebook. Usar fotos do local e dos retiros. Linkar para livingprayer.pt.</td>
+                    <td><span class="priority-medium">MÉDIA</span></td>
+                    <td>Médio</td>
+                    <td>Contínuo</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>Lista em diretórios de retiros</strong> — BookRetreats.com, RetreatGuru.com, Tripaneer.com. Fontes de tráfego qualificado.</td>
+                    <td><span class="priority-medium">MÉDIA</span></td>
+                    <td>Médio</td>
+                    <td>2–3h</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><strong>WhatsApp Business</strong> — Configurar perfil comercial com catálogo, mensagens automáticas, e link direto no site.</td>
+                    <td><span class="priority-low">BAIXA</span></td>
+                    <td>Baixo</td>
+                    <td>1h</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><strong>Blog/conteúdo</strong> — Artigos sobre yoga em Sintra, benefícios de retiros, etc. SEO de longo prazo.</td>
+                    <td><span class="priority-low">BAIXA</span></td>
+                    <td>Alto (longo prazo)</td>
+                    <td>Contínuo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="divider">
+
+        <h2>Acesso às contas e serviços</h2>
+
+        <table class="styled-table">
+            <thead>
+                <tr><th>Serviço</th><th>URL</th><th>Notas</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Site</td><td>https://livingprayer.pt</td><td>Hosting: Vercel. Deploys automáticos via git push.</td></tr>
+                <tr><td>Systeme.io (CRM)</td><td>https://systeme.io/dashboard</td><td>Login: pedro_santos_morais@hotmail.com</td></tr>
+                <tr><td>Workflow</td><td>https://systeme.io/dashboard/workflow/500822/edit</td><td>"Living Prayer - Candidatura Retiro"</td></tr>
+                <tr><td>Cloudflare (DNS)</td><td>https://dash.cloudflare.com</td><td>Zona: livingprayer.pt</td></tr>
+                <tr><td>Vercel (Hosting)</td><td>https://vercel.com</td><td>Projeto: living-prayer (ou deploy)</td></tr>
+                <tr><td>Código-fonte</td><td>GitHub (repositório local)</td><td>Pasta: deploy/index.html + api/subscribe.js</td></tr>
+            </tbody>
+        </table>
+
+        <hr class="divider">
+
+        <h2>Investimento estimado para lançamento completo</h2>
+
+        <table class="styled-table">
+            <thead>
+                <tr><th>Item</th><th>Custo</th><th>Periodicidade</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Domínio (livingprayer.pt)</td><td>~€10</td><td>Anual</td></tr>
+                <tr><td>Hosting (Vercel)</td><td>€0</td><td>Gratuito (plano hobby)</td></tr>
+                <tr><td>CRM (Systeme.io)</td><td>€0</td><td>Gratuito (plano free)</td></tr>
+                <tr><td>SSL</td><td>€0</td><td>Incluído (Vercel + Cloudflare)</td></tr>
+                <tr><td>Google Business Profile</td><td>€0</td><td>Gratuito</td></tr>
+                <tr><td>Google Ads (recomendado)</td><td>€300–500</td><td>Mensal</td></tr>
+                <tr><td><strong>Total infraestrutura</strong></td><td><strong>~€10/ano</strong></td><td><strong>Sem custos fixos de plataforma</strong></td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box brown">
+            <strong>Nota:</strong> Toda a infraestrutura digital está em plataformas gratuitas (Vercel, Systeme.io free plan, Cloudflare). O único custo fixo é o domínio (~€10/ano). O Google Ads é a única despesa significativa e é completamente controlável — pode começar com €10/dia e ajustar conforme resultados.
+        </div>
+
+        <hr class="divider">
+
+        <h2>Workflow do processo de candidatura</h2>
+        <p>Como funciona de ponta a ponta quando alguém se candidata:</p>
+
+        <div style="background: var(--cream); border: 1px solid var(--border); border-radius: 10px; padding: 25px; margin: 20px 0; font-size: 13.5px; line-height: 2;">
+            <strong>1.</strong> Visitante acede a livingprayer.pt → Escolhe PT ou EN → Preenche formulário → Clica "Candidatar-me"<br>
+            <strong>2.</strong> Vercel serverless function envia dados ao Systeme.io via API<br>
+            <strong>3.</strong> Systeme.io cria contacto com 7 campos + adiciona tag "retiro-living-prayer"<br>
+            <strong>4.</strong> Workflow dispara automaticamente:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Verifica campo "idioma" → "Português" ou "English"<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Envia email de confirmação na língua correta<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Envia notificação para pedro_santos_morais@hotmail.com<br>
+            <strong>5.</strong> Pedro lê a notificação e responde ao candidato em 48h<br>
+        </div>
+
+        <hr class="divider">
+
+        <h2>Notas finais</h2>
+
+        <div class="info-box">
+            <strong>Tudo o que foi construído é gratuito e funcional.</strong> O site está online, o CRM está a receber dados, os emails são automáticos. Os próximos passos (Google Business Profile e Google Ads) são onde o investimento de tempo traz mais retorno em visibilidade e candidatos.
+        </div>
+
+        <p>Para qualquer dúvida técnica ou ajuste, o código-fonte está acessível e documentado. O Pedro pode gerir o CRM diretamente no Systeme.io, e o conteúdo do site pode ser atualizado a qualquer momento.</p>
+
+    </div>
+
+    <footer>
+        <p>Living Prayer · Retiro de Yoga · 12–14 de Junho de 2026 · Quinta das Broas, Sintra</p>
+        <p style="margin-top: 5px;">Documento preparado a 28 de Março de 2026</p>
+    </footer>
+
+</div>
+</body>
+</html>
