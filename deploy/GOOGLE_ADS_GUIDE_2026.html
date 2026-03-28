@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Living Prayer — Guia Estratégico Google Ads 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #F5F0EB;
+    --bg-white: #FEFCF9;
+    --green: #4A5D4F;
+    --green-light: #5a7160;
+    --brown: #8B7355;
+    --brown-light: #a89070;
+    --text: #2C2C2C;
+    --text-light: #6B6B6B;
+    --border: #E0D8CF;
+    --accent-bg: #EDE8E1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm 22mm;
+    margin: 0 auto;
+    background: var(--bg-white);
+    position: relative;
+    page-break-after: always;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* Cover page */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 297mm;
+    padding: 30mm 25mm;
+    background: linear-gradient(175deg, var(--bg-white) 0%, var(--bg) 50%, #e8e0d5 100%);
+  }
+
+  .cover-line {
+    width: 60px;
+    height: 2px;
+    background: var(--green);
+    margin: 20px auto;
+  }
+
+  .cover-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14pt;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 30px;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32pt;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16pt;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--brown);
+    margin-bottom: 40px;
+  }
+
+  .cover-meta {
+    font-size: 9pt;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    margin-top: 60px;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    font-size: 8pt;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 15px;
+  }
+
+  /* Headings */
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22pt;
+    font-weight: 400;
+    color: var(--green);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16pt;
+    font-weight: 500;
+    color: var(--brown);
+    margin-top: 28px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--green);
+    margin-top: 22px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 9pt;
+  }
+
+  thead th {
+    background: var(--green);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 8pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) { background: var(--accent-bg); }
+
+  /* Callout */
+  .callout {
+    background: #f0ebe3;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 9pt;
+  }
+
+  .callout-title {
+    font-weight: 600;
+    color: var(--brown);
+    margin-bottom: 4px;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  .page-footer {
+    position: absolute;
+    bottom: 14mm;
+    left: 22mm;
+    right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    color: var(--text-light);
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+
+  .page-footer .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9pt;
+    color: var(--green);
+    letter-spacing: 2px;
+  }
+
+  ul {
+    margin: 8px 0 12px 20px;
+    font-size: 9.5pt;
+  }
+
+  li { margin-bottom: 4px; }
+  
+  .columns {
+    display: flex;
+    gap: 20px;
+  }
+  .column {
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="page cover">
+  <div class="cover-brand">Living Prayer</div>
+  <div class="cover-line"></div>
+  <div class="cover-title">Guia Estratégico<br>Google Ads</div>
+  <div class="cover-subtitle">Melhores Práticas e Otimização — Março 2026</div>
+  <div class="cover-line"></div>
+  <div class="cover-badge">Performance & Conversão</div>
+  <div class="cover-meta">
+    Estratégia para captação de candidaturas ao retiro<br>
+    Mercados: Portugal, UK, Norte da Europa<br>
+  </div>
+</div>
+
+<!-- PAGE 2: Overview & Consolidation -->
+<div class="page">
+  <h1>Visão Geral e Estrutura Otimizada</h1>
+  <p>Os retiros de yoga são compras de elevada consideração (high-ticket). O Google Ads é a melhor ferramenta para captar pessoas na fase de <strong>intenção ativa</strong> — quando pesquisam no Google por "yoga retreat in Portugal" em vez de serem interrompidas por um anúncio no Instagram.</p>
+
+  <div class="callout">
+    <div class="callout-title">O Funcionamento Atual do Google Ads (2026)</div>
+    <p>O Google Ads mudou drasticamente. Hoje, o sucesso depende do <strong>Smart Bidding (Lances Inteligentes)</strong> alimentado por dados. Em orçamentos mais reduzidos (entre 150€ - 250€/mês), <strong>a consolidação é a chave absoluta</strong>. Um orçamento de 5-8€/dia dividido por múltiplas campanhas impede o algoritmo de aprender. O objetivo é concentrar o orçamento em 1 campanha forte para maximizar o número de cliques qualificados e gerar os leads necessários para a Inteligência Artificial estabilizar a CPA (Custo Por Aquisição).</p>
+  </div>
+
+  <h2>A Nova Estrutura de Campanhas</h2>
+  <p>Face ao orçamento disponível, e garantindo que o algoritmo não morre à fome de dados, a estrutura deve ser radicalmente simples:</p>
+
+  <table>
+    <thead>
+      <tr><th>Campanha</th><th>Alocação Média</th><th>Mercados Alvo</th><th>Bid Strategy</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Search EN (Core Bookings)</strong></td>
+        <td>85% (~5-7€/dia)</td>
+        <td>UK, Alemanha, Holanda, Nórdicos</td>
+        <td>Maximize Conversions (Depois, Target CPA)</td>
+      </tr>
+      <tr>
+        <td><strong>Remarketing Display</strong></td>
+        <td>15% (~1€/dia)</td>
+        <td>Visitantes dos últimos 30-60 dias</td>
+        <td>Maximize Conversions ou Clicks</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Broad Match (Correspondência Ampla)</h3>
+  <p>A recomendação número 1 do Google é utilizar <strong>Broad Match</strong> aliado a Smart Bidding. Em vez de focar apenas em termos limitados (exatos), o Broad Match permite encontrar padrões ocultos de pesquisa. <strong>No entanto, o risco de gastar em termos irrelevantes é alto.</strong> A mitigação passa por uma vigilância feroz das <strong>Negative Keywords</strong> (ex: "free", "cheap", "training", "cursos").</p>
+
+  <div class="page-footer">
+    <span class="brand">LIVING PRAYER</span>
+    <span>Guia Google Ads — Página 2</span>
+  </div>
+</div>
+
+<!-- PAGE 3: Keywords and Costs -->
+<div class="page">
+  <h1>Palavras-Chave e Custos (CPC)</h1>
+  <p>Com a decisão de concentrar o investimento inicial no Mercado Inglês, vejamos os CPCs realistas para 2026. A concorrência britânica e nórdica é maior, mas o Ticket Médio compensa.</p>
+
+  <h2>Mercado Internacional (Search EN)</h2>
+  <table>
+    <thead>
+      <tr><th>Palavras-Chave Foco (Broad/Phrase)</th><th>CPC Médio Estimado (€)</th><th>Fase do Funil</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>yoga retreat portugal</td><td>1.20 - 2.80</td><td>Alta (Decisão)</td></tr>
+      <tr><td>yoga retreat sintra</td><td>0.80 - 1.50</td><td>Alta (Nichada)</td></tr>
+      <tr><td>wellness retreat near lisbon</td><td>1.00 - 2.50</td><td>Média (Pesquisa)</td></tr>
+      <tr><td>meditation and yoga holiday portugal</td><td>0.90 - 2.00</td><td>Alta</td></tr>
+      <tr><td>spiritual retreat portugal</td><td>0.70 - 1.80</td><td>Média</td></tr>
+      <tr><td>yoga and nature retreat portugal</td><td>0.60 - 1.50</td><td>Cauda-Longa</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Políticas e Risco de Suspensão</h2>
+  <div class="callout">
+    <div class="callout-title">Saúde e Promessas Médicas</div>
+    <p>O Google Ads é brutalmente rigoroso em nichos de <i>wellness</i>. Alegações como "cura para a ansiedade", "tratar depressão" ou palavras como "healing" no Ad Copy podem resultar numa suspensão imediata e irreversível da conta.</p>
+    <p><strong>Estratégia:</strong> O <i>Living Prayer</i> foca em contemplação e autoconhecimento. Use copy como "Transformative Experience", "Inner Peace", "Disconnect and Reconnect", e "Mindfulness Journey".</p>
+  </div>
+
+  <h2>Google Business Profile (Essencial para Ads)</h2>
+  <p>Antes de arrancar, ative o <strong>Google Business Profile (GBP)</strong> para o Living Prayer (associado à morada da Quinta das Broas). A integração entre o Google Ads e o GBP ativa as <strong>Location Extensions</strong>. Isto coloca o endereço no anúncio, o que atesta credibilidade, levanta a CTR em cerca de 15% a 20% e reduz o seu CPA (Custo Por Aquisição).</p>
+
+  <div class="page-footer">
+    <span class="brand">LIVING PRAYER</span>
+    <span>Guia Google Ads — Página 3</span>
+  </div>
+</div>
+
+<!-- PAGE 4: Setup & Ad Copy -->
+<div class="page">
+  <h1>Otimização de Anúncios & Conversão</h1>
+
+  <h2>Ad Copy (Anúncios de Pesquisa Responsivos)</h2>
+  <p>Deverá inserir até 15 títulos e 4 descrições, deixando o Google testar as combinações via <i>Machine Learning</i>.</p>
+  
+  <div class="columns">
+    <div class="column">
+      <h4>Títulos recomendados (EN)</h4>
+      <ul>
+        <li>Yoga Retreat in Magical Sintra</li>
+        <li>Yoga & Nature in Portugal</li>
+        <li>Transform Your Practice</li>
+        <li>Small Group Yoga Retreat</li>
+        <li>Book Your Sintra Retreat</li>
+        <li>3 Days of Deep Practice</li>
+        <li>Disconnect & Reconnect</li>
+      </ul>
+    </div>
+    <div class="column">
+      <h4>Descrições recomendadas (EN)</h4>
+      <ul>
+        <li>Reconnect with yourself through yoga, breathwork & meditation in magical Sintra.</li>
+        <li>Not a standard wellness holiday. A true immersion into Yoga as a living prayer.</li>
+        <li>A 3-day laboratory of self-knowledge surrounded by Sintra's nature. Book now.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Landing Page & Acompanhamento de Conversões</h2>
+  <p>O sucesso do Google Ads não está apenas na plataforma; está na ponte entre o Anúncio e o Site.</p>
+  <ul>
+    <li><strong>Sinais de IA:</strong> O algoritmo gera muitos dos títulos com base no título HTML da vossa página (<code>&lt;title&gt;</code>). Garantam que as promessas no anúncio são visualizadas imediatamente no <i>Hero</i> do site.</li>
+    <li><strong>Meta de Conversão Principal:</strong> A tag de rastreamento deve estar na submissão da candidatura ("Avançar" e "Concluir"). É este o sinal que ensina o Google Ads a quem mostrar os próximos anúncios.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-title">Resumo da Estratégia Ajustada</div>
+    <p>1. Crie o Google Business Profile (Reviews e Maps).<br>2. Concentre todo o orçamento de pesquisa (85%) numa campanha forte em <strong>Inglês</strong> para mercados de alto poder de compra.<br>3. Use <strong>Broad Match</strong> mas reveja e negative palavras-chave indesejadas a cada 3 dias.<br>4. Ative <strong>Smart Bidding</strong>, deixando o Google focar em "Maximizar Conversões" no primeiro mês.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="brand">LIVING PRAYER</span>
+    <span>Guia Google Ads — Página 4</span>
+  </div>
+</div>
+
+</body>
+</html>

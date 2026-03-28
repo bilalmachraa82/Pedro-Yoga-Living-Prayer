@@ -166,11 +166,17 @@
         }
 
         /* Table */
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px var(--border);
+        }
         .styled-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
             font-size: 13px;
+            min-width: 500px;
         }
         .styled-table th {
             background: var(--green);
@@ -181,12 +187,14 @@
             font-size: 11px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         .styled-table td {
             padding: 10px 14px;
             border-bottom: 1px solid var(--border);
             vertical-align: top;
         }
+        .styled-table tr:last-child td { border-bottom: none; }
         .styled-table tr:nth-child(even) { background: var(--cream); }
 
         /* Priority badges */
@@ -240,10 +248,38 @@
             opacity: 0.5;
         }
 
+        .calc-box {
+            background: linear-gradient(135deg, #f8f6f3 0%, #F5F0EB 100%);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .calc-box .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .calc-box .calc-row:last-child { border-bottom: none; }
+        .calc-box .calc-row.total {
+            font-weight: 700;
+            font-size: 15px;
+            border-top: 2px solid var(--green);
+            margin-top: 5px;
+            padding-top: 12px;
+        }
+        .calc-box .calc-row span:last-child { font-weight: 600; }
+
         @media (max-width: 600px) {
             .hero { padding: 40px 25px; }
-            .content { padding: 30px 25px 60px; }
+            .hero h1 { font-size: 28px; }
+            .content { padding: 25px 20px 60px; }
             .status-grid { grid-template-columns: 1fr; }
+            .styled-table { font-size: 12px; }
+            .styled-table th, .styled-table td { padding: 8px 10px; }
+            footer { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -328,6 +364,7 @@
 
         <h3>3. Workflow de automação de emails</h3>
         <p>O workflow <strong>"Living Prayer - Candidatura Retiro"</strong> no Systeme.io executa automaticamente:</p>
+        <div class="table-container">
         <table class="styled-table">
             <thead>
                 <tr><th>Passo</th><th>Ação</th></tr>
@@ -340,6 +377,7 @@
                 <tr><td>4. Notificação</td><td>Email para pedro_santos_morais@hotmail.com com todos os dados do candidato</td></tr>
             </tbody>
         </table>
+        </div>
         <div class="info-box">
             <strong>Os emails são enviados automaticamente</strong> dentro de segundos após o preenchimento do formulário. O candidato recebe confirmação na sua língua, e o Pedro recebe os dados completos na sua caixa de entrada.
         </div>
@@ -353,6 +391,7 @@
         </ul>
 
         <h3>5. Documentos entregues</h3>
+        <div class="table-container">
         <table class="styled-table">
             <thead>
                 <tr><th>Documento</th><th>Formato</th><th>Conteúdo</th></tr>
@@ -364,6 +403,7 @@
                 <tr><td>Este recap</td><td>HTML</td><td>Resumo de tudo + próximas etapas</td></tr>
             </tbody>
         </table>
+        </div>
 
         <hr class="divider">
 
@@ -395,6 +435,7 @@
         <h2>Próximas etapas — Recomendações</h2>
         <p>Por ordem de prioridade e impacto no negócio:</p>
 
+        <div class="table-container">
         <table class="styled-table">
             <thead>
                 <tr><th>#</th><th>Ação</th><th>Prioridade</th><th>Impacto</th><th>Esforço</th></tr>
@@ -409,7 +450,7 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td><strong>Google Ads</strong> — Criar conta, configurar as 2 campanhas conforme o guia. Orçamento recomendado: €300–500/mês para começar.</td>
+                    <td><strong>Google Ads</strong> — Criar conta, configurar as 2 campanhas conforme o guia. Orçamento recomendado: €5–8/dia (total ~€500 para a campanha inteira de 3 meses).</td>
                     <td><span class="priority-high">ALTA</span></td>
                     <td>Alto</td>
                     <td>3–4h</td>
@@ -458,11 +499,13 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <hr class="divider">
 
         <h2>Acesso às contas e serviços</h2>
 
+        <div class="table-container">
         <table class="styled-table">
             <thead>
                 <tr><th>Serviço</th><th>URL</th><th>Notas</th></tr>
@@ -476,28 +519,71 @@
                 <tr><td>Código-fonte</td><td>GitHub (repositório local)</td><td>Pasta: deploy/index.html + api/subscribe.js</td></tr>
             </tbody>
         </table>
+        </div>
 
         <hr class="divider">
 
-        <h2>Investimento estimado para lançamento completo</h2>
+        <h2>Investimento</h2>
 
+        <h3>Setup do projeto (pago)</h3>
+        <div class="table-container">
+        <table class="styled-table">
+            <thead>
+                <tr><th>Item</th><th>Custo</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Setup completo da infraestrutura digital</strong><br>Site, CRM, automação de emails, DNS, SSL, formulário, guias</td><td><strong>€500</strong></td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3>Custos mensais/anuais (plataformas)</h3>
+        <div class="table-container">
         <table class="styled-table">
             <thead>
                 <tr><th>Item</th><th>Custo</th><th>Periodicidade</th></tr>
             </thead>
             <tbody>
                 <tr><td>Domínio (livingprayer.pt)</td><td>~€10</td><td>Anual</td></tr>
-                <tr><td>Hosting (Vercel)</td><td>€0</td><td>Gratuito (plano hobby)</td></tr>
-                <tr><td>CRM (Systeme.io)</td><td>€0</td><td>Gratuito (plano free)</td></tr>
-                <tr><td>SSL</td><td>€0</td><td>Incluído (Vercel + Cloudflare)</td></tr>
+                <tr><td>Hosting (Vercel)</td><td>€0</td><td>Gratuito</td></tr>
+                <tr><td>CRM (Systeme.io)</td><td>€0</td><td>Gratuito</td></tr>
+                <tr><td>SSL</td><td>€0</td><td>Incluído</td></tr>
                 <tr><td>Google Business Profile</td><td>€0</td><td>Gratuito</td></tr>
-                <tr><td>Google Ads (recomendado)</td><td>€300–500</td><td>Mensal</td></tr>
-                <tr><td><strong>Total infraestrutura</strong></td><td><strong>~€10/ano</strong></td><td><strong>Sem custos fixos de plataforma</strong></td></tr>
+                <tr><td><strong>Total plataformas</strong></td><td><strong>~€10/ano</strong></td><td>—</td></tr>
             </tbody>
         </table>
+        </div>
+
+        <h3>Google Ads — Orçamento recomendado</h3>
+
+        <div class="calc-box">
+            <div class="calc-row"><span>Capacidade do retiro</span><span>12–15 pessoas</span></div>
+            <div class="calc-row"><span>Preço médio por participante</span><span>~€400</span></div>
+            <div class="calc-row"><span>Receita potencial (full)</span><span>~€4,800–6,000</span></div>
+            <div class="calc-row"><span>Orçamento marketing (10–15%)</span><span>€480–720 total</span></div>
+            <div class="calc-row total"><span>Google Ads recomendado</span><span>€5–8/dia</span></div>
+        </div>
+
+        <div class="table-container">
+        <table class="styled-table">
+            <thead>
+                <tr><th>Período</th><th>Orçamento diário</th><th>Total estimado</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Abril (consciencialização)</td><td>€5/dia</td><td>~€150</td></tr>
+                <tr><td>Maio (conversão ativa)</td><td>€8/dia</td><td>~€250</td></tr>
+                <tr><td>Junho (últimas vagas)</td><td>€5/dia</td><td>~€100</td></tr>
+                <tr><td><strong>Total campanha</strong></td><td>—</td><td><strong>~€500</strong></td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <div class="info-box">
+            <strong>Retorno esperado:</strong> Com ~€500 em Google Ads, o objetivo é converter pelo menos 2–3 participantes (a €400 cada = €800–1,200 de receita). Ou seja, o investimento em Ads paga-se com apenas 2 inscrições. Qualquer inscrição adicional é lucro.
+        </div>
 
         <div class="info-box brown">
-            <strong>Nota:</strong> Toda a infraestrutura digital está em plataformas gratuitas (Vercel, Systeme.io free plan, Cloudflare). O único custo fixo é o domínio (~€10/ano). O Google Ads é a única despesa significativa e é completamente controlável — pode começar com €10/dia e ajustar conforme resultados.
+            <strong>Nota:</strong> Toda a infraestrutura digital está em plataformas gratuitas (Vercel, Systeme.io free plan, Cloudflare). O único custo fixo é o domínio (~€10/ano). O Google Ads é a única despesa significativa e é completamente controlável — pode começar com €5/dia e aumentar se os resultados forem positivos.
         </div>
 
         <hr class="divider">

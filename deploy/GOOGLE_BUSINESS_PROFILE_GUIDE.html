@@ -259,25 +259,34 @@
         .code-block .copy-btn:hover { background: rgba(255,255,255,0.2); color: white; }
 
         /* Table */
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px var(--border);
+        }
         .styled-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
             font-size: 13.5px;
+            min-width: 500px;
         }
         .styled-table th {
             background: var(--green);
             color: white;
-            padding: 12px 15px;
+            padding: 14px 15px;
             text-align: left;
             font-weight: 500;
             font-size: 12px;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
         .styled-table td {
-            padding: 12px 15px;
+            padding: 14px 15px;
             border-bottom: 1px solid var(--border);
+            vertical-align: top;
         }
+        .styled-table tr:last-child td { border-bottom: none; }
         .styled-table tr:nth-child(even) { background: var(--cream); }
 
         /* Accordion */
@@ -474,6 +483,7 @@ Fundado por Pedro Morais, o Living Prayer nasce da convicção de que a prática
             <p>Define horários regulares. Usa <strong>Horários Especiais</strong> para os períodos de retiro (12–14 de Junho de 2026). Se os horários variam consoante o serviço, usa <strong>Horários Adicionais</strong>.</p>
 
             <h3>Atributos Importantes</h3>
+            <div class="table-container">
             <table class="styled-table">
                 <thead>
                     <tr><th>Categoria</th><th>Atributos a selecionar</th></tr>
@@ -487,6 +497,7 @@ Fundado por Pedro Morais, o Living Prayer nasce da convicção de que a prática
                     <tr><td>Idiomas</td><td>Inglês, Português</td></tr>
                 </tbody>
             </table>
+            </div>
         </div>
 
         <!-- VERIFY -->
@@ -514,6 +525,7 @@ Fundado por Pedro Morais, o Living Prayer nasce da convicção de que a prática
                         <span class="arrow">▼</span>
                     </div>
                     <div class="accordion-body">
+                        <div class="table-container">
                         <table class="styled-table">
                             <thead><tr><th>Método</th><th>Detalhes</th></tr></thead>
                             <tbody>
@@ -523,6 +535,7 @@ Fundado por Pedro Morais, o Living Prayer nasce da convicção de que a prática
                                 <tr><td>Cartão postal</td><td>Código de 5 dígitos via correio, pode demorar até 14 dias</td></tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -541,6 +554,7 @@ Fundado por Pedro Morais, o Living Prayer nasce da convicção de que a prática
             <p>Perfis com mais fotografias recebem significativamente mais interações. O objectivo é ter pelo menos <strong>15 fotografias de alta qualidade</strong>.</p>
 
             <h3>Fotografias obrigatórias</h3>
+            <div class="table-container">
             <table class="styled-table">
                 <thead><tr><th>Tipo</th><th>Descrição</th><th>Tamanho</th></tr></thead>
                 <tbody>
@@ -553,6 +567,7 @@ Fundado por Pedro Morais, o Living Prayer nasce da convicção de que a prática
                     <tr><td>Envoltória</td><td>Paisagem de Sintra, jardins, vistas</td><td>—</td></tr>
                 </tbody>
             </table>
+            </div>
 
             <div class="info-box brown">
                 <h4>Especificações técnicas</h4>
