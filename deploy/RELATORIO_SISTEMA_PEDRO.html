@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Prayer — Relatorio de Configuracao do Sistema Digital</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           DESIGN TOKENS
+           ============================================ */
+        :root {
+            --bg-warm: #F5F0EB;
+            --green: #4A5D4F;
+            --green-light: #5a7362;
+            --brown: #8B7355;
+            --brown-light: #C4B89A;
+            --white: #FEFCF9;
+            --text: #2D2D2D;
+            --text-light: #6B6B6B;
+            --divider: #E2D9CE;
+            --accent-bg: #EDE8E2;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-weight: 300;
+            color: var(--text);
+            background-color: var(--bg-warm);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .page-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 4px;
+            padding: 48px 48px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .card-narrow {
+            padding: 36px 48px;
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            line-height: 1.3;
+            color: var(--green);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--brown);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.1rem;
+            color: var(--brown);
+            font-style: italic;
+            letter-spacing: 0.02em;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 16px;
+        }
+
+        .section-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .section-title-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .section-title-row h2 {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* ============================================
+           LISTS
+           ============================================ */
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        li strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ============================================
+           CALLOUT / HIGHLIGHT BLOCKS
+           ============================================ */
+        .callout {
+            background: var(--bg-warm);
+            border-left: 3px solid var(--green);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .callout-brown {
+            border-left-color: var(--brown);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+
+        .status-active {
+            background: #e8f0ea;
+            color: var(--green);
+        }
+
+        .status-pending {
+            background: #f5ede2;
+            color: var(--brown);
+        }
+
+        /* ============================================
+           INFO TABLE
+           ============================================ */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        .info-table td {
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--divider);
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+            width: 200px;
+        }
+
+        .info-table td:last-child {
+            color: var(--text-light);
+        }
+
+        /* ============================================
+           WORKFLOW DIAGRAM
+           ============================================ */
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 20px 0;
+            align-items: center;
+        }
+
+        .workflow-step {
+            background: var(--white);
+            border: 1px solid var(--divider);
+            border-radius: 6px;
+            padding: 14px 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .workflow-step.trigger {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+        }
+
+        .workflow-step.condition {
+            background: var(--bg-warm);
+            border-color: var(--brown-light);
+            border-radius: 6px;
+            transform: none;
+        }
+
+        .workflow-step.action-pt {
+            background: #e8f0ea;
+            border-color: var(--green);
+        }
+
+        .workflow-step.action-en {
+            background: #f0ece4;
+            border-color: var(--brown);
+        }
+
+        .workflow-step.notification {
+            background: var(--accent-bg);
+            border-color: var(--divider);
+        }
+
+        .workflow-arrow {
+            font-size: 1.2rem;
+            color: var(--brown-light);
+            padding: 4px 0;
+        }
+
+        .workflow-branch {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .workflow-branch-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .workflow-branch-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* ============================================
+           CHECKLIST
+           ============================================ */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            position: relative;
+            padding: 12px 16px 12px 44px;
+            background: var(--white);
+            border: 1px solid var(--divider);
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            transition: background 0.15s;
+        }
+
+        .checklist li:hover {
+            background: var(--bg-warm);
+        }
+
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--brown-light);
+            border-radius: 3px;
+        }
+
+        .checklist li .step-num {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white);
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        /* ============================================
+           NEXT STEPS
+           ============================================ */
+        .next-step {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .next-step:last-child {
+            border-bottom: none;
+        }
+
+        .next-step-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-warm);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .next-step-content h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .next-step-content p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .page-header {
+            text-align: center;
+            padding: 48px 48px 40px;
+        }
+
+        .page-header .wordmark {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .page-header .wordmark-rule {
+            width: 40px;
+            height: 1px;
+            background: var(--brown-light);
+            margin: 10px auto;
+        }
+
+        .page-header .wordmark-sub {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: var(--brown);
+        }
+
+        .top-accent {
+            height: 3px;
+            background: var(--green);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .bottom-accent {
+            height: 3px;
+            background: var(--brown);
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .page-footer {
+            text-align: center;
+            padding: 32px 0;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .page-footer a {
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        /* ============================================
+           LINKS
+           ============================================ */
+        a {
+            color: var(--green);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: var(--green);
+        }
+
+        code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85em;
+            background: var(--bg-warm);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: var(--brown);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 640px) {
+            .page-wrapper {
+                padding: 24px 12px 48px;
+            }
+
+            .card {
+                padding: 28px 20px;
+            }
+
+            .card-narrow {
+                padding: 24px 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .info-table td:first-child {
+                width: auto;
+                display: block;
+                padding-bottom: 2px;
+                border-bottom: none;
+            }
+
+            .info-table td:last-child {
+                display: block;
+                padding-top: 0;
+            }
+
+            .info-table tr {
+                display: block;
+                border-bottom: 1px solid var(--divider);
+                padding: 8px 0;
+            }
+
+            .info-table td {
+                border-bottom: none;
+                padding: 4px 8px;
+            }
+
+            .workflow-branch {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .section-title-row {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ============================================
+           PRINT
+           ============================================ */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+            }
+
+            .page-wrapper {
+                max-width: none;
+                padding: 0;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                margin-bottom: 16px;
+                padding: 24px 28px;
+            }
+
+            .top-accent, .bottom-accent {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .status-badge, .section-number, .workflow-step, .callout {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.2rem; }
+
+            a { color: var(--green); }
+            a[href]::after {
+                content: none;
+            }
+
+            .checklist li {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- ========================================
+         HEADER
+         ======================================== -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+        <div class="top-accent"></div>
+        <div class="page-header">
+            <p class="wordmark">Living Prayer</p>
+            <div class="wordmark-rule"></div>
+            <p class="wordmark-sub">Pedro Morais</p>
+        </div>
+
+        <div style="padding: 0 48px 48px; text-align: center;">
+            <h1>Relatorio de Configuracao do Sistema Digital</h1>
+            <p class="subtitle">Tudo o que foi configurado para o retiro Living Prayer</p>
+            <p class="date">29 de Marco de 2026</p>
+        </div>
+        <div class="bottom-accent"></div>
+    </div>
+
+    <!-- ========================================
+         INTRO
+         ======================================== -->
+    <div class="card card-narrow">
+        <p>Pedro, este relatorio resume tudo o que foi configurado hoje para a infraestrutura digital do Living Prayer. O objectivo e que tenhas uma visao clara de cada peca do sistema, como aceder a ela e o que falta fazer.</p>
+        <p style="margin-bottom: 0;">Se tiveres duvidas sobre qualquer ponto, nao hesites em contactar-me.</p>
+    </div>
+
+    <!-- ========================================
+         1. SITE LIVINGPRAYER.PT
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">1</span>
+            <h2>Site livingprayer.pt</h2>
+            <span class="status-badge status-active" style="margin-left: auto;">Activo</span>
+        </div>
+
+        <p>O site esta online e acessivel em <a href="https://livingprayer.pt" target="_blank">livingprayer.pt</a>, alojado na plataforma Vercel. E um site bilingue (Portugues e Ingles) com alternancia automatica de idioma.</p>
+
+        <h3>O que inclui</h3>
+        <ul>
+            <li><strong>Nova fotografia da sala de pratica</strong> (sala de meditacao) — substituiu a foto anterior que mostrava apenas o chao</li>
+            <li><strong>Galeria de fotos</strong> da Quinta das Broas — quartos, sala, natureza</li>
+            <li><strong>Formulario de candidatura em 2 passos</strong> — ligado ao CRM Systeme.io, captura nome, email, telefone, modalidade de alojamento e idioma</li>
+            <li><strong>Banner de consentimento de cookies</strong> com Google Consent Mode v2 — as analytics so arrancam apos o utilizador aceitar</li>
+            <li><strong>Dados estruturados Schema.org</strong> — Event (retiro de 12-14 Junho 2026) + LocalBusiness (Quinta das Broas, Sintra)</li>
+            <li><strong>SEO completo</strong> — robots.txt, sitemap.xml, URLs canonicos, Open Graph tags, Twitter Cards</li>
+        </ul>
+
+        <div class="callout">
+            <p><strong>Como aceder:</strong> Basta visitar <a href="https://livingprayer.pt" target="_blank">livingprayer.pt</a> em qualquer browser ou telemovel.</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+         2. GOOGLE ANALYTICS 4
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">2</span>
+            <h2>Google Analytics 4</h2>
+            <span class="status-badge status-active" style="margin-left: auto;">Activo</span>
+        </div>
+
+        <p>A propriedade "Living Prayer" foi criada no Google Analytics 4 e esta integrada no site.</p>
+
+        <table class="info-table">
+            <tr>
+                <td>Measurement ID</td>
+                <td><code>G-Q6Y1NQSK2C</code></td>
+            </tr>
+            <tr>
+                <td>Conta de acesso</td>
+                <td>sentutoke@gmail.com (Editor)</td>
+            </tr>
+            <tr>
+                <td>Aceder</td>
+                <td><a href="https://analytics.google.com" target="_blank">analytics.google.com</a></td>
+            </tr>
+        </table>
+
+        <h3>Medicoes activas (Enhanced Measurement)</h3>
+        <ul>
+            <li>Visualizacoes de pagina</li>
+            <li>Profundidade de scroll</li>
+            <li>Cliques em links externos</li>
+            <li>Downloads de ficheiros</li>
+            <li>Interaccao com video</li>
+            <li>Pesquisa no site</li>
+            <li>Interaccao com formularios</li>
+        </ul>
+
+        <h3>Eventos personalizados</h3>
+        <ul>
+            <li><code>form_submission</code> — dispara quando alguem submete a candidatura</li>
+            <li><code>cta_click</code> — regista cliques nos botoes de accao</li>
+            <li><code>scroll_depth</code> — mede ate onde os visitantes fazem scroll</li>
+        </ul>
+
+        <h3>Consent Mode v2</h3>
+        <p>As analytics estao bloqueadas por defeito. So comecam a recolher dados depois de o utilizador aceitar o banner de cookies. Isto garante conformidade com o RGPD.</p>
+
+        <div class="callout">
+            <p><strong>Como verificar:</strong> Faz login em <a href="https://analytics.google.com" target="_blank">analytics.google.com</a> com a conta sentutoke@gmail.com. Deves ter acesso de Editor a propriedade "Living Prayer".</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+         3. SYSTEME.IO CRM + AUTOMACAO
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">3</span>
+            <h2>Systeme.io — CRM e Automacao de Email</h2>
+            <span class="status-badge status-active" style="margin-left: auto;">Activo</span>
+        </div>
+
+        <p>O Systeme.io esta configurado como CRM do Living Prayer. Quando alguem submete o formulario no site, o contacto e criado automaticamente e recebe um email de confirmacao na lingua correcta.</p>
+
+        <h3>Fluxo de automacao</h3>
+
+        <div class="workflow">
+            <div class="workflow-step trigger">
+                Tag "retiro-living-prayer" adicionada ao contacto
+            </div>
+            <div class="workflow-arrow">&#8595;</div>
+            <div class="workflow-step condition">
+                Condicao: Idioma = Portugues?
+            </div>
+            <div class="workflow-arrow">&#8595;</div>
+            <div class="workflow-branch">
+                <div class="workflow-branch-col">
+                    <div class="workflow-branch-label">Sim</div>
+                    <div class="workflow-arrow">&#8595;</div>
+                    <div class="workflow-step action-pt">
+                        Email PT<br>
+                        <small>"Recebemos a tua candidatura ao Living Prayer"</small>
+                    </div>
+                </div>
+                <div class="workflow-branch-col">
+                    <div class="workflow-branch-label">Nao</div>
+                    <div class="workflow-arrow">&#8595;</div>
+                    <div class="workflow-step action-en">
+                        Email EN<br>
+                        <small>"We received your application to Living Prayer"</small>
+                    </div>
+                </div>
+            </div>
+            <div class="workflow-arrow">&#8595;</div>
+            <div class="workflow-step notification">
+                Notificacao enviada para pedro_santos_morais@hotmail.com<br>
+                <small>Com o nome do candidato</small>
+            </div>
+        </div>
+
+        <h3>Dados capturados no CRM</h3>
+        <table class="info-table">
+            <tr>
+                <td>Nome</td>
+                <td>Nome completo do candidato</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>Email do candidato</td>
+            </tr>
+            <tr>
+                <td>Telefone</td>
+                <td>Numero de telefone</td>
+            </tr>
+            <tr>
+                <td>Modalidade</td>
+                <td>Tier de alojamento seleccionado</td>
+            </tr>
+            <tr>
+                <td>Idioma</td>
+                <td>PT ou EN (detectado automaticamente)</td>
+            </tr>
+            <tr>
+                <td>Tag</td>
+                <td><code>retiro-living-prayer</code></td>
+            </tr>
+        </table>
+
+        <div class="callout">
+            <p><strong>Nota sobre duplicados:</strong> Se alguem submeter o formulario duas vezes com o mesmo email, o sistema actualiza o contacto existente em vez de criar um duplicado.</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+         4. EMAIL TEMPLATES
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">4</span>
+            <h2>Templates de Email</h2>
+            <span class="status-badge status-active" style="margin-left: auto;">Activo</span>
+        </div>
+
+        <p>Foram criados emails HTML premium para ambas as linguas, prontos a usar no Systeme.io.</p>
+
+        <h3>Caracteristicas</h3>
+        <ul>
+            <li><strong>Compativeis</strong> com Gmail, Outlook, Apple Mail e clientes moveis</li>
+            <li><strong>Boas praticas anti-spam</strong> — sem imagens pesadas, racio equilibrado texto/imagem, preheader text optimizado</li>
+            <li><strong>Tom contemplativo</strong> que respeita a identidade da marca Living Prayer</li>
+            <li><strong>Personalizacao</strong> — o nome do candidato aparece automaticamente (<code>{{first_name}}</code>)</li>
+        </ul>
+
+        <h3>Versao Portuguesa</h3>
+        <div class="callout">
+            <p><em>"Obrigado por teres dado este passo. Submeter uma candidatura para o Living Prayer nao e um acto trivial — e uma declaracao de intencao."</em></p>
+        </div>
+
+        <h3>Versao Inglesa</h3>
+        <div class="callout callout-brown">
+            <p><em>"Thank you for taking this step. Submitting an application for Living Prayer is not a trivial act — it is a declaration of intention."</em></p>
+        </div>
+
+        <p>Ambos os emails incluem rodape com os dados do retiro (datas, local, link para o site) e link de cancelamento de subscricao conforme as normas CAN-SPAM/RGPD.</p>
+    </div>
+
+    <!-- ========================================
+         5. DNS & DOMINIO
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">5</span>
+            <h2>DNS e Dominio</h2>
+            <span class="status-badge status-active" style="margin-left: auto;">Configurado</span>
+        </div>
+
+        <p>O dominio <strong>livingprayer.pt</strong> esta configurado com os seguintes servicos:</p>
+
+        <table class="info-table">
+            <tr>
+                <td>Nameservers</td>
+                <td>Cloudflare</td>
+            </tr>
+            <tr>
+                <td>Alojamento (CNAME)</td>
+                <td>Vercel — aponta para o site livingprayer.pt</td>
+            </tr>
+            <tr>
+                <td>Email (MX)</td>
+                <td>PTisp — para o email profissional existente</td>
+            </tr>
+            <tr>
+                <td>CRM (CNAME)</td>
+                <td>Systeme.io — para integracao com o CRM</td>
+            </tr>
+            <tr>
+                <td>SPF</td>
+                <td>Configurado — garante que emails enviados nao vao para spam</td>
+            </tr>
+            <tr>
+                <td>DKIM</td>
+                <td>Configurado — assinatura digital dos emails para autenticidade</td>
+            </tr>
+        </table>
+
+        <div class="callout">
+            <p><strong>O que significa:</strong> Os emails automaticos do Systeme.io tem muito maior probabilidade de chegar a caixa de entrada (e nao ao spam) gracas a configuracao de SPF e DKIM.</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+         6. GOOGLE ADS
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">6</span>
+            <h2>Google Ads</h2>
+            <span class="status-badge status-pending" style="margin-left: auto;">Pendente</span>
+        </div>
+
+        <p>O planeamento das campanhas esta feito e o codigo de tracking de conversoes ja esta no site (comentado, a espera de activacao).</p>
+
+        <h3>O que falta</h3>
+        <ul>
+            <li>Criar uma conta Google Ads nova em <strong>sentutoke@gmail.com</strong></li>
+            <li>Activar as 3 campanhas planeadas (descritas no guia de Google Ads)</li>
+            <li>Descomentar o codigo de conversion tracking no site</li>
+        </ul>
+
+        <h3>Campanhas planeadas</h3>
+        <p>O guia completo de estrategia Google Ads esta disponivel em <a href="GOOGLE_ADS_GUIDE_2026.html">GOOGLE_ADS_GUIDE_2026.html</a> e inclui orcamento, palavras-chave, segmentacao e copy dos anuncios.</p>
+
+        <div class="callout callout-brown">
+            <p><strong>Proximo passo:</strong> Quando quiseres avancar com os anuncios, basta criar a conta no Google Ads com sentutoke@gmail.com e avisamos para activar o tracking.</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+         7. GOOGLE BUSINESS PROFILE
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">7</span>
+            <h2>Google Business Profile</h2>
+            <span class="status-badge status-pending" style="margin-left: auto;">Guia criado</span>
+        </div>
+
+        <p>Foi criado um guia interactivo completo para te ajudar a configurar o Google Business Profile do Living Prayer. O perfil ajuda a aparecer nas pesquisas locais do Google e no Google Maps.</p>
+
+        <div class="callout">
+            <p><strong>Guia disponivel:</strong> <a href="GOOGLE_BUSINESS_PROFILE_GUIDE.html">GOOGLE_BUSINESS_PROFILE_GUIDE.html</a> — explica passo a passo como criar e optimizar o perfil.</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+         8. CHECKLIST DE TESTES
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">8</span>
+            <h2>Checklist de Testes para o Pedro</h2>
+        </div>
+
+        <p>Segue esta lista para verificar que tudo esta a funcionar correctamente. Recomendo fazer estes testes quando tiveres 15 minutos sem interrupcoes.</p>
+
+        <ul class="checklist">
+            <li>
+                <span class="step-num">1</span>
+                Visita <a href="https://livingprayer.pt" target="_blank">livingprayer.pt</a> e verifica se a nova foto da sala de pratica aparece correctamente
+            </li>
+            <li>
+                <span class="step-num">2</span>
+                Muda para Ingles (botao no topo) e confirma que todo o conteudo muda de idioma
+            </li>
+            <li>
+                <span class="step-num">3</span>
+                Preenche o formulario de candidatura com um email de <strong>teste</strong> (por exemplo, um email temporario teu)
+            </li>
+            <li>
+                <span class="step-num">4</span>
+                Verifica se o email de confirmacao chega — ve tambem a pasta de spam, caso o email la va parar
+            </li>
+            <li>
+                <span class="step-num">5</span>
+                Verifica o email <strong>pedro_santos_morais@hotmail.com</strong> — deves receber uma notificacao com o nome do candidato
+            </li>
+            <li>
+                <span class="step-num">6</span>
+                Faz login no <a href="https://systeme.io" target="_blank">Systeme.io</a> e confirma que o contacto de teste foi criado com a tag <code>retiro-living-prayer</code>
+            </li>
+            <li>
+                <span class="step-num">7</span>
+                Faz login no <a href="https://analytics.google.com" target="_blank">GA4</a> com sentutoke@gmail.com e verifica que tens acesso de Editor
+            </li>
+            <li>
+                <span class="step-num">8</span>
+                Aceita os cookies no site e aguarda 24-48h para ver os primeiros dados no GA4 (e normal demorar)
+            </li>
+            <li>
+                <span class="step-num">9</span>
+                Repete o teste de candidatura em <strong>Ingles</strong> para confirmar que o email EN tambem e enviado correctamente
+            </li>
+        </ul>
+
+        <div class="callout callout-brown">
+            <p><strong>Dica:</strong> Depois de testares, podes apagar os contactos de teste no Systeme.io para manter o CRM limpo.</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+         9. PROXIMOS PASSOS
+         ======================================== -->
+    <div class="card">
+        <div class="section-title-row">
+            <span class="section-number">9</span>
+            <h2>Proximos Passos</h2>
+        </div>
+
+        <p>Estas sao as accoes que ficam por fazer, organizadas por prioridade:</p>
+
+        <div class="next-step">
+            <div class="next-step-icon">1</div>
+            <div class="next-step-content">
+                <h4>Criar conta Google Ads</h4>
+                <p>Acede a <a href="https://ads.google.com" target="_blank">ads.google.com</a> com a conta sentutoke@gmail.com e cria uma nova conta de publicidade. Assim que estiver activa, activamos as campanhas e o tracking de conversoes.</p>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-icon">2</div>
+            <div class="next-step-content">
+                <h4>Configurar Google Business Profile</h4>
+                <p>Segue o guia <a href="GOOGLE_BUSINESS_PROFILE_GUIDE.html">GOOGLE_BUSINESS_PROFILE_GUIDE.html</a> para criar o perfil do Living Prayer no Google. Isto ajuda nas pesquisas locais e no Maps.</p>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-icon">3</div>
+            <div class="next-step-content">
+                <h4>Activar conversion tracking</h4>
+                <p>Quando a conta do Google Ads estiver pronta, ligamos o codigo de tracking que ja esta no site. Isto permite medir quantas candidaturas vem dos anuncios.</p>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-icon">4</div>
+            <div class="next-step-content">
+                <h4>Monitorizar GA4</h4>
+                <p>Depois de fazeres os testes e aceitares cookies no site, verifica o GA4 passadas 24-48 horas. Os primeiros dados de visitas e comportamento deverao comecar a aparecer.</p>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-icon">5</div>
+            <div class="next-step-content">
+                <h4>Considerar Hotjar (opcional)</h4>
+                <p>O site ja tem um espaco reservado para o Hotjar, uma ferramenta de heatmaps que mostra onde os visitantes clicam e ate onde fazem scroll. Pode ser util para optimizar o site antes de lancar os anuncios.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         RESUMO TECNICO (COMPACT)
+         ======================================== -->
+    <div class="card card-narrow" style="background: var(--accent-bg);">
+        <h3 style="text-align: center; margin-bottom: 16px; color: var(--green);">Resumo Tecnico Rapido</h3>
+        <table class="info-table">
+            <tr>
+                <td>Dominio</td>
+                <td>livingprayer.pt</td>
+            </tr>
+            <tr>
+                <td>Alojamento</td>
+                <td>Vercel</td>
+            </tr>
+            <tr>
+                <td>DNS</td>
+                <td>Cloudflare</td>
+            </tr>
+            <tr>
+                <td>CRM</td>
+                <td>Systeme.io</td>
+            </tr>
+            <tr>
+                <td>Analytics</td>
+                <td>Google Analytics 4 (G-Q6Y1NQSK2C)</td>
+            </tr>
+            <tr>
+                <td>Email delivery</td>
+                <td>PTisp (MX) + SPF/DKIM</td>
+            </tr>
+            <tr>
+                <td>Ads</td>
+                <td>Pendente — aguarda criacao de conta</td>
+            </tr>
+            <tr>
+                <td>Google Business</td>
+                <td>Pendente — guia disponivel</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <div class="page-footer">
+        <p style="margin-bottom: 4px;">
+            <strong style="font-weight: 500; color: var(--green); font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.7rem;">Living Prayer</strong>
+        </p>
+        <p style="margin-bottom: 4px;">Asana como Pratica Sagrada</p>
+        <p style="margin-bottom: 4px;">12 a 14 de Junho 2026 &middot; Quinta das Broas, Sintra</p>
+        <p><a href="https://livingprayer.pt">livingprayer.pt</a></p>
+        <p style="margin-top: 16px; font-size: 0.7rem; color: var(--brown-light);">Relatorio gerado a 29 de Marco de 2026</p>
+    </div>
+
+</div>
+
+</body>
+</html>
