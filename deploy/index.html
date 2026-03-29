@@ -10,17 +10,14 @@
     <meta name="keywords" content="spiritual yoga retreat Portugal, yoga retreat Sintra, Living Prayer retreat, retiro yoga espiritual Portugal, yoga profundo Sintra, retiro meditação Portugal, Pedro Morais yoga">
     <meta name="author" content="Pedro Morais">
     <meta name="robots" content="index, follow">
-    <!-- PLACEHOLDER: Adicionar canonical URL quando o domínio estiver definido -->
-    <!-- <link rel="canonical" href="https://www.livingprayer.pt/"> -->
+    <link rel="canonical" href="https://livingprayer.pt/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Living Prayer — Retiro de Yoga com Pedro Morais">
     <meta property="og:description" content="Asana como Prática Sagrada. Um retiro de 3 dias na Quinta das Broas, entre Sintra e Ericeira.">
     <meta property="og:type" content="website">
-    <!-- PLACEHOLDER: Substituir pela URL real -->
-    <meta property="og:url" content="https://www.livingprayer.pt/">
-    <!-- PLACEHOLDER: Substituir pela imagem OG real (1200x630px recomendado) -->
-    <meta property="og:image" content="https://www.livingprayer.pt/og-image.jpg">
+    <meta property="og:url" content="https://livingprayer.pt/">
+    <meta property="og:image" content="https://livingprayer.pt/og-image.jpg">
     <meta property="og:locale" content="pt_PT">
     <meta property="og:locale:alternate" content="en_GB">
 
@@ -69,35 +66,64 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Living Prayer — Retiro de Yoga",
+        "description": "Retiro de yoga como prática sagrada com Pedro Morais na Quinta das Broas, Sintra.",
+        "url": "https://livingprayer.pt",
+        "image": "https://livingprayer.pt/og-image.jpg",
+        "telephone": "+351000000000",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Quinta das Broas",
+            "addressLocality": "Sintra",
+            "addressRegion": "Lisboa",
+            "postalCode": "2710-000",
+            "addressCountry": "PT"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 38.7986,
+            "longitude": -9.3884
+        },
+        "priceRange": "€310–€680",
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "validFrom": "2026-06-12",
+            "validThrough": "2026-06-14"
+        },
+        "sameAs": [
+            "https://www.instagram.com/pedromoraisyoga/"
+        ]
+    }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- PLACEHOLDER: Google Analytics 4 — substituir G-XXXXXXXXXX pelo ID real -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Consent Mode v2 + GA4 -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
 
-    <!-- PLACEHOLDER: Hotjar — substituir XXXXXXX pelo ID real -->
-    <!--
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:XXXXXXX,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'functionality_storage': 'denied',
+            'personalization_storage': 'denied',
+            'security_storage': 'granted'
+        });
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q6Y1NQSK2C');
     </script>
-    -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6Y1NQSK2C"></script>
 
     <style>
         /* ============================================
@@ -3328,6 +3354,17 @@
                 form.style.display = 'none';
                 success.style.display = 'block';
                 success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (typeof gtag === 'function') {
+                    /* Google Ads conversion — conta suspensa, activar quando resolvida
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-3057012070/CONVERSION_LABEL'
+                    }); */
+                    gtag('event', 'form_submission', {
+                        'event_category': 'engagement',
+                        'event_label': 'retreat_application',
+                        'value': 1
+                    });
+                }
             })
             .catch(function(err) {
                 console.error('Error submitting form', err);
@@ -3338,32 +3375,91 @@
         }
 
         /* -------------------------------------------
-           GA4 Custom Events (uncomment when GA4 is active)
+           GA4 Custom Events
            ------------------------------------------- */
-        /*
-        // Track CTA clicks
         document.querySelectorAll('.hero-cta, .pricing-cta, .nav-cta').forEach(function(btn) {
             btn.addEventListener('click', function() {
-                gtag('event', 'cta_click', {
-                    'event_category': 'engagement',
-                    'event_label': btn.closest('section')?.id || 'nav'
-                });
+                if (typeof gtag === 'function') {
+                    gtag('event', 'cta_click', {
+                        'event_category': 'engagement',
+                        'event_label': btn.closest('section')?.id || 'nav'
+                    });
+                }
             });
         });
 
-        // Track scroll depth
         var scrollMarks = [25, 50, 75, 100];
         window.addEventListener('scroll', function() {
             var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
             scrollMarks = scrollMarks.filter(function(mark) {
                 if (scrollPercent >= mark) {
-                    gtag('event', 'scroll_depth', { 'percent': mark });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'scroll_depth', { 'percent': mark });
+                    }
                     return false;
                 }
                 return true;
             });
         }, { passive: true });
-        */
+    </script>
+
+    <div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:rgba(44,44,44,0.97); color:#fff; font-family:'Inter',sans-serif; padding:0;">
+        <div style="max-width:1140px; margin:0 auto; padding:20px 24px; display:flex; flex-wrap:wrap; align-items:center; gap:16px;">
+            <p style="flex:1; min-width:240px; font-size:13px; line-height:1.6; margin:0;">
+                <span class="lang-pt">Utilizamos cookies para analisar o tráfego e personalizar anúncios. Pode aceitar todos ou apenas os essenciais.</span>
+                <span class="lang-en">We use cookies to analyze traffic and personalize ads. You can accept all or only essential ones.</span>
+            </p>
+            <div style="display:flex; gap:10px; flex-shrink:0;">
+                <button onclick="acceptCookies('all')" style="background:#4A5D4F; color:#fff; border:none; padding:10px 20px; border-radius:6px; font-size:13px; cursor:pointer; font-family:'Inter',sans-serif;">
+                    <span class="lang-pt">Aceitar todos</span><span class="lang-en">Accept all</span>
+                </button>
+                <button onclick="acceptCookies('essential')" style="background:transparent; color:#ccc; border:1px solid #666; padding:10px 20px; border-radius:6px; font-size:13px; cursor:pointer; font-family:'Inter',sans-serif;">
+                    <span class="lang-pt">Apenas essenciais</span><span class="lang-en">Essential only</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #cookieBanner { animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @media (max-width: 600px) {
+            #cookieBanner > div { flex-direction: column; text-align: center; }
+            #cookieBanner > div > div { width: 100%; }
+            #cookieBanner button { width: 100%; }
+        }
+    </style>
+
+    <script>
+        function acceptCookies(level) {
+            if (typeof gtag === 'function') {
+                if (level === 'all') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted',
+                        'ad_storage': 'granted',
+                        'ad_user_data': 'granted',
+                        'ad_personalization': 'granted',
+                        'functionality_storage': 'granted',
+                        'personalization_storage': 'granted'
+                    });
+                } else {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'denied',
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied'
+                    });
+                }
+            }
+            localStorage.setItem('cookie_consent', level);
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        (function() {
+            if (!localStorage.getItem('cookie_consent')) {
+                document.getElementById('cookieBanner').style.display = 'block';
+            }
+        })();
     </script>
 
 </body>

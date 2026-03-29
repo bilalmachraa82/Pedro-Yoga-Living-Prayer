@@ -90,8 +90,12 @@
             gap: 8px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--brown-light) transparent;
         }
-        .nav::-webkit-scrollbar { display: none; }
+        .nav::-webkit-scrollbar { height: 3px; }
+        .nav::-webkit-scrollbar-track { background: transparent; }
+        .nav::-webkit-scrollbar-thumb { background: var(--brown-light); border-radius: 3px; }
         .nav-btn {
             font-family: 'Inter', sans-serif;
             font-size: 11px;

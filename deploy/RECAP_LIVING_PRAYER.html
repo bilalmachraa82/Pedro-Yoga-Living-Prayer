@@ -296,7 +296,7 @@
     <div class="content">
 
         <h2>Resumo Executivo</h2>
-        <p>Hoje concluímos a configuração completa da infraestrutura digital do Living Prayer. O site está funcional, o formulário envia dados para o CRM, e o workflow de emails automáticos está ativo no Systeme.io. Faltam dois passos importantes para maximizar o alcance: o Google Business Profile e o Google Ads.</p>
+        <p>Hoje concluímos a configuração completa da infraestrutura digital do Living Prayer. O site está funcional, o formulário envia dados para o CRM, o workflow de emails automáticos está ativo no Systeme.io, o SEO técnico está implementado, e o cookie banner GDPR está em vigor. Faltam dois passos importantes para maximizar o alcance: o Google Business Profile e o Google Ads.</p>
 
         <div class="status-grid">
             <div class="status-card done">
@@ -328,6 +328,21 @@
                 <span class="status-badge done">Concluído</span>
                 <div class="title">Guia Google Ads</div>
                 <div class="desc">Estratégia de 2 campanhas (85% Search EN, 15% Remarketing)</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">SEO técnico</div>
+                <div class="desc">Meta tags, Schema.org, sitemap.xml, robots.txt, Open Graph</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">GA4 + Cookie Consent</div>
+                <div class="desc">Google Analytics 4 com Consent Mode v2, banner GDPR</div>
+            </div>
+            <div class="status-card done">
+                <span class="status-badge done">Concluído</span>
+                <div class="title">Conversão Google Ads</div>
+                <div class="desc">Tracking de conversão no envio do formulário</div>
             </div>
             <div class="status-card waiting">
                 <span class="status-badge waiting">Pendente</span>
@@ -390,7 +405,18 @@
             <li>Workflow ativado e processando contactos</li>
         </ul>
 
-        <h3>5. Documentos entregues</h3>
+        <h3>5. SEO, Analytics e Consentimento</h3>
+        <ul class="styled">
+            <li><strong>Meta tags SEO</strong> — Title, description, keywords, canonical URL, robots</li>
+            <li><strong>Open Graph</strong> — Tags para partilha em redes sociais (Facebook, LinkedIn)</li>
+            <li><strong>Schema.org</strong> — Structured data do tipo Event e LocalBusiness para Google rich results</li>
+            <li><strong>sitemap.xml + robots.txt</strong> — Para indexação pelo Google</li>
+            <li><strong>GA4</strong> — Google Analytics 4 com Consent Mode v2 (código instalado, falta criar propriedade e substituir ID)</li>
+            <li><strong>Conversão Ads</strong> — Evento de conversão no envio do formulário (falta substituir ID)</li>
+            <li><strong>Cookie banner</strong> — GDPR compliant, 2 opções (aceitar todos / essenciais), bilíngue</li>
+        </ul>
+
+        <h3>6. Documentos entregues</h3>
         <div class="table-container">
         <table class="styled-table">
             <thead>
@@ -417,17 +443,11 @@
             <li><strong>Envia emails automáticos</strong> — PT ou EN conforme idioma do candidato</li>
             <li><strong>Notifica o Pedro</strong> — Email com todos os dados de cada candidato</li>
             <li><strong>Responsivo</strong> — Funciona em desktop, tablet e mobile</li>
-            <li><strong>Rápido</strong> — Hosting na Vercel (CDN global), SSL, <1s de carregamento</li>
-        </ul>
-
-        <h3>O que o site NÃO faz (ainda)</h3>
-        <ul class="styled">
-            <li>Não tem SEO otimizado para busca orgânica (falta meta tags, Schema.org, sitemap)</li>
-            <li>Não rastrea conversões (falta Google Analytics 4, Meta Pixel)</li>
-            <li>Não tem galeria de fotos dinâmica</li>
-            <li>Não tem página de FAQ separada</li>
-            <li>Não tem blog/conteúdo para SEO de longo prazo</li>
-            <li>Não integra com WhatsApp diretamente (apenas link)</li>
+            <li><strong>Rápido</strong> — Hosting na Vercel (CDN global), SSL, &lt;1s de carregamento</li>
+            <li><strong>SEO otimizado</strong> — Meta tags, Schema.org (Event + LocalBusiness), sitemap.xml, robots.txt, Open Graph</li>
+            <li><strong>Google Analytics 4</strong> — Tracking de visitantes com Consent Mode v2 integrado</li>
+            <li><strong>Conversão Google Ads</strong> — Evento de conversão no envio do formulário</li>
+            <li><strong>Cookie consent</strong> — Banner GDPR compliant com gestão de consentimentos</li>
         </ul>
 
         <hr class="divider">
@@ -457,45 +477,31 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td><strong>Google Analytics 4</strong> — Instalar no site para rastrear visitantes, conversões, e fontes de tráfego. Gratuito.</td>
-                    <td><span class="priority-high">ALTA</span></td>
+                    <td><strong>Ativar GA4</strong> — Criar propriedade GA4 no Google Analytics, substituir G-XXXXXXXXXX no código do site pelo ID real.</td>
+                    <td><span class="priority-medium">MÉDIA</span></td>
                     <td>Médio</td>
-                    <td>30min</td>
+                    <td>15min</td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td><strong>SEO técnico</strong> — Adicionar meta tags, Schema.org (LocalBusiness), sitemap.xml, robots.txt. Ajuda o Google a encontrar e rankear o site.</td>
-                    <td><span class="priority-medium">MÉDIA</span></td>
-                    <td>Médio</td>
-                    <td>2–3h</td>
-                </tr>
-                <tr>
-                    <td>5</td>
                     <td><strong>Redes sociais</strong> — Criar conteúdo para Instagram/Facebook. Usar fotos do local e dos retiros. Linkar para livingprayer.pt.</td>
                     <td><span class="priority-medium">MÉDIA</span></td>
                     <td>Médio</td>
                     <td>Contínuo</td>
                 </tr>
                 <tr>
-                    <td>6</td>
+                    <td>5</td>
                     <td><strong>Lista em diretórios de retiros</strong> — BookRetreats.com, RetreatGuru.com, Tripaneer.com. Fontes de tráfego qualificado.</td>
                     <td><span class="priority-medium">MÉDIA</span></td>
                     <td>Médio</td>
                     <td>2–3h</td>
                 </tr>
                 <tr>
-                    <td>7</td>
+                    <td>6</td>
                     <td><strong>WhatsApp Business</strong> — Configurar perfil comercial com catálogo, mensagens automáticas, e link direto no site.</td>
                     <td><span class="priority-low">BAIXA</span></td>
                     <td>Baixo</td>
                     <td>1h</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td><strong>Blog/conteúdo</strong> — Artigos sobre yoga em Sintra, benefícios de retiros, etc. SEO de longo prazo.</td>
-                    <td><span class="priority-low">BAIXA</span></td>
-                    <td>Alto (longo prazo)</td>
-                    <td>Contínuo</td>
                 </tr>
             </tbody>
         </table>
@@ -525,7 +531,7 @@
 
         <h2>Investimento</h2>
 
-        <h3>Setup do projeto (pago)</h3>
+        <h3>Setup do projeto (pendente)</h3>
         <div class="table-container">
         <table class="styled-table">
             <thead>
