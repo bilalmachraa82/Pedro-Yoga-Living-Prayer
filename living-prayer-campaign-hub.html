@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Living Prayer — Hub de Campanha · Pedro Morais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-warm:#F5F0EB;
+  --white:#FEFCF9;
+  --green:#4A5D4F;
+  --green-dark:#3A4A3F;
+  --green-soft:#6B7D70;
+  --brown:#8B7355;
+  --brown-soft:#A89176;
+  --text:#2D2D2D;
+  --muted:#6B6B6B;
+  --border:#E5DFD6;
+  --warn:#B8884D;
+  --alert:#A84A3A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg-warm);color:var(--text);line-height:1.6;font-size:16px;font-weight:400}
+
+.app{display:flex;min-height:100vh}
+.sidebar{width:300px;background:var(--white);border-right:1px solid var(--border);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;padding:32px 24px;z-index:10}
+.main{margin-left:300px;flex:1;padding:60px 80px;max-width:1100px}
+
+.brand{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.brand h1{font-family:var(--serif);font-weight:500;font-size:26px;color:var(--green-dark);letter-spacing:-0.02em;line-height:1.15}
+.brand p{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:6px}
+
+.countdown{background:var(--bg-warm);border:1px solid var(--border);padding:18px;border-radius:8px;margin-bottom:24px;text-align:center}
+.countdown .days{font-family:var(--serif);font-size:44px;font-weight:500;color:var(--green);line-height:1}
+.countdown .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;margin-top:6px}
+.countdown .date{font-size:13px;color:var(--text);margin-top:10px;font-weight:500}
+
+.progress-wrap{margin-bottom:28px}
+.progress-wrap .head{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-bar .fill{height:100%;background:var(--green);transition:width 0.4s ease;border-radius:3px}
+
+.nav{list-style:none}
+.nav li{margin-bottom:2px}
+.nav a{display:flex;align-items:center;gap:10px;padding:9px 12px;color:var(--text);text-decoration:none;font-size:13.5px;border-radius:6px;transition:all 0.15s;line-height:1.3}
+.nav a:hover{background:var(--bg-warm);color:var(--green-dark)}
+.nav a.active{background:var(--green);color:var(--white)}
+.nav a .num{font-variant-numeric:tabular-nums;font-size:11px;opacity:0.65;min-width:20px}
+.nav a.active .num{opacity:1}
+
+section{margin-bottom:72px;scroll-margin-top:20px}
+section:last-child{margin-bottom:40px}
+.sec-head{margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--green)}
+.sec-head .num{font-size:12px;color:var(--brown);text-transform:uppercase;letter-spacing:0.15em;font-weight:600;margin-bottom:8px}
+.sec-head h2{font-family:var(--serif);font-size:42px;font-weight:500;color:var(--green-dark);letter-spacing:-0.02em;line-height:1.1}
+.sec-head p.lead{font-size:17px;color:var(--muted);margin-top:10px;font-weight:300;max-width:720px}
+
+h3{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--green-dark);margin:32px 0 14px;letter-spacing:-0.01em}
+h4{font-size:14px;text-transform:uppercase;letter-spacing:0.12em;color:var(--brown);font-weight:600;margin:24px 0 10px}
+
+p{margin-bottom:14px;color:var(--text)}
+strong{font-weight:600;color:var(--green-dark)}
+em{font-style:italic;color:var(--muted)}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:28px;margin:18px 0}
+.card.tight{padding:20px}
+.card.accent{border-left:3px solid var(--green)}
+.card.warn{border-left:3px solid var(--warn);background:#FBF5EC}
+.card.alert{border-left:3px solid var(--alert);background:#FAEFED}
+
+.grid{display:grid;gap:16px;margin:18px 0}
+.grid.g2{grid-template-columns:repeat(2,1fr)}
+.grid.g3{grid-template-columns:repeat(3,1fr)}
+.grid.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.grid.g2,.grid.g3,.grid.g4{grid-template-columns:1fr}}
+
+.stat{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center}
+.stat .val{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--green);line-height:1}
+.stat .lbl{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:6px}
+
+.checklist{list-style:none}
+.checklist li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.checklist li:last-child{border-bottom:none}
+.checklist input[type="checkbox"]{flex-shrink:0;width:18px;height:18px;margin-top:3px;accent-color:var(--green);cursor:pointer}
+.checklist label{flex:1;cursor:pointer;font-size:14.5px;line-height:1.55}
+.checklist label strong{display:block;margin-bottom:2px;font-weight:600;color:var(--text)}
+.checklist label .meta{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.checklist input:checked + label{color:var(--muted)}
+.checklist input:checked + label strong{text-decoration:line-through;opacity:0.6}
+
+.template{background:var(--white);border:1px solid var(--border);border-radius:10px;margin:18px 0;overflow:hidden}
+.template .tmpl-head{background:var(--bg-warm);padding:12px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.template .tmpl-head .ttl{font-size:13px;font-weight:600;color:var(--green-dark);text-transform:uppercase;letter-spacing:0.08em}
+.template .tmpl-body{padding:20px 24px;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.75;white-space:pre-wrap;color:var(--text);background:var(--white)}
+.copy-btn{background:var(--green);color:var(--white);border:none;padding:7px 14px;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;font-family:var(--sans);transition:background 0.15s;white-space:nowrap}
+.copy-btn:hover{background:var(--green-dark)}
+.copy-btn.copied{background:var(--brown)}
+
+table{width:100%;border-collapse:collapse;margin:16px 0;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:14px}
+th{background:var(--bg-warm);text-align:left;padding:12px 16px;font-weight:600;color:var(--green-dark);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid var(--border)}
+td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+
+.clean-list{list-style:none;margin:10px 0 18px}
+.clean-list li{padding:8px 0 8px 24px;position:relative;line-height:1.6}
+.clean-list li::before{content:'';position:absolute;left:0;top:16px;width:12px;height:1px;background:var(--green)}
+
+a.ext{color:var(--green-dark);text-decoration:underline;text-decoration-color:var(--brown-soft);text-underline-offset:3px}
+a.ext:hover{color:var(--green)}
+a.ext::after{content:' ↗';font-size:0.85em;opacity:0.6}
+
+.callout{border-left:3px solid var(--brown);background:var(--white);padding:18px 22px;margin:18px 0;border-radius:0 8px 8px 0}
+.callout.green{border-left-color:var(--green)}
+.callout.red{border-left-color:var(--alert);background:#FAF1EF}
+.callout h4{margin-top:0;margin-bottom:6px}
+
+.badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-right:6px}
+.badge.pedro{background:var(--brown);color:var(--white)}
+.badge.bilal{background:var(--green);color:var(--white)}
+
+footer{margin-top:80px;padding-top:40px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;text-align:center}
+
+html::-webkit-scrollbar,.sidebar::-webkit-scrollbar{width:6px}
+html::-webkit-scrollbar-thumb,.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:900px){
+  .sidebar{position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--border)}
+  .main{margin-left:0;padding:40px 24px;max-width:100%}
+  .sec-head h2{font-size:32px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="brand">
+    <h1>Living Prayer</h1>
+    <p>Hub Campanha · Pedro</p>
+  </div>
+
+  <div class="countdown">
+    <div class="days" id="days-left">—</div>
+    <div class="label">dias até o retiro</div>
+    <div class="date">12-14 Junho 2026</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="head"><span>progresso</span><span id="progress-pct">0%</span></div>
+    <div class="progress-bar"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <ul class="nav" id="nav">
+    <li><a href="#s01"><span class="num">01</span>Arranque</a></li>
+    <li><a href="#s02"><span class="num">02</span>Ritmo semanal</a></li>
+    <li><a href="#s03"><span class="num">03</span>Motor: 50 contactos</a></li>
+    <li><a href="#s04"><span class="num">04</span>Decidir candidaturas</a></li>
+    <li><a href="#s05"><span class="num">05</span>Email à lista</a></li>
+    <li><a href="#s06"><span class="num">06</span>Instagram</a></li>
+    <li><a href="#s07"><span class="num">07</span>WhatsApp · Estúdios · Expats</a></li>
+    <li><a href="#s08"><span class="num">08</span>Onboarding confirmadas</a></li>
+    <li><a href="#s09"><span class="num">09</span>Fotógrafo</a></li>
+    <li><a href="#s10"><span class="num">10</span>Plano B económico</a></li>
+    <li><a href="#s11"><span class="num">11</span>Edição 2 começa agora</a></li>
+    <li><a href="#s12"><span class="num">12</span>O que o Bilal trata</a></li>
+    <li><a href="#s13"><span class="num">13</span>Biblioteca templates</a></li>
+    <li><a href="#s14"><span class="num">14</span>Ferramentas úteis</a></li>
+  </ul>
+</aside>
+
+<main class="main">
+
+<section id="s01">
+  <div class="sec-head">
+    <div class="num">01 · Arranque</div>
+    <h2>O que estamos a fazer</h2>
+    <p class="lead">Laboratório de auto-conhecimento em Sintra, 12-14 Junho 2026, máximo 12 participantes. Este hub é o teu mapa operacional. Faz check nas tarefas à medida que avanças. O progresso fica guardado neste browser.</p>
+  </div>
+
+  <div class="grid g4">
+    <div class="stat"><div class="val">12</div><div class="lbl">vagas</div></div>
+    <div class="stat"><div class="val">50</div><div class="lbl">contactos rede</div></div>
+    <div class="stat"><div class="val">10h</div><div class="lbl">semana disponível</div></div>
+    <div class="stat"><div class="val">2</div><div class="lbl">meses runway</div></div>
+  </div>
+
+  <h3>Como usar este documento</h3>
+  <p>Este ficheiro é um HTML standalone. Abre-o em qualquer browser (Safari, Chrome). Cada secção tem checkboxes que guardam o teu progresso automaticamente. Todos os templates de copy que precisas têm um botão <em>Copiar</em> à direita — carrega uma vez e está no clipboard, cola no WhatsApp, email, Instagram, o que seja. Os links a verde abrem ferramentas externas.</p>
+
+  <div class="callout green">
+    <h4>Divisão de trabalho</h4>
+    <p style="margin-bottom:8px"><span class="badge pedro">Pedro</span>tudo o que envolve voz, decisão humana, tom, relação 1:1, aceitação de candidaturas, conteúdo orgânico. É o essencial. É tudo o que está neste hub.</p>
+    <p style="margin-bottom:0"><span class="badge bilal">Bilal</span>infra, site, analytics, automações, integração com email, seguranças técnicas, RGPD, pagamentos. Vê secção 12 para detalhe.</p>
+  </div>
+
+  <h3>Os três números que importam</h3>
+  <ul class="clean-list">
+    <li><strong>Inscrições confirmadas (pagas):</strong> objectivo 10-15. Mínimo viável 6 para não cancelar.</li>
+    <li><strong>Candidaturas submetidas no site:</strong> objectivo 25-35. Indicador de topo de funil.</li>
+    <li><strong>Conversas 1:1 realizadas:</strong> objectivo 50 até 30 Abril. É daqui que virá a maior parte das inscrições.</li>
+  </ul>
+</section>
+
+<section id="s02">
+  <div class="sec-head">
+    <div class="num">02 · Ritmo semanal</div>
+    <h2>Onde gastar as 10h por semana</h2>
+    <p class="lead">Distribuição realista por tipo de trabalho. Se te afastares desta distribuição sem decisão consciente, é sinal de estar a empurrar o que dá desconforto.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Bloco</th><th>Horas</th><th>Quando</th><th>O que fazer</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1:1 rede</strong></td><td>4h</td><td>Seg-Qua, manhãs</td><td>Áudios WhatsApp, chamadas curtas, seguimentos. É o motor. Secção 03.</td></tr>
+      <tr><td><strong>Candidaturas</strong></td><td>2h</td><td>Diário, 20min</td><td>Responder a quem submete no site em ≤24h úteis. Secção 04.</td></tr>
+      <tr><td><strong>Instagram</strong></td><td>1,5h</td><td>Qui manhã</td><td>1 post + 2 stories por semana. Gravação em bloco, agendamento. Secção 06.</td></tr>
+      <tr><td><strong>Email à lista</strong></td><td>1h</td><td>Um email a cada 10 dias</td><td>5 envios até ao retiro. Secção 05.</td></tr>
+      <tr><td><strong>Parcerias</strong></td><td>1h</td><td>Sex tarde</td><td>Dois estúdios por semana. Comunidades expat. Secção 07.</td></tr>
+      <tr><td><strong>Onboarding</strong></td><td>0,5h</td><td>Quando alguém confirma</td><td>Email boas-vindas, formulário saúde, grupo WhatsApp. Secção 08.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card warn">
+    <h4>Se só tiveres 5h numa semana</h4>
+    <p>Corta pela ordem: parcerias, IG, lista de email. Nunca cortes 1:1 nem resposta a candidaturas. São os dois blocos que convertem.</p>
+  </div>
+
+  <h3>Hábitos semanais</h3>
+  <ul class="checklist">
+    <li><input type="checkbox" id="h1" data-key="ritmo-h1"><label for="h1"><strong>Segunda-feira 8h30</strong><span class="meta">Rever pipeline: quem submeteu, quem respondeu, quem falta seguir.</span></label></li>
+    <li><input type="checkbox" id="h2" data-key="ritmo-h2"><label for="h2"><strong>Seg-Ter-Qua manhãs</strong><span class="meta">Enviar 10 áudios/mensagens 1:1 por dia aos 50 contactos. 30 por semana.</span></label></li>
+    <li><input type="checkbox" id="h3" data-key="ritmo-h3"><label for="h3"><strong>Quinta-feira manhã</strong><span class="meta">Gravar e agendar 1 post Instagram + 2 stories.</span></label></li>
+    <li><input type="checkbox" id="h4" data-key="ritmo-h4"><label for="h4"><strong>Sexta-feira final do dia</strong><span class="meta">Contactar 2 estúdios ou 1 comunidade expat. Não mais.</span></label></li>
+    <li><input type="checkbox" id="h5" data-key="ritmo-h5"><label for="h5"><strong>Domingo à noite, 30 minutos</strong><span class="meta">Preparar mentalmente a semana. Olhar para quem ficou por contactar. Não mexer no computador.</span></label></li>
+  </ul>
+</section>
+
+<section id="s03">
+  <div class="sec-head">
+    <div class="num">03 · Motor: 50 contactos 1:1</div>
+    <h2>O trabalho que converte 30-50%</h2>
+    <p class="lead">Uma mulher que já te conhece, em conversa pessoal, converte muito mais do que um anúncio pago. Este bloco é o que define se fazemos 6 inscrições ou 15.</p>
+  </div>
+
+  <h3>Fase 1 — Compilar a lista (antes de 19/04)</h3>
+  <p>Cria uma folha simples. Google Sheet ou Notion, o que for mais rápido. Colunas:</p>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Estrutura da folha · copiar para Sheets/Notion</div>
+      <button class="copy-btn" data-copy="t-sheet">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-sheet">Nome · Canal preferido (WhatsApp/email/tel) · Como nos conhecemos · Última interacção (data) · Interesse retiro (fraco/médio/forte) · Bloqueios conhecidos (orçamento/data/cuidados) · Próximo passo · Data próximo passo · Estado (a contactar / contactado / interessado / candidatou / pagou / recusado / não responde)</div>
+  </div>
+
+  <ul class="checklist">
+    <li><input type="checkbox" id="c1" data-key="c-lista-1"><label for="c1"><strong>Alunas presenciais actuais e ex-alunas</strong><span class="meta">As mais fáceis. Começa por aqui.</span></label></li>
+    <li><input type="checkbox" id="c2" data-key="c-lista-2"><label for="c2"><strong>Contactos de eventos anteriores</strong><span class="meta">Workshops, aulas experimentais, convidados de outras professoras.</span></label></li>
+    <li><input type="checkbox" id="c3" data-key="c-lista-3"><label for="c3"><strong>Pessoas da tua vida que beneficiariam</strong><span class="meta">Amigas, ex-colegas, pessoas com quem tiveste conversas profundas sobre prática.</span></label></li>
+    <li><input type="checkbox" id="c4" data-key="c-lista-4"><label for="c4"><strong>Professoras afins em outras tradições</strong><span class="meta">Não para pedires que venham. Para pedires que indiquem alguém.</span></label></li>
+  </ul>
+
+  <h3>Fase 2 — O ritmo de contacto</h3>
+  <p>Dez contactos por dia durante cinco dias úteis. Cada um ~5 minutos a preparar, 1-2 minutos a gravar. Total por dia: 50 minutos. Não mais. Acumular causa ansiedade e baixa a qualidade.</p>
+
+  <div class="callout">
+    <h4>Regra de ouro do tom</h4>
+    <p>Personaliza em cada áudio a primeira frase. Se não consegues lembrar-te de algo específico sobre a pessoa, retira-a da lista 1:1 e passa para canal massivo. O áudio tem de soar a "lembrei-me de ti", não a mailing.</p>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Áudio WhatsApp 1:1 · 60-90s</div>
+      <button class="copy-btn" data-copy="t-audio1">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-audio1">Olá [nome], tudo bem?
+
+Estou aqui a gravar porque me lembrei de ti. [personalização: uma frase concreta. Ex: "depois daquela conversa sobre a tua viagem à Índia no Outono passado" ou "sabendo como tens estado a investir na tua prática este ano"].
+
+Estou a preparar um retiro pequeno em Sintra, 12 a 14 de Junho. Três dias de yoga e silêncio, para doze pessoas. Não é bem um retiro de descanso, é mais um laboratório — um espaço para olhar para dentro sem as habituais distracções.
+
+Lembrei-me de ti porque [razão específica: fase que a pessoa atravessa, interesse declarado, conversa anterior]. Achei que podia fazer sentido partilhar contigo.
+
+Se quiseres dar uma olhada, mando-te o link. Não é um convite para decidires agora, é só para teres a informação. Um abraço.</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Mensagem WhatsApp 1:1 · texto · enviar depois do áudio</div>
+      <button class="copy-btn" data-copy="t-msg1">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-msg1">Aqui fica o link: https://livingprayer.pt
+
+Se quiseres falar antes de decidir, diz-me quando tens 15 minutos e ligo-te. Sem pressão.</div>
+  </div>
+
+  <h3>Fase 3 — Seguimento</h3>
+  <p>Dia 3 após o primeiro contacto sem resposta: stories do Instagram com conteúdo do retiro (elas vêem). Dia 7: mensagem curta de seguimento. Dia 14: última mensagem, sem pressão. Se continuar sem resposta, arquiva. Não insistas.</p>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Follow-up dia 7 · WhatsApp</div>
+      <button class="copy-btn" data-copy="t-follow">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-follow">Olá [nome], só a retomar o fio. Não precisas responder se não for o momento. Queria só dizer que as vagas são mesmo limitadas (12 pessoas) e que, se estiveres curiosa, posso reservar uma conversa de 15 minutos antes de tu decidires. Abraço.</div>
+  </div>
+
+  <h3>Fase 4 — Quando alguém diz "estou interessada mas..."</h3>
+  <ul class="clean-list">
+    <li><strong>"O preço é alto para mim":</strong> propõe plano de 3 pagamentos (40% no momento da aceitação, 30% a 30 dias, 30% a 14 dias antes). Não desças o preço. Se não couber, oferece ficar na lista para a edição seguinte.</li>
+    <li><strong>"Não sei se tenho disponibilidade":</strong> 3 dias e 2 noites. Confirma logisticamente com ela. Se realmente não pode, aceita e envia uma partilha escrita pós-retiro como gesto.</li>
+    <li><strong>"Nunca fiz um retiro":</strong> esse é o perfil ideal. Reforça que não é exigente fisicamente, é exigente em presença. Convida para uma chamada de 15min.</li>
+    <li><strong>"Vou ver":</strong> confirma o próximo passo concreto. "Falo contigo sexta?". Se não confirma um próximo passo, está a recusar de forma educada.</li>
+  </ul>
+</section>
+
+<section id="s04">
+  <div class="sec-head">
+    <div class="num">04 · Decidir candidaturas</div>
+    <h2>Quem entra no retiro</h2>
+    <p class="lead">Responde sempre em menos de 24h úteis. A rapidez da resposta é leitura directa do cuidado que vão receber no retiro. SLA não é métrica técnica, é promessa pastoral.</p>
+  </div>
+
+  <h3>Critérios de aceitação</h3>
+  <p>Não estás a seleccionar pelo currículo. Estás a evitar pessoas que possam perturbar o campo ou que não estejam minimamente preparadas. Três filtros simples:</p>
+
+  <ul class="clean-list">
+    <li><strong>1. Motivação:</strong> a pessoa explica algo concreto sobre por que quer vir? Se a resposta é genérica ("quero relaxar", "estou stressada") pergunta mais antes de aceitar.</li>
+    <li><strong>2. Estado declarado:</strong> alguma contraindicação? Processo de luto agudo, trauma recente sem acompanhamento, saúde mental instável sem seguimento clínico. Não é discriminação: é reconhecer que três dias num retiro pequeno não é o contexto certo.</li>
+    <li><strong>3. Preparação mínima:</strong> tem alguma prática regular (pode ser outra tradição)? Se é absolutamente primeira vez sem qualquer prática, faz chamada de 15min antes de aceitar.</li>
+  </ul>
+
+  <div class="callout red">
+    <h4>Quando recusar sem hesitar</h4>
+    <p>Linguagem explicitamente hostil, histórico de drama em grupos, pressão para negociar preço, tentativa de trazer "só umas amigas" fora do processo, qualquer sinal de expectativa terapêutica (não és terapeuta, o retiro não é terapia).</p>
+  </div>
+
+  <h3>Templates de resposta</h3>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email aceitação · PT</div>
+      <button class="copy-btn" data-copy="t-aceite-pt">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-aceite-pt">Assunto: A tua candidatura foi aceite — Living Prayer Junho 2026
+
+Olá [nome],
+
+Obrigado por te teres candidatado. Quero confirmar-te que o teu lugar está reservado para o retiro de 12 a 14 de Junho.
+
+Para garantir a tua vaga, o depósito de [valor]€ é necessário nos próximos 7 dias. Podes pagar por:
+— MB WAY: [número]
+— Transferência: [IBAN]
+— Stripe: [link]
+
+Após o pagamento vais receber um segundo email com toda a informação prática (como chegar, o que trazer, horários) e um pequeno formulário para me contares sobre qualquer cuidado específico de saúde ou alimentação.
+
+Se houver alguma coisa que me queiras perguntar antes do pagamento, responde a este email ou diz-me um horário para falarmos.
+
+Com cuidado,
+Pedro</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email aceitação · EN</div>
+      <button class="copy-btn" data-copy="t-aceite-en">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-aceite-en">Subject: Your application is accepted — Living Prayer June 2026
+
+Hi [name],
+
+Thank you for applying. I'm writing to confirm your place for the retreat, 12-14 June.
+
+To secure your spot, the deposit of [amount]€ is required within 7 days. You can pay via:
+— Bank transfer: [IBAN, SWIFT]
+— Stripe: [link]
+
+Once the deposit is received you'll get a second email with all practical information (how to get there, what to bring, schedule) and a short form so I can know about any specific health or dietary needs.
+
+If there's anything you'd like to ask before the payment, just reply or let me know a time to talk.
+
+With care,
+Pedro</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email pausa (precisa de mais info antes de aceitar) · PT</div>
+      <button class="copy-btn" data-copy="t-pausa">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-pausa">Assunto: Sobre a tua candidatura
+
+Olá [nome],
+
+Recebi a tua candidatura. Antes de confirmar o teu lugar, gostava de ter uma conversa curta contigo — 15 a 20 minutos de chamada. Não é um obstáculo, é a forma como costumo garantir que o grupo se forma bem e que o retiro vai fazer sentido para ti.
+
+Podes dizer-me quando te dá jeito esta semana?
+
+Abraço,
+Pedro</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email recusa ou lista de espera · PT</div>
+      <button class="copy-btn" data-copy="t-recusa">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-recusa">Assunto: Sobre a tua candidatura — Living Prayer
+
+Olá [nome],
+
+Obrigado por te teres candidatado. Depois de ler com atenção, percebo que este retiro, neste momento, talvez não seja o contexto certo — [razão específica sem julgamento: "há uma intensidade no processo que atravessas que pede um espaço terapêutico mais individualizado"; ou "as vagas estão fechadas"; ou "faz sentido começarmos com uma conversa mais longa antes de nos encontrarmos em formato de retiro"].
+
+Se concordares, fico com o teu contacto para a próxima edição e mantenho-te informada. Se quiseres falar sobre o que faria mais sentido para ti agora, responde e marcamos uma conversa.
+
+Com respeito,
+Pedro</div>
+  </div>
+
+  <h3>Depois de responder</h3>
+  <ul class="clean-list">
+    <li>Resposta enviada em <strong>menos de 24h úteis</strong>.</li>
+    <li>Actualiza o status da candidata na folha de contactos.</li>
+    <li>Se aceite: define lembrete para verificar pagamento ao fim de 5 dias; se não pagou, mensagem pessoal de follow-up.</li>
+    <li>Se recusada: adiciona à lista da edição seguinte se fizer sentido.</li>
+  </ul>
+</section>
+
+<section id="s05">
+  <div class="sec-head">
+    <div class="num">05 · Email à lista</div>
+    <h2>Cinco emails até 12 de Junho</h2>
+    <p class="lead">Um email a cada ~10 dias. Lista existente. Sem promoções. Sem contagens decrescentes agressivas. O tom é o mesmo que usarias numa carta pessoal.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>#</th><th>Envio</th><th>Assunto</th><th>Objectivo</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>21 Abril</td><td>Está a nascer um retiro</td><td>Abrir candidaturas. Carta, não anúncio.</td></tr>
+      <tr><td>2</td><td>1 Maio</td><td>O que estamos a chamar de oração viva</td><td>Aprofundar o conceito. Filtrar quem não se revê.</td></tr>
+      <tr><td>3</td><td>12 Maio</td><td>Três dias e o que acontece em cada um</td><td>Tangível. Horários. O que esperar.</td></tr>
+      <tr><td>4</td><td>23 Maio</td><td>Algumas vagas ainda abertas</td><td>Honesto. Quantas. Para quem.</td></tr>
+      <tr><td>5</td><td>3 Junho</td><td>Última chamada, sem urgência</td><td>Fechar sem pressão. Último gesto convidativo.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email #1 · PT · 21 Abril</div>
+      <button class="copy-btn" data-copy="t-email1">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-email1">Assunto: Está a nascer um retiro
+
+Olá,
+
+Esta é uma carta mais pessoal do que costumo escrever.
+
+Nos últimos meses tenho estado a preparar um retiro pequeno — três dias, doze pessoas, numa quinta em Sintra. Chama-se Living Prayer, Oração Viva. Não é um retiro de descanso. É um espaço construído para olhar para dentro com outra qualidade de atenção.
+
+Abri as candidaturas hoje. O preço é [valor]€. As vagas são limitadas porque é assim que o retiro funciona.
+
+Se ressoar, podes ler tudo aqui: https://livingprayer.pt
+
+Se tiveres uma pergunta que o site não responda, basta responder a este email. Leio pessoalmente.
+
+Com cuidado,
+Pedro</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email #2 · PT · 1 Maio</div>
+      <button class="copy-btn" data-copy="t-email2">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-email2">Assunto: O que estamos a chamar de oração viva
+
+Olá,
+
+Há uma ideia no centro deste retiro que quero partilhar contigo.
+
+"Oração viva" não é uma fórmula religiosa. É um modo de estar — uma atenção que não separa o corpo da mente, o silêncio da acção, o individual do comum. É o que acontece quando deixamos de estar em modo de produção e nos deixamos atravessar por aquilo que é.
+
+Três dias num retiro não te vão mudar a vida. Mas podem reorientar o teu ouvido. Podem abrir um espaço que depois é teu para habitar no dia-a-dia.
+
+O retiro é em Sintra, 12-14 Junho. Informação toda aqui: https://livingprayer.pt
+
+Se te dizer alguma coisa, responde. Tenho estado a ter conversas breves com algumas das candidatas antes de confirmarmos juntos se faz sentido.
+
+Abraço,
+Pedro</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email #3 · PT · 12 Maio</div>
+      <button class="copy-btn" data-copy="t-email3">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-email3">Assunto: Três dias e o que acontece em cada um
+
+Olá,
+
+Para quem está a considerar mas não tem imagem clara do que é, aqui fica o desenho do retiro:
+
+Sexta-feira — chegada, jantar em silêncio, primeira prática de inversão do olhar. Dormimos.
+
+Sábado — é o dia longo. Meditação ao nascer do sol, prática de yoga pela manhã, silêncio até ao almoço. Tarde: um bloco mais experimental, que varia com o grupo. Fim de dia: partilha em círculo.
+
+Domingo — prática matinal mais aberta, brunch prolongado, encerramento em círculo. Saímos juntos depois do almoço.
+
+A casa é pequena. Comida vegetariana, cuidada. Partilhamos quartos duplos ou triplos, com opção individual.
+
+https://livingprayer.pt
+
+Com calma,
+Pedro</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email #4 · PT · 23 Maio</div>
+      <button class="copy-btn" data-copy="t-email4">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-email4">Assunto: Algumas vagas ainda abertas
+
+Olá,
+
+Um ponto de situação, porque prefiro ser claro.
+
+O retiro está a [X] inscrições confirmadas de 12. Continuam abertas algumas vagas — não escrevo isto como urgência comercial, escrevo porque sei que algumas de vós podem estar a considerar e a adiar decisão.
+
+Se é o teu caso e quiseres falar antes de te decidires, diz-me um dia e uma hora. Quinze minutos de conversa resolve muitas vezes o que uma página não consegue.
+
+https://livingprayer.pt
+
+Pedro</div>
+  </div>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email #5 · PT · 3 Junho</div>
+      <button class="copy-btn" data-copy="t-email5">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-email5">Assunto: Última chamada, sem urgência
+
+Olá,
+
+Este é o último email sobre o retiro de Junho. A partir de agora desaparece do inbox, não vou insistir.
+
+Se leste os anteriores e sentiste que era para ti mas foste adiando, considera isto um convite final. Se calhar não é para esta edição — pode ser para a próxima, prevista para Outubro.
+
+Se quiseres ficar na lista da próxima edição, responde "outono" e registo-te. Sem mais.
+
+Obrigado pela atenção ao longo destes meses.
+
+Pedro
+https://livingprayer.pt</div>
+  </div>
+
+  <div class="callout">
+    <h4>Versões EN</h4>
+    <p>Para enviar aos contactos estrangeiros da lista, traduz cada email mantendo o tom e pede ao Bilal para implementar segmentação por idioma no sistema de envio.</p>
+  </div>
+</section>
+
+<section id="s06">
+  <div class="sec-head">
+    <div class="num">06 · Instagram</div>
+    <h2>Oito semanas de conteúdo orgânico</h2>
+    <p class="lead">Um post semanal + duas stories. Publica sempre na quinta de manhã. Em bloco: grava três posts de uma vez numa tarde, edita, agenda.</p>
+  </div>
+
+  <h3>Calendário editorial</h3>
+  <table>
+    <thead><tr><th>Semana</th><th>Data</th><th>Tema do post</th><th>Ângulo</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>23 Abril</td><td>Anúncio com imagem da Quinta</td><td>Carrossel. Foto + texto em três slides.</td></tr>
+      <tr><td>2</td><td>30 Abril</td><td>O que é "oração viva"</td><td>Reel curto (30-45s) falado a 1ª pessoa.</td></tr>
+      <tr><td>3</td><td>7 Maio</td><td>Uma manhã no retiro</td><td>Vídeo estático de amanhecer. Texto descritivo.</td></tr>
+      <tr><td>4</td><td>14 Maio</td><td>Por que 12 pessoas e não 30</td><td>Post de texto + imagem. Falar sobre intimidade.</td></tr>
+      <tr><td>5</td><td>21 Maio</td><td>Depoimento real de aluna</td><td>Citação de aluna (com autorização). Imagem+texto.</td></tr>
+      <tr><td>6</td><td>28 Maio</td><td>O que trazer / o que não precisas</td><td>Carrossel prático. Muito partilhado.</td></tr>
+      <tr><td>7</td><td>4 Junho</td><td>Countdown interno, quem já está inscrita</td><td>Sem expor nomes. "Somos X até agora."</td></tr>
+      <tr><td>8</td><td>11 Junho</td><td>Abrindo o retiro</td><td>Story-only. Chegada. Primeiros momentos.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Caption post #1 · PT/EN bilingue</div>
+      <button class="copy-btn" data-copy="t-ig1">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-ig1">Living Prayer — Oração Viva.
+
+Três dias em Sintra, 12 a 14 de Junho. Doze pessoas. Um laboratório de auto-conhecimento numa quinta antiga, com prática de yoga, silêncio e partilha em círculo.
+
+Não é um retiro de relaxamento. É um espaço para olhar para dentro com outra qualidade de atenção.
+
+As candidaturas estão abertas. Link na bio.
+
+—
+
+Living Prayer. Three days in Sintra, 12-14 June. Twelve people. A laboratory of self-knowledge at an old farm, with yoga practice, silence and circle sharing.
+
+Not a relaxation retreat. A space to turn the gaze inward with a different quality of attention.
+
+Applications open. Link in bio.
+
+#yogaretreat #sintra #portugal #contemplativepractice</div>
+  </div>
+
+  <h3>Stories (duas por semana)</h3>
+  <ul class="clean-list">
+    <li><strong>Segunda:</strong> bastidores. Preparação. Objecto do dia. Um minuto de prática tua.</li>
+    <li><strong>Sexta:</strong> recolha da semana. Pergunta retórica ao público. Sticker de pergunta aberta ("o que é, para ti, oração viva?").</li>
+  </ul>
+
+  <div class="callout">
+    <h4>Um lembrete</h4>
+    <p>Stories com perguntas abertas geram 3-5x mais conversas 1:1 em DM. Usa-as para encontrar leads quentes sem estar a "vender" o retiro. Quem te responde é potencialmente candidata.</p>
+  </div>
+</section>
+
+<section id="s07">
+  <div class="sec-head">
+    <div class="num">07 · WhatsApp, Estúdios, Expats</div>
+    <h2>Três canais complementares</h2>
+    <p class="lead">Nenhum destes canais vai trazer metade das inscrições. Todos juntos, se bem feitos, devem trazer 20-30%. É trabalho de reforço: prepara terreno, cria ondulações, apoia a conversa 1:1.</p>
+  </div>
+
+  <h3>A · Comunidade WhatsApp Oração Viva</h3>
+  <p>Grupo aberto para quem tem interesse contínuo na tua prática. Não é para vender o retiro — é para manter relação viva com uma comunidade que pode ser audiência recorrente edição a edição.</p>
+
+  <ul class="checklist">
+    <li><input type="checkbox" id="wa1" data-key="wa-1"><label for="wa1"><strong>Criar grupo "Oração Viva · Comunidade"</strong><span class="meta">Configurar apenas admins podem enviar. Descrição clara.</span></label></li>
+    <li><input type="checkbox" id="wa2" data-key="wa-2"><label for="wa2"><strong>Convidar 20-30 pessoas da rede</strong><span class="meta">Alunas fiéis + pessoas com interesse declarado.</span></label></li>
+    <li><input type="checkbox" id="wa3" data-key="wa-3"><label for="wa3"><strong>Mensagem semanal única</strong><span class="meta">Áudio curto 2-3min à quarta. Reflexão, não anúncio.</span></label></li>
+    <li><input type="checkbox" id="wa4" data-key="wa-4"><label for="wa4"><strong>Uma vez, mencionar o retiro de forma subtil</strong><span class="meta">"Estamos a preparar Junho, diz-me em privado se fizer sentido".</span></label></li>
+  </ul>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Descrição do grupo WhatsApp</div>
+      <button class="copy-btn" data-copy="t-wa-desc">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-wa-desc">Oração Viva · Comunidade
+
+Um espaço pequeno onde partilho práticas, reflexões e avisos sobre o trabalho que faço. Não é um grupo de conversa — é uma carta contínua.
+
+Uma a duas mensagens por semana, sempre da minha voz. Se preferes silêncio total, silencia o grupo em vez de sair.
+
+Para qualquer conversa directa, fala comigo em privado.
+
+Pedro</div>
+  </div>
+
+  <h3>B · Estúdios parceiros</h3>
+  <p>Dois estúdios por semana. Cinco semanas. Total: dez estúdios visitados/contactados. Objectivo não é "fazer acordo", é deixar conhecer-te como professor e eventualmente oferecer aula experimental gratuita. Um estúdio amigo pode trazer 1-3 inscrições.</p>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email a estúdios de Lisboa/Cascais/Ericeira</div>
+      <button class="copy-btn" data-copy="t-est">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-est">Assunto: Uma aula convidada e um retiro em Junho
+
+Olá [nome do estúdio/responsável],
+
+O meu nome é Pedro Morais, dou yoga na zona de Sintra e Ericeira. Conheço o trabalho do [nome do estúdio] de longe e gostava de propor dois pontos pequenos.
+
+O primeiro, se houver abertura: gostava de oferecer uma aula convidada no vosso espaço, sem custo, nas próximas semanas. Não tenho objectivo comercial no estúdio — é uma forma de nos conhecermos e de criarmos uma ponte humana.
+
+O segundo: estou a organizar um retiro em Sintra em 12-14 Junho, para 12 pessoas. Se houver alguém da vossa comunidade que possa ressoar com o formato, agradecia se partilhassem. Deixo em anexo um pequeno texto descritivo.
+
+Posso ligar-vos numa tarde próxima se fizer mais sentido conversar por voz.
+
+Obrigado pelo tempo,
+Pedro
+https://livingprayer.pt</div>
+  </div>
+
+  <div class="callout">
+    <h4>Como escolher os estúdios</h4>
+    <p>Procura estúdios com alunas do teu perfil: mulheres 40+, sensibilidade contemplativa, zero estética fitness. Em Lisboa, zonas Príncipe Real, Chiado, Areeiro. Em Cascais, centro. Ericeira, os três ou quatro principais. Não vale a pena estúdios de power yoga, hot yoga, ou cadeias grandes.</p>
+  </div>
+
+  <h3>C · Comunidades expat</h3>
+  <p>Público estrangeiro residente em PT ou em viagem. Alta concentração de mulheres 40+ em busca de experiência contemplativa autêntica, com poder de compra, que falam bem inglês.</p>
+
+  <ul class="clean-list">
+    <li><strong>Internations Lisboa</strong> — evento mensal. Fazer check-in uma vez fisicamente antes de partilhar.</li>
+    <li><strong>Portugal Expats Network (Facebook)</strong> — grupo grande. Partilha post uma vez. Não mais.</li>
+    <li><strong>Lisbon Digital Nomads</strong> — grupo menor mas qualitativo.</li>
+    <li><strong>Meetup Lisboa</strong> — procurar grupos de yoga/meditação e propor visibilidade cruzada.</li>
+    <li><strong>The Portugal News (comunidade inglesa)</strong> — newsletter cultural. Possível menção editorial.</li>
+  </ul>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Post Facebook Expats · EN</div>
+      <button class="copy-btn" data-copy="t-fb-en">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-fb-en">For those considering a contemplative weekend in June — I'm hosting a small retreat near Sintra (12-14 June). Twelve people, three days, yoga and silence in an old farm outside the city. Not relaxation — a slower, more attentive kind of work.
+
+If it speaks to you, details are here: https://livingprayer.pt
+
+Happy to answer any questions by DM. Not trying to sell, just making it visible for whoever it might fit.
+
+Pedro</div>
+  </div>
+</section>
+
+<section id="s08">
+  <div class="sec-head">
+    <div class="num">08 · Onboarding confirmadas</div>
+    <h2>Depois do pagamento, o cuidado começa</h2>
+    <p class="lead">A partir do momento em que uma participante paga, a relação mudou. Já não estás a convencer — estás a cuidar. Cada toque entre o pagamento e o retiro alimenta a confiança e a qualidade de presença com que ela chega.</p>
+  </div>
+
+  <h3>Sequência de toques após pagamento</h3>
+
+  <table>
+    <thead><tr><th>Momento</th><th>Formato</th><th>O que fazer</th></tr></thead>
+    <tbody>
+      <tr><td>+1h após pagamento</td><td>Email automático</td><td>Confirmação do pagamento. Recibo em PDF. Bilal trata.</td></tr>
+      <tr><td>+24h</td><td>Email pessoal teu</td><td>Boas-vindas. Envio do formulário de saúde e preferências alimentares.</td></tr>
+      <tr><td>+7 dias</td><td>Áudio WhatsApp</td><td>Curto, não comercial. "Só queria saber como estás, se tens alguma dúvida".</td></tr>
+      <tr><td>14 dias antes</td><td>Email logístico completo</td><td>Como chegar, o que trazer, o que não precisa, horários estimados.</td></tr>
+      <tr><td>10 dias antes</td><td>Criar grupo WhatsApp só de confirmadas</td><td>Apresentação breve. Ritmo relaxado.</td></tr>
+      <tr><td>3 dias antes</td><td>Áudio no grupo</td><td>Mensagem final tua. Expectativa. Cuidado.</td></tr>
+      <tr><td>Dia 0</td><td>Check-in</td><td>Número de emergência. Condução para quem vem de comboio.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Email boas-vindas · +24h · PT</div>
+      <button class="copy-btn" data-copy="t-welcome-pt">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-welcome-pt">Assunto: Bem-vinda ao retiro · próximo passo simples
+
+Olá [nome],
+
+O teu lugar está confirmado. Obrigado pela confiança.
+
+Antes do retiro vou pedir-te uma única coisa prática: preenche este pequeno formulário. Demora 5 minutos e ajuda-me a preparar a experiência de modo mais cuidado para ti — alergias alimentares, lesões, medicações, qualquer coisa relevante.
+
+[link formulário]
+
+Nas próximas semanas vais receber:
+— Um email com toda a informação logística 14 dias antes.
+— Um convite para um grupo WhatsApp só das participantes, 10 dias antes.
+
+Se entretanto tiveres qualquer pergunta, responde directamente a este email.
+
+Com gratidão,
+Pedro</div>
+  </div>
+
+  <h3>Formulário de saúde — o que perguntar</h3>
+  <ul class="clean-list">
+    <li>Lesões actuais ou crónicas que impliquem cuidado em prática física.</li>
+    <li>Medicação regular (não precisa detalhar, só se há algo).</li>
+    <li>Alergias alimentares e intolerâncias.</li>
+    <li>Regime alimentar (vegetariana, vegan, sem glúten, etc).</li>
+    <li>Alguma coisa que queiras que eu saiba antes de nos encontrarmos.</li>
+    <li>Contacto de emergência (nome + telefone).</li>
+    <li>Consentimento para fotografia/vídeo no retiro (sim/não/só em grupo sem close-up).</li>
+  </ul>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Mensagem de abertura grupo WhatsApp confirmadas</div>
+      <button class="copy-btn" data-copy="t-grupo-open">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-grupo-open">Olá a todas.
+
+Este grupo é das doze de nós que nos vamos encontrar em Sintra daqui a alguns dias. Criei-o para partilharmos o essencial: como chegar, qualquer combinação de boleias, avisos de último momento.
+
+Não é para ansiedade antecipada. Se tiverem perguntas profundas, guardem-nas para o círculo.
+
+Podemos ter uma ronda rápida: cada uma diz o nome, de onde vem e uma palavra que traga consigo. Eu começo — Pedro, Sintra, atenção.
+
+Até daqui a dias.</div>
+  </div>
+
+  <h3>Consentimento de imagem</h3>
+  <p>Num retiro pequeno, a imagem é delicada. Algumas participantes vão aceitar estar em fotos de grupo mas não em close-up. Outras podem recusar qualquer imagem. Regista a opção de cada uma no formulário e comunica ao fotógrafo antes do retiro.</p>
+</section>
+
+<section id="s09">
+  <div class="sec-head">
+    <div class="num">09 · Fotógrafo</div>
+    <h2>Briefing para quem vai documentar</h2>
+    <p class="lead">Sai do retiro com material para: edição 2 (essencial), Instagram pós-evento, imagens para plataformas internacionais de retiros (BookRetreats, Retreat Guru), actualização do site.</p>
+  </div>
+
+  <h3>Shotlist obrigatório</h3>
+  <table>
+    <thead><tr><th>Categoria</th><th>Descrição</th><th>Formato técnico</th></tr></thead>
+    <tbody>
+      <tr><td>Amanhecer na Quinta</td><td>Luz natural, sem pessoas, paisagem envolvente</td><td>3 horizontais 16:9, 3 verticais 9:16</td></tr>
+      <tr><td>Prática em círculo</td><td>Grupo em meditação ou partilha, visto de cima ou lateral</td><td>5 horizontais, só em participantes que consentiram</td></tr>
+      <tr><td>Pedro a dar instrução</td><td>Retrato contextual, sem pose</td><td>5 verticais e horizontais</td></tr>
+      <tr><td>Mãos e detalhes</td><td>Mãos em prática, livro aberto, chá, vela, mala de yoga</td><td>10 macro, abstractos</td></tr>
+      <tr><td>Comida cuidada</td><td>Mesa posta, pratos vegetarianos, luz natural</td><td>5 top-down, 5 contextuais</td></tr>
+      <tr><td>Caminhada silenciosa</td><td>Grupo visto de longe, natureza</td><td>3 cinematográficas</td></tr>
+      <tr><td>Silêncio individual</td><td>Participante só, de costas ou silhueta, sem identificar</td><td>3 verticais para stories</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Entregáveis</h3>
+  <ul class="clean-list">
+    <li><strong>1 imagem OG 1200×630</strong> para partilha em redes e WhatsApp — uma só imagem-chave, horizontal, legível com texto sobreposto.</li>
+    <li><strong>20 imagens 1080×1080</strong> para feed Instagram e outras plataformas.</li>
+    <li><strong>15 imagens 1080×1920</strong> para stories e reels.</li>
+    <li><strong>1 vídeo curto 30-60s 16:9</strong> reel-estilo com música suave (sem letras), para usar em toda a campanha edição 2.</li>
+    <li><strong>50-80 imagens "raw edit"</strong> para arquivo e uso futuro.</li>
+  </ul>
+
+  <div class="callout">
+    <h4>Importante: anonimização</h4>
+    <p>Se alguma participante optou por "sem close-up", o fotógrafo recebe a lista. Em caso de dúvida, o fotógrafo não fotografa. Mais vale ter menos material do que ter uma participante desconfortável depois.</p>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="sec-head">
+    <div class="num">10 · Plano B económico</div>
+    <h2>Se os números não baterem</h2>
+    <p class="lead">O retiro acontece. A decisão já foi tomada. Mas o formato pode ter de adaptar-se. Quatro cenários claros para tomares decisões em Maio sem entrar em pânico.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card accent">
+      <h4 style="color:var(--green-dark);margin-top:0">Cenário A · 10-15 inscrições</h4>
+      <p>Execução standard. Preço 330-400€. Retiro acontece como planeado. Fechar candidaturas 7 dias antes. Focar energia em onboarding de qualidade.</p>
+    </div>
+    <div class="card accent">
+      <h4 style="color:var(--green-dark);margin-top:0">Cenário B · 6-9 inscrições</h4>
+      <p>Retiro acontece mas com margem apertada. Ver possibilidade de cortar um extra (não um essencial). Aceitar que esta edição é semente para a próxima, não lucro.</p>
+    </div>
+    <div class="card warn">
+      <h4 style="color:var(--warn);margin-top:0">Cenário C · 3-5 inscrições</h4>
+      <p>Negociar com a Quinta das Broas: reduzir quartos ocupados ou transferir reserva para edição de Outono com penalização menor. Acontece formato mais íntimo, preço revisto para baixo. Comunicação cuidadosa às inscritas.</p>
+    </div>
+    <div class="card alert">
+      <h4 style="color:var(--alert);margin-top:0">Cenário D · menos de 3 inscrições</h4>
+      <p>Só aqui se pondera adiamento formal. Conversa directa com cada uma das 3 inscritas, propor edição de Outono com pagamento preservado. Foco total em construir Outono sem ferir confiança das actuais.</p>
+    </div>
+  </div>
+
+  <h3>Quando tomar a decisão</h3>
+  <p>Ponto de verificação obrigatório: <strong>20 Maio</strong>. Se a essa data tiveres menos de 6 confirmadas, aciona renegociação com a Quinta.</p>
+
+  <div class="template">
+    <div class="tmpl-head">
+      <div class="ttl">Mensagem à Quinta das Broas · renegociação Cenário C</div>
+      <button class="copy-btn" data-copy="t-quinta">Copiar</button>
+    </div>
+    <div class="tmpl-body" id="t-quinta">Olá [nome],
+
+Um ponto de situação honesto sobre o retiro de 12-14 Junho.
+
+À data de hoje temos [X] inscrições confirmadas. O retiro vai acontecer, mas vamos precisar de ajustar a ocupação — serão [X] em vez das 12 iniciais.
+
+Duas possibilidades que quero conversar contigo:
+
+1. Manter a reserva nas datas originais, ajustar quartos usados e rever condições financeiras em função da ocupação real.
+
+2. Transferir a reserva para a edição de Outono (datas a confirmar, provavelmente 23-25 Outubro) mantendo o compromisso de prioridade na Quinta.
+
+O que faria mais sentido do teu lado? Posso ligar-te esta semana para conversarmos.
+
+Obrigado pela parceria,
+Pedro</div>
+  </div>
+</section>
+
+<section id="s11">
+  <div class="sec-head">
+    <div class="num">11 · Edição 2 começa agora</div>
+    <h2>O pós-retiro é pré-próximo</h2>
+    <p class="lead">A maior diferença entre um retiro que dá 8k€ e um retiro que se torna uma prática sustentável é o que acontece entre retiros. Esta secção vai importar mais do que qualquer outra a médio prazo.</p>
+  </div>
+
+  <h3>Nas 72 horas após o retiro</h3>
+  <ul class="checklist">
+    <li><input type="checkbox" id="p1" data-key="pos-1"><label for="p1"><strong>Survey qualitativo a todas as participantes</strong><span class="meta">3 perguntas abertas. Pedir consentimento para usar citações em marketing.</span></label></li>
+    <li><input type="checkbox" id="p2" data-key="pos-2"><label for="p2"><strong>Áudio de agradecimento no grupo WhatsApp</strong><span class="meta">Curto, sem pedido. Apenas gratidão.</span></label></li>
+    <li><input type="checkbox" id="p3" data-key="pos-3"><label for="p3"><strong>Fotos processadas e entregues num link partilhável</strong><span class="meta">Cada participante recebe acesso ao seu próprio álbum.</span></label></li>
+  </ul>
+
+  <h3>Nas 2 semanas seguintes</h3>
+  <ul class="checklist">
+    <li><input type="checkbox" id="p4" data-key="pos-4"><label for="p4"><strong>Post Instagram com depoimento real</strong><span class="meta">Citação anónima ou com primeiro nome e consentimento.</span></label></li>
+    <li><input type="checkbox" id="p5" data-key="pos-5"><label for="p5"><strong>Email à lista com "O que aconteceu"</strong><span class="meta">Pós-mortem generoso. Abre porta à edição 2.</span></label></li>
+    <li><input type="checkbox" id="p6" data-key="pos-6"><label for="p6"><strong>Anunciar datas edição Outono</strong><span class="meta">Recomendado: 23-25 Outubro 2026. Inscrições abrem 1 Setembro.</span></label></li>
+    <li><input type="checkbox" id="p7" data-key="pos-7"><label for="p7"><strong>Lista preferencial</strong><span class="meta">Quem candidatou-se e não coube, quem está na lista de espera, quem pediu "Outono" — todas com acesso 72h antes do público.</span></label></li>
+  </ul>
+
+  <h3>Oferta entre retiros</h3>
+  <p>Para manteres a relação viva entre edições, pensa numa das três possibilidades (podes escolher só uma para começar):</p>
+
+  <ul class="clean-list">
+    <li><strong>Audio practice mensal</strong> — áudio de 20-30 minutos enviado por email no último domingo do mês. Formato simples, pouco custo de produção, alta fidelização. Pode ser gratuito ou 5€/mês como apoio.</li>
+    <li><strong>Encontros trimestrais online</strong> — 90min em Zoom, ex-participantes convidadas. Gratuito. Alimenta pertença.</li>
+    <li><strong>Curso de 6 semanas</strong> — formato mais estruturado, preço 150-250€, duas ou três edições por ano. Exige mais produção mas dá receita forte entre retiros.</li>
+  </ul>
+</section>
+
+<section id="s12">
+  <div class="sec-head">
+    <div class="num">12 · O que o Bilal está a tratar</div>
+    <h2>A tua parte técnica está coberta</h2>
+    <p class="lead">Não precisas de tocar em nada nesta lista. É informação só para saberes que o Bilal está a executar, e para quando alguma coisa apontar para aí, saberes a quem pedir.</p>
+  </div>
+
+  <div class="card accent">
+    <h4 style="color:var(--green-dark);margin-top:0">Sprint técnico 48h · em execução</h4>
+    <ul class="clean-list">
+      <li>Meta Pixel e Google Analytics a funcionar — sabermos quantas pessoas chegam ao site e de onde.</li>
+      <li>Schema.org Event — Google mostra o retiro com preço e datas nos resultados de pesquisa.</li>
+      <li>Imagem OG para partilha em WhatsApp e redes sociais.</li>
+      <li>Resend (email) com autenticação DKIM para não cair em spam.</li>
+      <li>PageSpeed ≥90 em mobile.</li>
+      <li>Search Console activa e submetida.</li>
+    </ul>
+  </div>
+
+  <div class="card accent">
+    <h4 style="color:var(--green-dark);margin-top:0">Páginas legais · em construção</h4>
+    <ul class="clean-list">
+      <li>Página de privacidade RGPD (<code>/privacidade</code>) — direitos de quem se candidata, onde os dados vão, quanto tempo ficam.</li>
+      <li>Página de termos e política de reembolso (<code>/termos</code>) — regras claras do depósito não reembolsável, reembolsos escalonados por antecedência do cancelamento.</li>
+      <li>Consentimento no formulário — duas checkboxes separadas, termos obrigatórios, newsletter opcional.</li>
+      <li>Cookie banner — aceitar/recusar tracking em conformidade.</li>
+    </ul>
+  </div>
+
+  <div class="card warn">
+    <h4 style="color:var(--warn);margin-top:0">Decisões que precisas de tomar para o Bilal avançar</h4>
+    <ul class="clean-list">
+      <li><strong>Valor do depósito não reembolsável</strong> (recomendação: 30% do preço total).</li>
+      <li><strong>Formas de pagamento aceites</strong>: Stripe com MB WAY + transferência bancária? Ou só uma?</li>
+      <li><strong>Política de reembolso escalonada</strong>: 100% menos depósito &gt;60 dias? 50% entre 30-60? Sem reembolso &lt;30 dias?</li>
+      <li><strong>Seguro de responsabilidade civil</strong> activado como professor — verificar com a tua seguradora.</li>
+    </ul>
+  </div>
+
+  <h3>O que fazer quando acontece algo estranho no site</h3>
+  <ul class="clean-list">
+    <li>Formulário não está a submeter → screenshot + hora + mensagem para Bilal.</li>
+    <li>Participante diz que não recebeu email de confirmação → pedir-lhe para verificar spam, depois reencaminhar pedido para Bilal com email dela.</li>
+    <li>Dúvida sobre o que fazer com um dado recebido → não reencaminhar por email em texto plano. Usar o admin CRM.</li>
+  </ul>
+</section>
+
+<section id="s13">
+  <div class="sec-head">
+    <div class="num">13 · Biblioteca templates</div>
+    <h2>Todos os copy num único sítio</h2>
+    <p class="lead">Acesso rápido sem procurar por secções. Organizados por canal.</p>
+  </div>
+
+  <h3>WhatsApp 1:1</h3>
+  <ul class="clean-list">
+    <li>Áudio 1:1 · secção 03</li>
+    <li>Mensagem após áudio · secção 03</li>
+    <li>Follow-up dia 7 · secção 03</li>
+  </ul>
+
+  <h3>Email a candidatas</h3>
+  <ul class="clean-list">
+    <li>Aceitação · PT e EN · secção 04</li>
+    <li>Pausa antes de aceitar · secção 04</li>
+    <li>Recusa ou lista de espera · secção 04</li>
+    <li>Boas-vindas após pagamento · secção 08</li>
+  </ul>
+
+  <h3>Email à lista existente</h3>
+  <ul class="clean-list">
+    <li>Email #1 anúncio · secção 05</li>
+    <li>Email #2 conceito · secção 05</li>
+    <li>Email #3 programa · secção 05</li>
+    <li>Email #4 vagas abertas · secção 05</li>
+    <li>Email #5 última chamada · secção 05</li>
+  </ul>
+
+  <h3>Instagram</h3>
+  <ul class="clean-list">
+    <li>Caption post #1 PT/EN · secção 06</li>
+  </ul>
+
+  <h3>Parceiros</h3>
+  <ul class="clean-list">
+    <li>Email a estúdios · secção 07</li>
+    <li>Post Facebook expats EN · secção 07</li>
+    <li>Descrição grupo WhatsApp comunidade · secção 07</li>
+  </ul>
+
+  <h3>Onboarding e grupo</h3>
+  <ul class="clean-list">
+    <li>Mensagem abertura grupo WhatsApp confirmadas · secção 08</li>
+  </ul>
+
+  <h3>Crise</h3>
+  <ul class="clean-list">
+    <li>Mensagem de renegociação à Quinta das Broas · secção 10</li>
+  </ul>
+</section>
+
+<section id="s14">
+  <div class="sec-head">
+    <div class="num">14 · Ferramentas úteis</div>
+    <h2>Links que vão importar ao longo da campanha</h2>
+    <p class="lead">Abre só os que precisares. Todos testados.</p>
+  </div>
+
+  <h3>O teu trabalho</h3>
+  <ul class="clean-list">
+    <li><a class="ext" target="_blank" rel="noopener" href="https://livingprayer.pt">livingprayer.pt — site público</a></li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://admin.livingprayer.pt">admin.livingprayer.pt — CRM de candidaturas</a></li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://analytics.google.com">Google Analytics — tráfego do site</a></li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://search.google.com/search-console">Search Console — posição em pesquisa</a></li>
+  </ul>
+
+  <h3>Plataformas de retiros internacionais (listar a edição 2)</h3>
+  <ul class="clean-list">
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.bookretreats.com/">BookRetreats</a> — audiência grande 40+.</li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.bookyogaretreats.com/">BookYogaRetreats</a> — comissão ~25% mas tráfego qualificado.</li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://retreat.guru/">Retreat Guru</a> — estética contemplativa.</li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.tripaneer.com/">Tripaneer</a> — mercado asiático e norte-americano.</li>
+  </ul>
+
+  <h3>Comunidades expat a pesquisar</h3>
+  <ul class="clean-list">
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.internations.org/lisbon-expats/">Internations Lisboa</a></li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.meetup.com/find/pt-pt/?keywords=yoga">Meetup Lisboa — grupos de yoga</a></li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.theportugalnews.com/">The Portugal News</a></li>
+  </ul>
+
+  <h3>Gravação e edição</h3>
+  <ul class="clean-list">
+    <li><a class="ext" target="_blank" rel="noopener" href="https://later.com/">Later</a> — agendamento posts Instagram.</li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.canva.com/">Canva</a> — carrosséis e imagens rápidas.</li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://otter.ai/">Otter.ai</a> — transcrição automática de áudios teus para newsletter.</li>
+  </ul>
+
+  <h3>Email marketing (quando avançarmos)</h3>
+  <ul class="clean-list">
+    <li><a class="ext" target="_blank" rel="noopener" href="https://kit.com/">Kit (ex-ConvertKit)</a> — recomendado para criadores.</li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://www.mailerlite.com/">MailerLite</a> — alternativa económica.</li>
+    <li><a class="ext" target="_blank" rel="noopener" href="https://substack.com/">Substack</a> — se quiseres criar newsletter pública com assinaturas pagas entre retiros.</li>
+  </ul>
+</section>
+
+<footer>
+  Hub Living Prayer · versão 2 · actualizado 17 Abril 2026 · Pedro Morais
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  const target = new Date('2026-06-12T00:00:00+01:00').getTime();
+  function updateCountdown(){
+    const now = Date.now();
+    const diff = target - now;
+    const days = Math.max(0, Math.ceil(diff / (1000*60*60*24)));
+    const el = document.getElementById('days-left');
+    if(el) el.textContent = days;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 3600000);
+
+  const STORAGE_KEY = 'lp-hub-v2-progress';
+  function loadState(){
+    try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch(e){return{}}
+  }
+  function saveState(state){
+    try{localStorage.setItem(STORAGE_KEY, JSON.stringify(state))}catch(e){}
+  }
+  function updateProgressBar(){
+    const boxes = document.querySelectorAll('input[type="checkbox"][data-key]');
+    if(!boxes.length) return;
+    let done = 0;
+    boxes.forEach(b => { if(b.checked) done++; });
+    const pct = Math.round((done/boxes.length)*100);
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+  const state = loadState();
+  document.querySelectorAll('input[type="checkbox"][data-key]').forEach(box => {
+    const key = box.dataset.key;
+    if(state[key]) box.checked = true;
+    box.addEventListener('change', () => {
+      const s = loadState();
+      s[key] = box.checked;
+      saveState(s);
+      updateProgressBar();
+    });
+  });
+  updateProgressBar();
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.copy;
+      const src = document.getElementById(targetId);
+      if(!src) return;
+      const text = src.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copiado';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(() => {
+        btn.textContent = 'Erro';
+        setTimeout(() => { btn.textContent = 'Copiar'; }, 1800);
+      });
+    });
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(a => a.classList.remove('active'));
+        const activeLink = document.querySelector('.nav a[href="#' + id + '"]');
+        if(activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-15% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+})();
+</script>
+</body>
+</html>
